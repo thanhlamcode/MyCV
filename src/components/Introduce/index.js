@@ -2,12 +2,9 @@ import Typewriter from "typewriter-effect";
 import { Col, Row } from "antd";
 import { FaNodeJs, FaReact } from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io";
-
-import {
-  FacebookOutlined,
-  TwitterOutlined,
-  LinkedinOutlined,
-} from "@ant-design/icons";
+import { SiZalo } from "react-icons/si";
+import { FaFacebook } from "react-icons/fa";
+import { CiLinkedin } from "react-icons/ci";
 import "./style.scss";
 
 function Introduce() {
@@ -42,9 +39,9 @@ function Introduce() {
               <Col lg={12} md={24} sm={24} xs={24}>
                 <h3>find with me</h3>
                 <div className="icon">
-                  <FacebookOutlined />
-                  <TwitterOutlined />
-                  <LinkedinOutlined />
+                  <FaFacebook />
+                  <SiZalo />
+                  <CiLinkedin />
                 </div>
               </Col>
               <Col lg={12} md={24} sm={24} xs={24}>
