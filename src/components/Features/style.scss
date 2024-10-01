@@ -1,0 +1,66 @@
+.features{
+  margin: 0 50px;
+  margin-top: 80px;
+
+  h3{
+    color: #F9004D;
+    font-weight: 300;
+    font-size: 14px;
+    margin: 0;
+  }
+
+  h1{
+    color: #C4CFDE;
+    font-size: 70px;
+    margin: 0;
+    margin-bottom: 30px;
+  }
+
+  .box{
+    color: #C4CFDE;
+    background: linear-gradient(to right bottom, #212428, #16181c);
+    box-shadow: 10px 10px 19px #1c1e22, 5px 5px 5px #262a2e;
+    padding: 60px;
+    border-radius: 20px;
+    transition: all ease-out 0.4s;
+
+    svg, h2, p{
+      margin: 0;
+    }
+
+    h2{
+      font-size: 35px;
+      margin-bottom: 15px;
+    }
+
+    svg{
+      scale: 4;
+      margin-bottom: 15px;
+      margin-left: 20px;
+      color: #F9004D;
+    }
+
+    .arrow{
+      position: absolute;
+      bottom: 7px;
+      left: 40px;
+      scale: 2;
+      display: none;
+    }
+
+    &:hover .arrow{
+      display: block;
+      
+    }
+
+    &:hover{
+      background: linear-gradient(to left top, #212428, #16181c);
+      transform: translateY(-10px);
+    }
+
+    &:hover h2, &:hover p{
+      color: #FFFFFF;
+    }
+  }
+
+}
