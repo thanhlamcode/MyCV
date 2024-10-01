@@ -1,0 +1,64 @@
+.intro{
+  margin: 0 50px;
+  color: white;
+
+  img{
+    width: 100%;
+  }
+
+  h3{
+    font-size: 18px;
+    color: #C4CFDE;
+    font-weight: 400;
+  }
+  h1{
+    color: #FFFFFF;
+    font-size: 50px;
+    margin-top: 0;
+
+    span{
+      color: #FF014F;
+    }
+
+    .Typewriter__wrapper, .Typewriter__cursor{
+      color: #FFFFFF;
+    }
+  }
+  p{
+    color: #C4CFDE;
+    font-size: 16px;
+  }
+
+  .wrap-icon{
+    text-transform: uppercase;
+  }
+
+  .anticon{
+    padding: 20px;
+    background: linear-gradient(145deg, #1e2024, #23272b);
+    margin-right: 20px;
+    border-radius: 10px;
+    transition: all ease-out 0.4s;
+  }
+
+  .anticon:hover {
+    cursor: pointer;
+    transform: translateY(-10px); /* Adjusted to move slightly more */
+    background: linear-gradient(145deg, #2e3136, #3a3d41); /* New color for the hover effect */
+  }
+
+  [stroke="currentColor"]{
+    padding: 20px;
+    background: linear-gradient(145deg, #1e2024, #23272b);
+    margin-right: 20px;
+    border-radius: 10px;
+    transition: all ease-out 0.4s;
+  }
+
+  [stroke="currentColor"]:hover {
+    cursor: pointer;
+    transform: translateY(-10px); /* Adjusted to move slightly more */
+    background: linear-gradient(145deg, #2e3136, #3a3d41); /* New color for the hover effect */
+  }
+
+}

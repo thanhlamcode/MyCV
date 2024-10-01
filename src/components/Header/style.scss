@@ -1,0 +1,38 @@
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // // margin: 0 20px;
+  // background-color: #212428;
+
+  &__left{
+    img{
+      width: 150px;
+    }
+  }
+
+  &__right{
+    ul{
+      display: flex;
+      list-style-type: none;
+      margin-right: 50px;
+
+      a{
+        margin-right: 10px;
+        color: #ADB7C4;
+        text-decoration: none;
+        transition: all 0.5s ease-in;
+
+        &:nth-child(1){
+          color: #FCFFFF;
+        }
+
+        &:hover{
+          color: #FE014F;
+          cursor: pointer;
+        }
+      }
+
+    }
+  }
+}
