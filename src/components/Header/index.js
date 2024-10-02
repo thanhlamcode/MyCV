@@ -17,7 +17,7 @@ function Header() {
               </a>
             </li>
             <li>
-              <a href="" alt="">
+              <a href="#features" alt="">
                 FEATURES
               </a>
             </li>

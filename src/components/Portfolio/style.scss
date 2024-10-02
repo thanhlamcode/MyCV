@@ -1,0 +1,104 @@
+.portfolio{
+  margin: 80px 50px;
+  text-align: center;
+
+  h3{
+    color: #FF014F;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 14px;
+  }
+
+  h1{
+    color: #C4CFDE;
+    font-size: 65px;
+    margin-top: 0;
+  }
+
+
+  .box{
+    color: #C4CFDE;
+    background: linear-gradient(to right bottom, #212428, #16181c);
+    box-shadow: 10px 10px 19px #1c1e22, 5px 5px 5px #262a2e;
+    padding: 30px;
+    border-radius: 20px;
+    transition: all ease-out 0.4s;
+
+    h2 {
+      transition: all 0.4s ease;
+      padding-top: 70px;
+    
+      span {
+        svg {
+          transform: rotate(0deg);
+          opacity: 0;
+          transition: all 0.4s ease-in;
+        }
+      }
+    
+      &:hover {
+        color: #FF014F;
+      }
+    
+      &:hover svg {
+        transform: rotate(45deg);
+        opacity: 1;
+      }
+    }
+    
+
+    .wrap-image{
+      overflow: hidden;
+
+      img{
+        width: 100%;
+        border-radius: 20px;
+        aspect-ratio: 3/2;
+        transition: all ease-in 0.4s;
+      }
+    }
+
+    .wrap-content{
+      margin-top: 20px;
+
+      .wrap-love{
+        display: inline-block;
+        position: absolute;
+        right: 50px;
+        border-radius: 20px;
+
+        .love{
+          display: flex;
+          flex-direction: row-reverse;
+          padding: 10px;
+          border-radius: 10px;
+
+          &:hover{
+            background: #131518;
+            cursor: pointer;
+          }
+
+          &:hover svg{
+            color: #FF014F;
+          }
+    
+          svg{
+            position: relative;
+            top: 2px;
+            right: 2px;
+          }
+        }
+      }
+
+    }
+
+    &:hover img{
+      scale: 1.1;
+    }
+
+    &:hover{
+      background: linear-gradient(to left top, #212428, #16181c);
+    }
+
+  }
+}

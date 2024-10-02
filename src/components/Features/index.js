@@ -12,11 +12,11 @@ import "./style.scss";
 function Features() {
   return (
     <>
-      <div className="features">
+      <div className="features" id="features">
         <h3>FEATURES</h3>
         <h1>What I Do</h1>
         <Row gutter={[30, 30]}>
-          <Col xs={8} xl={8} md={12} sm={24}>
+          <Col xl={8} md={12} sm={24} xs={24}>
             <div className="box">
               <FaBookOpen />
               <h2>Business Stratagy</h2>
@@ -27,7 +27,7 @@ function Features() {
               <FiArrowRight className="arrow" />
             </div>
           </Col>
-          <Col xs={8} xl={8} md={12} sm={24}>
+          <Col xs={24} xl={8} md={12} sm={24}>
             <div className="box">
               <FaBookmark />
               <h2>Business Stratagy</h2>
@@ -38,7 +38,7 @@ function Features() {
               <FiArrowRight className="arrow" />
             </div>
           </Col>
-          <Col xs={8} xl={8} md={12} sm={24}>
+          <Col xs={24} xl={8} md={12} sm={24}>
             <div className="box">
               <IoPhonePortrait />
               <h2>Business Stratagy</h2>
@@ -49,7 +49,7 @@ function Features() {
               <FiArrowRight className="arrow" />
             </div>
           </Col>
-          <Col xs={8} xl={8} md={12} sm={24}>
+          <Col xs={24} xl={8} md={12} sm={24}>
             <div className="box">
               <FaFacebookMessenger />
               <h2>Business Stratagy</h2>
@@ -60,7 +60,7 @@ function Features() {
               <FiArrowRight className="arrow" />
             </div>
           </Col>
-          <Col xs={8} xl={8} md={12} sm={24}>
+          <Col xs={24} xl={8} md={12} sm={24}>
             <div className="box">
               <FiActivity />
               <h2>Business Stratagy</h2>
@@ -71,7 +71,7 @@ function Features() {
               <FiArrowRight className="arrow" />
             </div>
           </Col>
-          <Col xs={8} xl={8} md={12} sm={24}>
+          <Col xs={24} xl={8} md={12} sm={24}>
             <div className="box">
               <FiFilm />
               <h2>Business Stratagy</h2>

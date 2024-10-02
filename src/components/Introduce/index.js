@@ -12,7 +12,7 @@ function Introduce() {
     <>
       <div className="intro">
         <Row>
-          <Col xl={16} lg={16} md={24}>
+          <Col xl={16} lg={16} md={24} xs={24}>
             <h3>WELCOME TO MY WORLD</h3>
             <h1>
               Hi, I'm <span>Thanh Lam</span>
@@ -54,7 +54,7 @@ function Introduce() {
               </Col>
             </Row>
           </Col>
-          <Col xl={8} lg={8} md={24}>
+          <Col xl={8} lg={8} md={24} xs={24}>
             <img
               src="https://rainbowit.net/themes/inbio/wp-content/uploads/2021/08/banner-01.png"
               alt="ảnh cá nhân"
