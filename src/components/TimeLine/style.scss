@@ -1,0 +1,86 @@
+.timeline {
+  margin: 80px 10px;
+
+  .year {
+    color: #FF014F;
+  }
+
+  h1 {
+    font-size: 50px;
+  }
+
+  .ant-timeline-item-tail {
+    background: #17191C;
+    border-inline-start: 5px solid #17191C;
+  }
+
+  .ant-timeline-item-head {
+    width: 15px;
+    height: 15px;
+    background: #121212;
+  }
+
+  .ant-timeline-item-head-blue {
+    border-color: #17191C;
+  }
+
+  .ant-timeline-item:hover .ant-timeline-item-head,
+  .box:hover .ant-timeline-item-head {
+    background: #FF014F;
+    transition: all 0.4s ease-out;
+  }
+
+  .box {
+    color: #C4CFDE;
+    background: linear-gradient(to right bottom, #212428, #16181c);
+    box-shadow: 10px 10px 19px #1c1e22, 5px 5px 5px #262a2e;
+    padding: 20px;
+    border-radius: 20px;
+    transition: all 0.4s ease-out;
+
+    &:hover {
+      background: linear-gradient(to left top, #212428, #16181c);
+      opacity: 0.9;
+    }
+
+    &:hover .gpa {
+      background: #1E2025;
+    }
+
+    &:hover .title, 
+    &:hover .university, 
+    &:hover p {
+      color: #fff;
+    }
+
+    .university, 
+    p {
+      color: #838A96;
+      font-size: 14px;
+    }
+
+    .title {
+      font-size: 24px;
+    }
+
+    .gpa {
+      display: inline-block;
+      font-size: 14px;
+      color: #FF014F;
+      background: #22262A;
+      padding: 10px;
+      border-radius: 8px;
+      margin: 20px 0;
+      transition: all 0.4s ease-out;
+    }
+
+    hr {
+      opacity: 0;
+      transition: all 0.4s ease-in;
+    }
+
+    &:hover hr {
+      opacity: 1;
+    }
+  }
+}
