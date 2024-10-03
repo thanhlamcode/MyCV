@@ -38,11 +38,13 @@
     
       &:hover {
         color: #FF014F;
+        cursor: pointer;
       }
     
       &:hover svg {
         transform: rotate(45deg);
         opacity: 1;
+        color: #FF014F;
       }
     }
     
@@ -94,6 +96,7 @@
 
     &:hover img{
       scale: 1.1;
+      cursor: pointer;
     }
 
     &:hover{
