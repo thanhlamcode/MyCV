@@ -1,6 +1,14 @@
 .timeline {
   margin: 80px 10px;
 
+  .timeline-education.active{
+    color: #FF014F;
+  }
+
+  .timeline-certificate{
+    display: none;
+  }
+
   .year {
     color: #FF014F;
   }
