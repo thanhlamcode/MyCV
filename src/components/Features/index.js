@@ -6,82 +6,60 @@ import { FaFacebookMessenger } from "react-icons/fa";
 import { FiActivity } from "react-icons/fi";
 import { FiArrowRight } from "react-icons/fi";
 import { FiFilm } from "react-icons/fi";
-
 import "./style.scss";
 
 function Features() {
   return (
     <>
-      <div className="features" id="features">
-        <h3>FEATURES</h3>
-        <h1>What I Do</h1>
+      <div
+        className="features wow animate__animated animate__fadeIn"
+        id="features"
+        data-wow-delay="0.3s"
+      >
+        <h3
+          className="wow animate__animated animate__fadeInDown"
+          data-wow-delay="0.5s"
+        >
+          FEATURES
+        </h3>
+        <h1
+          className="wow animate__animated animate__fadeInUp"
+          data-wow-delay="0.6s"
+        >
+          What I Do
+        </h1>
         <Row gutter={[30, 30]}>
-          <Col xl={8} md={12} sm={24} xs={24}>
-            <div className="box">
-              <FaBookOpen />
-              <h2>Business Stratagy</h2>
-              <p>
-                I throw myself down among the tall grass by the stream as Ilie
-                close to the earth.
-              </p>
-              <FiArrowRight className="arrow" />
-            </div>
-          </Col>
-          <Col xs={24} xl={8} md={12} sm={24}>
-            <div className="box">
-              <FaBookmark />
-              <h2>Business Stratagy</h2>
-              <p>
-                I throw myself down among the tall grass by the stream as Ilie
-                close to the earth.
-              </p>
-              <FiArrowRight className="arrow" />
-            </div>
-          </Col>
-          <Col xs={24} xl={8} md={12} sm={24}>
-            <div className="box">
-              <IoPhonePortrait />
-              <h2>Business Stratagy</h2>
-              <p>
-                I throw myself down among the tall grass by the stream as Ilie
-                close to the earth.
-              </p>
-              <FiArrowRight className="arrow" />
-            </div>
-          </Col>
-          <Col xs={24} xl={8} md={12} sm={24}>
-            <div className="box">
-              <FaFacebookMessenger />
-              <h2>Business Stratagy</h2>
-              <p>
-                I throw myself down among the tall grass by the stream as Ilie
-                close to the earth.
-              </p>
-              <FiArrowRight className="arrow" />
-            </div>
-          </Col>
-          <Col xs={24} xl={8} md={12} sm={24}>
-            <div className="box">
-              <FiActivity />
-              <h2>Business Stratagy</h2>
-              <p>
-                I throw myself down among the tall grass by the stream as Ilie
-                close to the earth.
-              </p>
-              <FiArrowRight className="arrow" />
-            </div>
-          </Col>
-          <Col xs={24} xl={8} md={12} sm={24}>
-            <div className="box">
-              <FiFilm />
-              <h2>Business Stratagy</h2>
-              <p>
-                I throw myself down among the tall grass by the stream as Ilie
-                close to the earth.
-              </p>
-              <FiArrowRight className="arrow" />
-            </div>
-          </Col>
+          {[
+            { icon: <FaBookOpen />, title: "Business Strategy", delay: "0.7s" },
+            { icon: <FaBookmark />, title: "Branding", delay: "0.8s" },
+            {
+              icon: <IoPhonePortrait />,
+              title: "Mobile App Design",
+              delay: "0.9s",
+            },
+            {
+              icon: <FaFacebookMessenger />,
+              title: "Social Media Marketing",
+              delay: "1.0s",
+            },
+            { icon: <FiActivity />, title: "Market Analysis", delay: "1.1s" },
+            { icon: <FiFilm />, title: "Video Production", delay: "1.2s" },
+          ].map((feature, index) => (
+            <Col key={index} xl={8} md={12} sm={24} xs={24}>
+              <div
+                className="box wow animate__animated animate__zoomIn"
+                data-wow-delay={feature.delay}
+              >
+                {feature.icon}
+                <h2>{feature.title}</h2>
+                <p>
+                  I throw myself down among the tall grass by the stream as I
+                  lie close to the earth.
+                </p>
+                <FiArrowRight className="arrow" />
+              </div>
+            </Col>
+          ))}
         </Row>
       </div>
     </>

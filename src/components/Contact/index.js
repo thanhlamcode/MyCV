@@ -2,22 +2,40 @@ import { Col, Row } from "antd";
 import { CiLinkedin } from "react-icons/ci";
 import { FaFacebookF } from "react-icons/fa";
 import { SiZalo } from "react-icons/si";
-
 import "./style.scss";
 
 function Contact() {
   return (
     <>
-      <div className="contact" id="contacts">
-        <h3>Contact</h3>
-        <h1>Contact With Me</h1>
+      <div
+        className="contact wow animate__animated animate__fadeIn"
+        id="contacts"
+        data-wow-delay="0.3s"
+      >
+        <h3
+          className="wow animate__animated animate__fadeInDown"
+          data-wow-delay="0.5s"
+        >
+          Contact
+        </h3>
+        <h1
+          className="wow animate__animated animate__fadeInUp"
+          data-wow-delay="0.6s"
+        >
+          Contact With Me
+        </h1>
         <Row gutter={[30, 30]}>
           <Col xxl={10} lg={10} md={24} sm={24} xs={24}>
-            <div className="wrap-left">
+            <div
+              className="wrap-left wow animate__animated animate__zoomIn"
+              data-wow-delay="0.7s"
+            >
               <div className="wrap-image">
                 <img
                   src="https://rainbowit.net/themes/inbio/wp-content/uploads/2021/08/contact1.png"
                   alt=""
+                  className="wow animate__animated animate__pulse"
+                  data-wow-delay="0.9s"
                 />
               </div>
               <div className="fullName">Đoàn Thanh Lâm</div>
@@ -32,8 +50,16 @@ function Contact() {
               <div className="email">
                 Email: <span>admin@example.com</span>
               </div>
-              <div className="find">FIND WITH ME</div>
-              <div className="icon">
+              <div
+                className="find wow animate__animated animate__fadeInUp"
+                data-wow-delay="1.1s"
+              >
+                FIND WITH ME
+              </div>
+              <div
+                className="icon wow animate__animated animate__bounceIn"
+                data-wow-delay="1.2s"
+              >
                 <CiLinkedin />
                 <FaFacebookF />
                 <SiZalo />
@@ -41,7 +67,10 @@ function Contact() {
             </div>
           </Col>
           <Col xxl={14} lg={14} md={24} sm={24} xs={24}>
-            <form>
+            <form
+              className="wow animate__animated animate__slideInUp"
+              data-wow-delay="0.8s"
+            >
               <Row gutter={[20, 20]}>
                 <Col
                   xxl={12}
@@ -51,7 +80,7 @@ function Contact() {
                   xs={24}
                   style={{ display: "flex", flexDirection: "column" }}
                 >
-                  <label for="name">Your Name</label>
+                  <label htmlFor="name">Your Name</label>
                   <input id="name"></input>
                 </Col>
                 <Col
@@ -62,7 +91,7 @@ function Contact() {
                   xs={24}
                   style={{ display: "flex", flexDirection: "column" }}
                 >
-                  <label for="phone">Phone Number</label>
+                  <label htmlFor="phone">Phone Number</label>
                   <input id="phone"></input>
                 </Col>
                 <Col
@@ -73,7 +102,7 @@ function Contact() {
                   xs={24}
                   style={{ display: "flex", flexDirection: "column" }}
                 >
-                  <label for="email">Email</label>
+                  <label htmlFor="email">Email</label>
                   <input type="email" id="email"></input>
                 </Col>
                 <Col
@@ -84,7 +113,7 @@ function Contact() {
                   xs={24}
                   style={{ display: "flex", flexDirection: "column" }}
                 >
-                  <label for="subject">Subject</label>
+                  <label htmlFor="subject">Subject</label>
                   <input id="subject" type="text"></input>
                 </Col>
                 <Col
@@ -95,7 +124,7 @@ function Contact() {
                   xs={24}
                   style={{ display: "flex", flexDirection: "column" }}
                 >
-                  <label for="message">Your Message</label>
+                  <label htmlFor="message">Your Message</label>
                   <textarea id="message"></textarea>
                 </Col>
                 <Col
@@ -106,7 +135,12 @@ function Contact() {
                   xs={24}
                   style={{ display: "flex", flexDirection: "column" }}
                 >
-                  <button>SEND MESSAGE</button>
+                  <button
+                    className="wow animate__animated animate__zoomIn"
+                    data-wow-delay="1.3s"
+                  >
+                    SEND MESSAGE
+                  </button>
                 </Col>
               </Row>
             </form>
