@@ -1,3 +1,4 @@
+import React from "react";
 import Typewriter from "typewriter-effect";
 import { Col, Row } from "antd";
 import { FaNodeJs, FaReact } from "react-icons/fa";
@@ -5,21 +6,27 @@ import { IoLogoJavascript } from "react-icons/io";
 import { SiZalo } from "react-icons/si";
 import { FaFacebook } from "react-icons/fa";
 import { CiLinkedin } from "react-icons/ci";
+import "animate.css";
 import "./style.scss";
 
 function Introduce() {
   return (
     <>
-      <div
-        className="intro wow animate__animated animate__bounceInLeft"
-        id="home"
-      >
+      <div className="intro wow animate__animated animate__fadeIn" id="home">
         <Row>
           <Col xl={16} lg={16} md={24} xs={24}>
-            <h3>WELCOME TO MY WORLD</h3>
-            <h1>
+            <h3
+              className="wow animate__animated animate__fadeInLeft"
+              data-wow-delay="0.2s"
+            >
+              WELCOME TO MY WORLD
+            </h3>
+            <h1
+              className="wow animate__animated animate__fadeInRight"
+              data-wow-delay="0.4s"
+            >
               Hi, I'm <span>Thanh Lam</span>
-              <br></br>
+              <br />
               <Typewriter
                 options={{
                   strings: [
@@ -32,15 +39,22 @@ function Introduce() {
                 }}
               />
             </h1>
-            <p>
+            <p
+              className="wow animate__animated animate__fadeInUp"
+              data-wow-delay="0.6s"
+            >
               I use animation as a third dimension by which to simplify
-              experiences and kuiding thro each and every interaction. I’m not
-              adding motion just to spruce things up, but doing it in ways that.
+              experiences and guiding through each interaction.
             </p>
 
             <Row className="wrap-icon">
               <Col lg={12} md={24} sm={24} xs={24}>
-                <h3>find with me</h3>
+                <h3
+                  className="wow animate__animated animate__zoomIn"
+                  data-wow-delay="0.8s"
+                >
+                  find with me
+                </h3>
                 <div className="icon">
                   <FaFacebook />
                   <SiZalo />
@@ -48,7 +62,12 @@ function Introduce() {
                 </div>
               </Col>
               <Col lg={12} md={24} sm={24} xs={24}>
-                <h3>best skill on</h3>
+                <h3
+                  className="wow animate__animated animate__zoomIn"
+                  data-wow-delay="1s"
+                >
+                  best skill on
+                </h3>
                 <div className="icon">
                   <IoLogoJavascript />
                   <FaNodeJs />
@@ -61,7 +80,9 @@ function Introduce() {
             <img
               src="https://rainbowit.net/themes/inbio/wp-content/uploads/2021/08/banner-01.png"
               alt="ảnh cá nhân"
-            ></img>
+              className="wow animate__animated animate__pulse"
+              data-wow-delay="1.2s"
+            />
           </Col>
         </Row>
       </div>
