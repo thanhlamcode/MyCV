@@ -33,7 +33,7 @@ function Resume() {
 
   return (
     <>
-      <div
+      <section
         className="resume wow animate__animated animate__fadeIn"
         id="resume"
         data-wow-delay="0.3s"
@@ -78,7 +78,7 @@ function Resume() {
           className="wow animate__animated animate__fadeIn"
           data-wow-delay="0.9s"
         />
-      </div>
+      </section>
     </>
   );
 }

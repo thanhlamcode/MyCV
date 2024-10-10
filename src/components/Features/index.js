@@ -11,7 +11,7 @@ import "./style.scss";
 function Features() {
   return (
     <>
-      <div
+      <section
         className="features wow animate__animated animate__fadeIn"
         id="features"
         data-wow-delay="0.3s"
@@ -61,7 +61,7 @@ function Features() {
             </Col>
           ))}
         </Row>
-      </div>
+      </section>
     </>
   );
 }

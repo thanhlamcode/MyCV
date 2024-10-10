@@ -6,7 +6,7 @@ import "./style.scss";
 function Portfolio() {
   return (
     <>
-      <div
+      <section
         className="portfolio wow animate__animated animate__fadeIn"
         data-wow-delay="0.5s"
         id="project"
@@ -59,7 +59,7 @@ function Portfolio() {
             </Col>
           ))}
         </Row>
-      </div>
+      </section>
     </>
   );
 }

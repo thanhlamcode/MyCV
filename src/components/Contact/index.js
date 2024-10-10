@@ -7,7 +7,7 @@ import "./style.scss";
 function Contact() {
   return (
     <>
-      <div
+      <section
         className="contact wow animate__animated animate__fadeIn"
         id="contacts"
         data-wow-delay="0.3s"
@@ -146,7 +146,7 @@ function Contact() {
             </form>
           </Col>
         </Row>
-      </div>
+      </section>
     </>
   );
 }

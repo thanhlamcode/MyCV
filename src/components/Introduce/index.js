@@ -12,7 +12,10 @@ import "./style.scss";
 function Introduce() {
   return (
     <>
-      <div className="intro wow animate__animated animate__fadeIn" id="home">
+      <section
+        className="intro wow animate__animated animate__fadeIn"
+        id="home"
+      >
         <Row>
           <Col xl={16} lg={16} md={24} xs={24}>
             <h3
@@ -85,7 +88,7 @@ function Introduce() {
             />
           </Col>
         </Row>
-      </div>
+      </section>
     </>
   );
 }

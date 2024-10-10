@@ -32,6 +32,10 @@ html {
         text-decoration: none;
         transition: all 0.5s ease-in;
 
+        &.focus{
+          color: #FE014F;
+        }
+
         &:hover{
           color: #FE014F;
           cursor: pointer;

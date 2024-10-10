@@ -5,7 +5,7 @@ import "./style.scss";
 function Header() {
   return (
     <>
-      <div className="header">
+      <section className="header">
         <div className="header__left">
           <a href="#home">
             <img src={logotrans} alt="logo"></img>
@@ -40,7 +40,7 @@ function Header() {
             </li>
           </ul>
         </div>
-      </div>
+      </section>
     </>
   );
 }
