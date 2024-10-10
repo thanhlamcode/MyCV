@@ -8,7 +8,7 @@ import "./style.scss";
 function Contact() {
   return (
     <>
-      <div className="contact">
+      <div className="contact" id="contacts">
         <h3>Contact</h3>
         <h1>Contact With Me</h1>
         <Row gutter={[30, 30]}>

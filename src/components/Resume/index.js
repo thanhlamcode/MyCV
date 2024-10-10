@@ -23,7 +23,7 @@ function Resume() {
 
   return (
     <>
-      <div className="resume">
+      <div className="resume" id="resume">
         <h2 className="text-center">1+ Years of Experience</h2>
         <h1 className="text-center">My Resume</h1>
         <div className="bar">

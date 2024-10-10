@@ -6,9 +6,13 @@ import "./style.scss";
 function Portfolio() {
   return (
     <>
-      <div className="portfolio">
-        <h3>Visit my portfolio and keep your feedback</h3>
-        <h1>My Portfolio</h1>
+      <div
+        className="portfolio  wow animate__animated animate__fadeIn"
+        data-wow-delay="0.5s"
+        id="project"
+      >
+        <h3>Visit my project and keep your feedback</h3>
+        <h1>My Project</h1>
         <Row className="container" gutter={[30, 30]}>
           <Col xl={8} md={12} sm={24} xs={24}>
             <div className="box">

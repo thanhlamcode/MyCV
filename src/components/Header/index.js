@@ -7,12 +7,14 @@ function Header() {
     <>
       <div className="header">
         <div className="header__left">
-          <img src={logotrans} alt="logo"></img>
+          <a href="#home">
+            <img src={logotrans} alt="logo"></img>
+          </a>
         </div>
         <div className="header__right">
           <ul>
             <li>
-              <a href="" alt="">
+              <a href="#home" alt="">
                 HOME
               </a>
             </li>
@@ -22,17 +24,17 @@ function Header() {
               </a>
             </li>
             <li>
-              <a href="" alt="">
-                PORTFOLIO
+              <a href="#project" alt="">
+                PROJECT
               </a>
             </li>
             <li>
-              <a href="" alt="">
+              <a href="#resume" alt="">
                 RESUME
               </a>
             </li>
             <li>
-              <a href="" alt="">
+              <a href="#contacts" alt="">
                 CONTACTS
               </a>
             </li>

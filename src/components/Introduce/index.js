@@ -10,7 +10,10 @@ import "./style.scss";
 function Introduce() {
   return (
     <>
-      <div className="intro">
+      <div
+        className="intro wow animate__animated animate__bounceInLeft"
+        id="home"
+      >
         <Row>
           <Col xl={16} lg={16} md={24} xs={24}>
             <h3>WELCOME TO MY WORLD</h3>
