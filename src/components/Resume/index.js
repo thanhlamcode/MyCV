@@ -12,11 +12,21 @@ function Resume() {
       btnEducation.classList.add("active");
       btnCertificate.classList.remove("active");
       education.style.display = "block";
+      education.classList.add(
+        "wow",
+        "animate__animated",
+        "animate__fadeInLeft"
+      );
       certificate.style.display = "none";
     } else if (timeline === "certificate") {
       btnCertificate.classList.add("active");
       btnEducation.classList.remove("active");
       certificate.style.display = "block";
+      certificate.classList.add(
+        "wow",
+        "animate__animated",
+        "animate__fadeInRight"
+      );
       education.style.display = "none";
     }
   };

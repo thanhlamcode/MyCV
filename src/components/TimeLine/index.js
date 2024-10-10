@@ -174,32 +174,16 @@ function TimeLine() {
             </Col>
           </Row>
         </div>
-        <div
-          className="timeline-certificate wow animate__animated animate__fadeIn"
-          data-wow-delay="0.9s"
-        >
+        <div className="timeline-certificate">
           <Row gutter={50}>
             <Col xxl={24} md={24} sm={24} xs={24}>
-              <div
-                className="year wow animate__animated animate__fadeInLeft"
-                data-wow-delay="1.0s"
-              >
-                1998 - 2010
-              </div>
-              <h1
-                className="wow animate__animated animate__fadeInUp"
-                data-wow-delay="1.1s"
-              >
-                Certificate
-              </h1>
+              <div className="year">1998 - 2010</div>
+              <h1>Certificate</h1>
               <Timeline
                 items={[
                   {
                     children: (
-                      <div
-                        className="box wow animate__animated animate__zoomIn"
-                        data-wow-delay="1.2s"
-                      >
+                      <div className="box ">
                         <div className="title">
                           First-Year Academic Results.
                         </div>
