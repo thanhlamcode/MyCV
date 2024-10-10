@@ -1,0 +1,164 @@
+.contact{
+  margin: 0 50px;
+  margin-top: 80px;
+  color: white;
+
+  h3{
+    font-size: 24px;
+    color: #F9004D;
+    text-align: center;
+    margin: 0;
+  }
+
+  h1{
+    color: #C4CFDE;
+    font-size: 70px;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+  .wrap-left{
+    color: #C4CFDE;
+    background: linear-gradient(to right bottom, #212428, #16181c);
+    box-shadow: 10px 10px 19px #1c1e22, 5px 5px 5px #262a2e;
+    padding: 20px;
+    border-radius: 20px;
+    transition: all ease-out 0.4s;
+
+    .wrap-image{
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+
+      img{
+        width: 100%;
+        height: 100%;
+        // border-radius: 15px;
+        transition: all 0.2s ease;
+
+        &:hover{
+          scale: 1.1;
+        }
+      }
+    }
+
+    .fullName{
+      font-size: 30px;
+      font-weight: 700;
+      color: white;
+      margin-top: 10px;
+    }
+
+    .university, .phone, .email, p, .find{
+      font-size: 18px;
+      margin: 0;
+      margin: 10px 0;
+      color: #878E99;
+    }
+
+    .university{
+      font-size: 16px;
+    }
+
+    .phone span, .email span {
+      color: #C4CFDE;
+      position: relative;
+      transition: color ease 0.3s;
+    
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px; // Khoảng cách giữa chữ và gạch chân
+        width: 0;
+        height: 2px; // Độ dày của gạch chân
+        background-color: #F9004D;
+        transition: width ease 0.3s;
+        transform-origin: left;
+      }
+    
+      &:hover {
+        color: #F9004D;
+        cursor: pointer;
+    
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+    
+    // Icon
+    .anticon{
+      padding: 20px;
+      background: linear-gradient(145deg, #1e2024, #23272b);
+      margin-right: 20px;
+      border-radius: 10px;
+      transition: all ease-out 0.4s;
+    }
+  
+    .anticon:hover {
+      cursor: pointer;
+      transform: translateY(-10px); /* Adjusted to move slightly more */
+      background: linear-gradient(145deg, #2e3136, #3a3d41); /* New color for the hover effect */
+    }
+  
+    [stroke="currentColor"]{
+      padding: 20px;
+      background: linear-gradient(145deg, #030303, #23272b);
+      margin-right: 20px;
+      border-radius: 10px;
+      transition: all ease-out 0.4s;
+    }
+  
+    [stroke="currentColor"]:hover {
+      cursor: pointer;
+      transform: translateY(-10px); /* Adjusted to move slightly more */
+      background: linear-gradient(145deg, #2e3136, #3a3d41); /* New color for the hover effect */
+    }
+    // End icon
+
+  }
+
+  label, button{
+    color: #C4CFDE;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  input, textarea, button {
+    background: #191B1E;
+    height: 30px;
+    border: 1px solid #292b2f;
+    box-shadow: 10px 10px 19px #1c1e22, 5px 5px 5px #262a2e;
+    border-radius: 10px;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+    padding: 10px;
+    color: white;
+  }
+  
+  input:focus, textarea:focus, button:focus {
+    outline: none; /* Loại bỏ viền mặc định của trình duyệt */
+    border-color: #F9004D; /* Thay đổi màu viền khi focus */
+    box-shadow: 0 0 10px #F9004D; /* Tạo hiệu ứng ánh sáng cho shadow */
+  }
+  
+
+  textarea{
+    height: 200px;
+  }
+
+  button{
+    height: 55px;
+    transition: all 0.4s ease-in;
+
+    &:hover{
+      cursor: pointer;
+      color: #F9004D;
+      transform: translateY(-3px); // Dịch lên 3px
+    }
+  }
+}

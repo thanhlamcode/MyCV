@@ -52,8 +52,10 @@
     background: linear-gradient(145deg, #1e2024, #23272b);
     margin-right: 20px;
     border-radius: 10px;
-    transition: all ease-out 0.4s;
+    transition: all ease-out 0.4s ;
+    
   }
+  
 
   [stroke="currentColor"]:hover {
     cursor: pointer;
