@@ -12,6 +12,7 @@ html {
   z-index: 100;
   background: #121212;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+  overflow: hidden;
   
 
   &__left{
@@ -42,6 +43,26 @@ html {
         }
       }
 
+    }
+  }
+
+  .bar{
+    display: none;
+    color: #ADB7C4;
+
+    &:hover{
+      cursor: pointer;
+      color: #FE014F;
+    }
+  }
+
+  @media (max-width: 589px){
+    .bar{
+      display: block;
+    }
+
+    .sider{
+      display: none;
     }
   }
 }

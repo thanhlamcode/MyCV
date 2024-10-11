@@ -1,0 +1,24 @@
+.sider-bar {
+  width: 100vw; /* Chiều rộng bằng 100% của viewport */
+  height: 100%; /* Chiều cao bằng 100% của viewport */
+  position: fixed; /* Cố định vị trí trên màn hình */
+  top: 0; /* Canh trên */
+  left: 0; /* Canh trái */
+  z-index: 1000; /* Đảm bảo nằm trên các phần tử khác */
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: all ease 0.4s;
+
+  .bar{
+    width: 50%;
+    height: 100%;
+    background-color: aliceblue; /* Màu nền */
+
+    .close{
+      position: absolute;
+      right: 55%;
+      scale: 2;
+      top: 30px;
+      cursor: pointer;
+    }
+  }
+}
