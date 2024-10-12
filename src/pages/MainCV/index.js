@@ -63,13 +63,15 @@ function MainCV() {
 
   return (
     <>
-      <Header />
-      <Introduce />
-      <Features />
-      <Portfolio />
-      <Resume />
-      <Contact />
-      <Footer />
+      <div className="maincv">
+        <Header />
+        <Introduce />
+        <Features />
+        <Portfolio />
+        <Resume />
+        <Contact />
+        <Footer />
+      </div>
     </>
   );
 }

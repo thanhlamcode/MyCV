@@ -5,6 +5,7 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 function SiderAdmin(props) {
   const { collapsed } = props;
@@ -23,9 +24,14 @@ function SiderAdmin(props) {
           defaultSelectedKeys={["1"]}
           items={[
             {
+              key: "2",
+              icon: <VideoCameraOutlined />,
+              label: <Link to="home"> Home</Link>,
+            },
+            {
               key: "1",
               icon: <UserOutlined />,
-              label: "nav 1",
+              label: <Link to="resume"> Resume</Link>,
             },
             {
               key: "2",

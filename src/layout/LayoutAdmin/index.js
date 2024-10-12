@@ -12,27 +12,29 @@ const LayoutAdmin = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   return (
-    <Layout style={{ height: "100vh" }}>
-      <SiderAdmin collapsed={collapsed} />
-      <Layout>
-        <HeaderAdmin
-          collapsed={collapsed}
-          setCollapsed={setCollapsed}
-          colorBgContainer={colorBgContainer}
-        />
-        <Content
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
-          }}
-        >
-          <Outlet />
-        </Content>
+    <div className="admin">
+      <Layout style={{ height: "100vh" }}>
+        <SiderAdmin collapsed={collapsed} />
+        <Layout>
+          <HeaderAdmin
+            collapsed={collapsed}
+            setCollapsed={setCollapsed}
+            colorBgContainer={colorBgContainer}
+          />
+          <Content
+            style={{
+              margin: "24px 16px",
+              padding: 24,
+              minHeight: 280,
+              background: colorBgContainer,
+              borderRadius: borderRadiusLG,
+            }}
+          >
+            <Outlet />
+          </Content>
+        </Layout>
       </Layout>
-    </Layout>
+    </div>
   );
 };
 export default LayoutAdmin;
