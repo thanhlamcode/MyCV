@@ -1,9 +1,10 @@
 import { Button, Col, Form, Input, Row } from "antd";
 import UploadAdmin from "../../../components/Admin/Upload";
-import { DownloadOutlined, EditOutlined } from "@ant-design/icons";
+import { DownloadOutlined } from "@ant-design/icons";
 import "./style.scss";
 import { useState } from "react";
 import TextArea from "antd/es/input/TextArea";
+import BoxTitle from "../../../components/Admin/BoxTitle";
 
 function Profile() {
   const [form] = Form.useForm();
@@ -11,13 +12,11 @@ function Profile() {
 
   return (
     <>
-      <div className="inner-box">
-        <h1>Thông tin cá nhân</h1>
-        <Button
-          icon={<EditOutlined />}
-          onClick={() => setComponentDisabled(!componentDisabled)}
-        />
-      </div>
+      <BoxTitle
+        componentDisabled={componentDisabled}
+        title="Thông tin cá nhân"
+        setComponentDisabled={setComponentDisabled}
+      />
       <Form
         layout="vertical"
         form={form}
