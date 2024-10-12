@@ -11,14 +11,96 @@
   .bar{
     width: 50%;
     height: 100%;
-    background-color: aliceblue; /* Màu nền */
+    background-color: #121212;
+    padding: 30px;
+    color: #C4CFDE;
+
+    hr {
+      border: none;
+      height: 2px; /* Adjust the thickness here */
+      background-color: #333; /* Adjust the color as needed */
+      margin: 20px 0; /* Adjust the spacing above and below */
+      width: 100%; /* Make it span across the container */
+      opacity: 0.3; /* Adjust the transparency if desired */
+  }
+  
+
+    p, h3{
+      color: #878E99;
+      font-size: 16px;
+    }
+
+    ul{
+      list-style-type: none;
+      padding: 0;
+
+      li{
+        margin-bottom: 10px;
+
+        &:hover{
+          cursor: pointer;
+        }
+      }
+
+      a{
+        text-decoration: none;
+        color: #C4CFDE;
+        font-size: 14px;
+      }
+
+    }
 
     .close{
       position: absolute;
-      right: 55%;
-      scale: 2;
-      top: 30px;
+      right: 45%;
+      scale: 1;
+      top: 48px;
       cursor: pointer;
+      padding: 10px;
+      color: #FF014F;
+      background: linear-gradient(145deg, #1e2024, #23272b);
+      width: 10px;
+      height: 10px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 25px;
+      text-transform: math-auto;
+    }
+
+    .anticon{
+      padding: 15px;
+      background: linear-gradient(145deg, #1e2024, #23272b);
+      margin-right: 20px;
+      border-radius: 10px;
+      transition: all ease-out 0.4s;
+    }
+  
+    .anticon:hover {
+      cursor: pointer;
+      transform: translateY(-10px); /* Adjusted to move slightly more */
+      background: linear-gradient(145deg, #2e3136, #3a3d41); /* New color for the hover effect */
+    }
+  
+    [stroke="currentColor"]{
+      padding: 15px;
+      background: linear-gradient(145deg, #1e2024, #23272b);
+      margin-right: 20px;
+      border-radius: 10px;
+      transition: all ease-out 0.4s ;
+      color: white;
+    }
+    
+  
+    [stroke="currentColor"]:hover {
+      cursor: pointer;
+      transform: translateY(-10px); /* Adjusted to move slightly more */
+      background: linear-gradient(145deg, #2e3136, #3a3d41); /* New color for the hover effect */
+    }
+
+    .side-footer{
+      position: absolute;
+      bottom: 50px;
     }
   }
 }
