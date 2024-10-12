@@ -24,9 +24,9 @@ function SiderAdmin(props) {
           defaultSelectedKeys={["1"]}
           items={[
             {
-              key: "2",
+              key: "profile",
               icon: <VideoCameraOutlined />,
-              label: <Link to="home"> Home</Link>,
+              label: <Link to="profile"> Profile</Link>,
             },
             {
               key: "1",

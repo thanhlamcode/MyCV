@@ -13,7 +13,7 @@ const LayoutAdmin = () => {
   } = theme.useToken();
   return (
     <div className="admin">
-      <Layout style={{ height: "100vh" }}>
+      <Layout style={{ height: "100%" }}>
         <SiderAdmin collapsed={collapsed} />
         <Layout>
           <HeaderAdmin
