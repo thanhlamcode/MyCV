@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import logotrans from "../../image/logo2.png";
+import logotrans from "../../../image/logo2.png";
 import { FaBars } from "react-icons/fa";
 import "./style.scss";
 import Sider from "../Sider";

@@ -1,15 +1,10 @@
 import React, { useState } from "react";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
-import { Button, Layout, Menu, theme } from "antd";
+import { Layout, theme } from "antd";
 import "./style.scss";
 import { Outlet } from "react-router-dom";
-const { Header, Sider, Content } = Layout;
+import SiderAdmin from "../../components/Admin/Sider";
+import HeaderAdmin from "../../components/Admin/Header";
+const { Content } = Layout;
 
 const LayoutAdmin = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -18,54 +13,13 @@ const LayoutAdmin = () => {
   } = theme.useToken();
   return (
     <Layout style={{ height: "100vh" }}>
-      <Sider trigger={null} collapsible collapsed={collapsed} theme="light">
-        <div className="wrap-logo">
-          <img
-            src="https://res.cloudinary.com/dqlfxshkl/image/upload/v1723993959/rzppkaxfeummeyzemn8b.png"
-            alt="logo"
-          />
-        </div>
-        <Menu
-          theme="light"
-          mode="inline"
-          defaultSelectedKeys={["1"]}
-          items={[
-            {
-              key: "1",
-              icon: <UserOutlined />,
-              label: "nav 1",
-            },
-            {
-              key: "2",
-              icon: <VideoCameraOutlined />,
-              label: "nav 2",
-            },
-            {
-              key: "3",
-              icon: <UploadOutlined />,
-              label: "nav 3",
-            },
-          ]}
-        />
-      </Sider>
+      <SiderAdmin collapsed={collapsed} />
       <Layout>
-        <Header
-          style={{
-            padding: 0,
-            background: colorBgContainer,
-          }}
-        >
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
-            }}
-          />
-        </Header>
+        <HeaderAdmin
+          collapsed={collapsed}
+          setCollapsed={setCollapsed}
+          colorBgContainer={colorBgContainer}
+        />
         <Content
           style={{
             margin: "24px 16px",
