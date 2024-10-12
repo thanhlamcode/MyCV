@@ -1,7 +1,7 @@
 function ResumeAdmin() {
   return (
     <>
-      <h1>Đây là trang resumeIntro</h1>
+      <h1>Resume</h1>
     </>
   );
 }

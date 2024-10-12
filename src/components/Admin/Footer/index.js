@@ -8,7 +8,9 @@ function FooterAdmin() {
   };
   return (
     <>
-      <Footer style={footerStyle}>Footer</Footer>
+      <Footer style={footerStyle}>
+        © 2024. All rights reserved by thanhlamcode
+      </Footer>
     </>
   );
 }

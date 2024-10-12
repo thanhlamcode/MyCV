@@ -3,6 +3,7 @@ import UploadAdmin from "../../../components/Admin/Upload";
 import { DownloadOutlined, EditOutlined } from "@ant-design/icons";
 import "./style.scss";
 import { useState } from "react";
+import TextArea from "antd/es/input/TextArea";
 
 function Profile() {
   const [form] = Form.useForm();
@@ -52,6 +53,16 @@ function Profile() {
           <Col span={24}>
             <Form.Item label="Địa chỉ linkedin:">
               <Input />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item label="Địa chỉ email:">
+              <Input type="email" />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item label="Mô tả:">
+              <TextArea />
             </Form.Item>
           </Col>
           <Col span={24}>

@@ -26,22 +26,27 @@ function SiderAdmin(props) {
             {
               key: "profile",
               icon: <VideoCameraOutlined />,
-              label: <Link to="profile"> Thông tin cá nhân</Link>,
+              label: <Link to="profile"> Profile</Link>,
             },
             {
-              key: "1",
+              key: "features",
               icon: <UserOutlined />,
+              label: <Link to="features"> Features</Link>,
+            },
+            {
+              key: "project",
+              icon: <VideoCameraOutlined />,
+              label: <Link to="project"> Project</Link>,
+            },
+            {
+              key: "resume",
+              icon: <UploadOutlined />,
               label: <Link to="resume"> Resume</Link>,
             },
             {
-              key: "2",
-              icon: <VideoCameraOutlined />,
-              label: "nav 2",
-            },
-            {
-              key: "3",
+              key: "contacts",
               icon: <UploadOutlined />,
-              label: "nav 3",
+              label: <Link to="contacts"> Contacts</Link>,
             },
           ]}
         />
