@@ -4,6 +4,7 @@ import "./style.scss";
 import { Outlet } from "react-router-dom";
 import SiderAdmin from "../../components/Admin/Sider";
 import HeaderAdmin from "../../components/Admin/Header";
+import FooterAdmin from "../../components/Admin/Footer";
 const { Content } = Layout;
 
 const LayoutAdmin = () => {
@@ -11,6 +12,7 @@ const LayoutAdmin = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
   return (
     <div className="admin">
       <Layout style={{ height: "100%" }}>
@@ -32,6 +34,7 @@ const LayoutAdmin = () => {
           >
             <Outlet />
           </Content>
+          <FooterAdmin />
         </Layout>
       </Layout>
     </div>
