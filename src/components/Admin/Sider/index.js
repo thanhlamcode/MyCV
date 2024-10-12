@@ -21,12 +21,12 @@ function SiderAdmin(props) {
         <Menu
           theme="light"
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={["profile"]}
           items={[
             {
               key: "profile",
               icon: <VideoCameraOutlined />,
-              label: <Link to="profile"> Profile</Link>,
+              label: <Link to="profile"> Thông tin cá nhân</Link>,
             },
             {
               key: "1",

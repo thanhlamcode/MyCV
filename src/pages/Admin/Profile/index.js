@@ -1,13 +1,26 @@
-import { Col, Form, Input, Row } from "antd";
+import { Button, Col, Form, Input, Row } from "antd";
+import UploadAdmin from "../../../components/Admin/Upload";
+import { DownloadOutlined, EditOutlined } from "@ant-design/icons";
+import "./style.scss";
+import { useState } from "react";
 
 function Profile() {
   const [form] = Form.useForm();
+  const [componentDisabled, setComponentDisabled] = useState(true);
+
   return (
     <>
-      <h1>Thông tin cá nhân</h1>
+      <div className="inner-box">
+        <h1>Thông tin cá nhân</h1>
+        <Button
+          icon={<EditOutlined />}
+          onClick={() => setComponentDisabled(!componentDisabled)}
+        />
+      </div>
       <Form
         layout="vertical"
         form={form}
+        disabled={componentDisabled}
         initialValues={{
           layout: "vertical",
         }}
@@ -37,8 +50,20 @@ function Profile() {
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item label="Địa chỉ linkdn:">
+            <Form.Item label="Địa chỉ linkedin:">
               <Input />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item label="Avatar:">
+              <UploadAdmin />
+            </Form.Item>
+          </Col>
+          <Col span={24} style={{ display: "flex", justifyContent: "center" }}>
+            <Form.Item>
+              <Button type="primary" icon={<DownloadOutlined />}>
+                Save
+              </Button>
             </Form.Item>
           </Col>
         </Row>
