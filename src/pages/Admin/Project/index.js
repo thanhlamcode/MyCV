@@ -1,7 +1,9 @@
+import ItemInput from "../../../components/Admin/ItemInput";
+
 function Project() {
   return (
     <>
-      <h1>Project</h1>
+      <ItemInput />
     </>
   );
 }
