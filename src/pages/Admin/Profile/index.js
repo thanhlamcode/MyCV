@@ -31,12 +31,12 @@ function Profile() {
           <Row gutter={[30, 30]}>
             <Col span={12}>
               <Form.Item label="Họ và tên:">
-                <Input placeholder="Đoàn Thanh Lâm" />
+                <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="Số điện thoại:">
-                <Input placeholder="0123456789" />
+                <Input />
               </Form.Item>
             </Col>
             <Col span={24}>

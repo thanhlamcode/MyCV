@@ -1,6 +1,8 @@
 import React from "react";
-import { CloseOutlined } from "@ant-design/icons";
-import { Button, Card, Col, Form, Input, Row, Space } from "antd";
+import { Button, Card, Col, Form, Input, Row } from "antd";
+import "./style.scss";
+import Features from "../../Client/Features";
+
 const ItemInput = () => {
   const [form] = Form.useForm();
   const handleFinish = (e) => {
@@ -8,115 +10,68 @@ const ItemInput = () => {
   };
 
   return (
-    <Form
-      onFinish={handleFinish}
-      labelCol={{
-        span: 2,
-      }}
-      wrapperCol={{
-        span: 22,
-      }}
-      form={form}
-      name="dynamic_form_complex"
-      style={{
-        maxWidth: "100%",
-      }}
-      autoComplete="off"
-      initialValues={{
-        items: [{}],
-      }}
-    >
-      <Row gutter={[30, 30]}>
-        <Col span={24}>
-          <Form.List name="items">
-            {(fields, { add, remove }) => (
-              <div
-                style={{
-                  display: "flex",
-                  rowGap: 16,
-                  flexDirection: "column",
-                  width: "100%",
-                }}
+    <div className="input-item">
+      <Form
+        onFinish={handleFinish}
+        labelCol={{
+          span: 2,
+        }}
+        wrapperCol={{
+          span: 22,
+        }}
+        form={form}
+        name="dynamic_form_complex"
+        style={{
+          maxWidth: "100%",
+        }}
+        autoComplete="off"
+        initialValues={{
+          items: [{}],
+        }}
+      >
+        <Row gutter={[30, 30]}>
+          <Col span={24}>
+            {/* Tạo danh sách cố định với 6 trường */}
+            {[...Array(6)].map((_, index) => (
+              <Card
+                style={{ width: "100%" }}
+                size="small"
+                title={`Skill ${index + 1}`}
+                key={index}
               >
-                {fields.map((field) => (
-                  <Card
+                {/* Trường "Name" cho mỗi mục */}
+                <Form.Item label="Tên" name={["items", index, "name"]}>
+                  <Input />
+                </Form.Item>
+
+                {/* Trường "Mô tả" cho mỗi mục */}
+                <Form.Item label="Mô tả" style={{ width: "100%" }}>
+                  <Form.Item
+                    name={["items", index, "description"]}
                     style={{ width: "100%" }}
-                    size="small"
-                    title={`Item ${field.name + 1}`}
-                    key={field.key}
-                    extra={
-                      <CloseOutlined
-                        onClick={() => {
-                          remove(field.name);
-                        }}
-                      />
-                    }
                   >
-                    <Form.Item label="Name" name={[field.name, "name"]}>
-                      <Input />
-                    </Form.Item>
+                    <Input
+                      placeholder="Nhập mô tả"
+                      style={{ width: "100%" }} // Đảm bảo Input chiếm toàn bộ chiều rộng
+                    />
+                  </Form.Item>
+                </Form.Item>
+              </Card>
+            ))}
+          </Col>
 
-                    {/* Nest Form.List */}
-                    <Form.Item label="List">
-                      <Form.List
-                        name={[field.name, "list"]}
-                        style={{ width: "100%" }}
-                      >
-                        {(subFields, subOpt) => (
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              rowGap: 16,
-                            }}
-                          >
-                            {subFields.map((subField) => (
-                              <Space key={subField.key}>
-                                <Form.Item
-                                  noStyle
-                                  name={[subField.name, "first"]}
-                                  style={{ width: "100%" }}
-                                >
-                                  <Input
-                                    placeholder="first"
-                                    style={{ width: "100%" }}
-                                  />
-                                </Form.Item>
-                                <CloseOutlined
-                                  onClick={() => {
-                                    subOpt.remove(subField.name);
-                                  }}
-                                />
-                              </Space>
-                            ))}
-                            <Button
-                              type="dashed"
-                              onClick={() => subOpt.add()}
-                              block
-                            >
-                              + Add Sub Item
-                            </Button>
-                          </div>
-                        )}
-                      </Form.List>
-                    </Form.Item>
-                  </Card>
-                ))}
+          <Col span={24} style={{ display: "flex", justifyContent: "center" }}>
+            <Form.Item>
+              <Button htmlType="submit">Submit</Button>
+            </Form.Item>
+          </Col>
 
-                <Button type="dashed" onClick={() => add()} block>
-                  + Add Item
-                </Button>
-              </div>
-            )}
-          </Form.List>
-        </Col>
-        <Col span={24} style={{ display: "flex", justifyContent: "center" }}>
-          <Form.Item>
-            <Button htmlType="submit">Submit</Button>
-          </Form.Item>
-        </Col>
-      </Row>
-    </Form>
+          <Col span={24}>
+            <Features />
+          </Col>
+        </Row>
+      </Form>
+    </div>
   );
 };
 export default ItemInput;
