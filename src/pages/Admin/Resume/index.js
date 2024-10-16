@@ -1,7 +1,9 @@
+import Resume from "../../../components/Admin/Resume";
+
 function ResumeAdmin() {
   return (
     <>
-      <h1>Resume</h1>
+      <Resume />
     </>
   );
 }

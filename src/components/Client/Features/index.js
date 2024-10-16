@@ -49,6 +49,7 @@ function Features() {
               <div
                 className="box wow animate__animated animate__zoomIn"
                 data-wow-delay={feature.delay}
+                style={{ aspectRatio: "4/3" }}
               >
                 {feature.icon}
                 <h2>{feature.title}</h2>

@@ -102,7 +102,7 @@ function TimeLine() {
                 className="wow animate__animated animate__fadeInUp"
                 data-wow-delay="0.5s"
               >
-                Education Quality
+                Achievements
               </h1>
               <Timeline
                 items={[

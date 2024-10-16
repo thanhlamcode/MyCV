@@ -1,9 +1,8 @@
-import React from "react";
 import { Button, Card, Col, Form, Input, Row } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
-import "./style.scss";
+import UploadAdmin from "../Upload";
 
-const ItemInput = () => {
+function FormProject() {
   const [form] = Form.useForm();
   const handleFinish = (e) => {
     console.log(e);
@@ -46,15 +45,18 @@ const ItemInput = () => {
 
                 {/* Trường "Mô tả" cho mỗi mục */}
                 <Form.Item label="Mô tả" style={{ width: "100%" }}>
-                  <Form.Item
-                    name={["items", index, "description"]}
-                    style={{ width: "100%" }}
-                  >
-                    <Input
-                      placeholder="Nhập mô tả"
-                      style={{ width: "100%" }} // Đảm bảo Input chiếm toàn bộ chiều rộng
-                    />
-                  </Form.Item>
+                  <Input
+                    placeholder="Nhập mô tả"
+                    style={{ width: "100%" }} // Đảm bảo Input chiếm toàn bộ chiều rộng
+                  />
+                </Form.Item>
+                <Form.Item label="Link:" style={{ width: "100%" }}>
+                  <Input
+                    style={{ width: "100%" }} // Đảm bảo Input chiếm toàn bộ chiều rộng
+                  />
+                </Form.Item>
+                <Form.Item label="Hình ảnh" style={{ width: "100%" }}>
+                  <UploadAdmin />
                 </Form.Item>
               </Card>
             ))}
@@ -69,5 +71,6 @@ const ItemInput = () => {
       </Form>
     </div>
   );
-};
-export default ItemInput;
+}
+
+export default FormProject;
