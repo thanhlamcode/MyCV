@@ -13,7 +13,7 @@ function Features() {
           title="What I Do"
           setComponentDisabled={setComponentDisabled}
         />
-        <ItemInput />
+        <ItemInput componentDisabled={componentDisabled} />
       </div>
     </>
   );

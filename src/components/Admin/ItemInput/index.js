@@ -3,7 +3,9 @@ import { Button, Card, Col, Form, Input, Row } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import "./style.scss";
 
-const ItemInput = () => {
+const ItemInput = (props) => {
+  const { componentDisabled } = props;
+
   const [form] = Form.useForm();
   const handleFinish = (e) => {
     console.log(e);
@@ -19,6 +21,7 @@ const ItemInput = () => {
         wrapperCol={{
           span: 22,
         }}
+        disabled={componentDisabled}
         form={form}
         name="dynamic_form_complex"
         style={{

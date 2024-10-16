@@ -2,7 +2,8 @@ import { Button, Card, Col, Form, Input, Row } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import UploadAdmin from "../Upload";
 
-function FormProject() {
+function FormProject(props) {
+  const { componentDisabled } = props;
   const [form] = Form.useForm();
   const handleFinish = (e) => {
     console.log(e);
@@ -11,6 +12,7 @@ function FormProject() {
   return (
     <div className="input-item">
       <Form
+        disabled={componentDisabled}
         onFinish={handleFinish}
         labelCol={{
           span: 2,

@@ -11,7 +11,7 @@ function Project() {
         title="Set up your project"
         setComponentDisabled={setComponentDisabled}
       />
-      <FormProject />
+      <FormProject componentDisabled={componentDisabled} />
     </>
   );
 }
