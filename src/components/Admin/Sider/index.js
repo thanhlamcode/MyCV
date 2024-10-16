@@ -1,3 +1,4 @@
+import React from "react";
 import { Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
 import {
@@ -7,10 +8,24 @@ import {
   VideoCameraOutlined,
   ContactsOutlined,
 } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom"; // Import useLocation
 
 function SiderAdmin(props) {
   const { collapsed } = props;
+  const location = useLocation(); // Get the current path
+
+  // Create a mapping from paths to menu keys
+  const pathToKeyMap = {
+    "/admin/profile": "profile",
+    "/admin/features": "features",
+    "/admin/project": "project",
+    "/admin/resume": "resume",
+    "/admin/contacts": "contacts",
+  };
+
+  // Get the key that corresponds to the current path
+  const selectedKey = pathToKeyMap[location.pathname] || "profile"; // Default to "profile" if path not found
+
   return (
     <>
       <Sider trigger={null} collapsible collapsed={collapsed} theme="light">
@@ -23,7 +38,7 @@ function SiderAdmin(props) {
         <Menu
           theme="light"
           mode="inline"
-          defaultSelectedKeys={["profile"]}
+          selectedKeys={[selectedKey]} // Use selectedKey instead of defaultSelectedKeys
           items={[
             {
               key: "profile",
