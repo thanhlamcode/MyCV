@@ -1,17 +1,10 @@
 import React, { useState } from "react";
-import {
-  Table,
-  Button,
-  Modal,
-  Form,
-  Input,
-  InputNumber,
-  Popconfirm,
-} from "antd";
+import { Table, Button, Modal, Form, Input, Popconfirm, Space } from "antd";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 const { Item } = Form;
 
-const Resume = () => {
+const Achievement = () => {
   // Dữ liệu mẫu ban đầu
   const [dataSource, setDataSource] = useState([
     {
@@ -79,9 +72,9 @@ const Resume = () => {
       key: "university",
     },
     {
-      title: "GPA",
-      dataIndex: "gpa",
-      key: "gpa",
+      title: "Achievement",
+      dataIndex: "achievement",
+      key: "achievement",
     },
     {
       title: "Description",
@@ -93,17 +86,23 @@ const Resume = () => {
       key: "actions",
       render: (text, record) => (
         <>
-          <Button type="link" onClick={() => handleEdit(record)}>
-            Edit
-          </Button>
-          <Popconfirm
-            title="Are you sure to delete this record?"
-            onConfirm={() => handleDelete(record.key)}
-          >
-            <Button type="link" danger>
-              Delete
+          <Space direction="vertical">
+            <Button
+              type="link"
+              onClick={() => handleEdit(record)}
+              icon={<EditOutlined />}
+            >
+              Edit
             </Button>
-          </Popconfirm>
+            <Popconfirm
+              title="Are you sure to delete this record?"
+              onConfirm={() => handleDelete(record.key)}
+            >
+              <Button type="link" danger icon={<DeleteOutlined />}>
+                Delete
+              </Button>
+            </Popconfirm>
+          </Space>
         </>
       ),
     },
@@ -112,8 +111,17 @@ const Resume = () => {
   return (
     <div>
       <Button type="primary" style={{ marginBottom: 16 }} onClick={handleAdd}>
-        Add New Record
+        Add New Achievement
       </Button>
+
+      <Item
+        name="time"
+        label="Time"
+        rules={[{ required: true, message: "Please enter the time!" }]}
+        style={{ width: "25%" }}
+      >
+        <Input />
+      </Item>
 
       <Table dataSource={dataSource} columns={columns} pagination={false} />
 
@@ -139,11 +147,13 @@ const Resume = () => {
             <Input />
           </Item>
           <Item
-            name="gpa"
-            label="GPA"
-            rules={[{ required: true, message: "Please enter the GPA!" }]}
+            name="achievement"
+            label="Achievement"
+            rules={[
+              { required: true, message: "Please enter the achievement!" },
+            ]}
           >
-            <InputNumber min={0} max={4} step={0.1} />
+            <Input />
           </Item>
           <Item
             name="description"
@@ -165,4 +175,4 @@ const Resume = () => {
   );
 };
 
-export default Resume;
+export default Achievement;

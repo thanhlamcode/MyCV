@@ -1,9 +1,11 @@
 import { Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
 import {
-  UploadOutlined,
+  ProfileOutlined,
+  FieldTimeOutlined,
   UserOutlined,
   VideoCameraOutlined,
+  ContactsOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
@@ -25,7 +27,7 @@ function SiderAdmin(props) {
           items={[
             {
               key: "profile",
-              icon: <VideoCameraOutlined />,
+              icon: <ProfileOutlined />,
               label: <Link to="profile"> Profile</Link>,
             },
             {
@@ -40,12 +42,12 @@ function SiderAdmin(props) {
             },
             {
               key: "resume",
-              icon: <UploadOutlined />,
+              icon: <FieldTimeOutlined />,
               label: <Link to="resume"> Resume</Link>,
             },
             {
               key: "contacts",
-              icon: <UploadOutlined />,
+              icon: <ContactsOutlined />,
               label: <Link to="contacts"> Contacts</Link>,
             },
           ]}
