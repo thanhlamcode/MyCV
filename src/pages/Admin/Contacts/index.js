@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Radio, Space, Table, Tag } from "antd";
+import { useState } from "react";
+import BoxTitle from "../../../components/Admin/BoxTitle";
 
 const columns = [
   {
@@ -73,9 +75,15 @@ const data = [
   },
 ];
 const Contacts = () => {
+  const [componentDisabled, setComponentDisabled] = useState(true);
+
   return (
     <div>
-      <div></div>
+      <BoxTitle
+        componentDisabled={componentDisabled}
+        title="Contacs"
+        setComponentDisabled={setComponentDisabled}
+      />
       <Radio.Group
         style={{
           marginBottom: 10,
