@@ -14,7 +14,7 @@ function Profile() {
       <div className="profile">
         <BoxTitle
           componentDisabled={componentDisabled}
-          title="Thông tin cá nhân"
+          title="Set up your information"
           setComponentDisabled={setComponentDisabled}
         />
         <Form
