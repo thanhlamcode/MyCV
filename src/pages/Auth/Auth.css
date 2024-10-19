@@ -1,120 +1,74 @@
-.auth-container {
+.auth-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f0f0f0;
-  position: relative;
-  overflow: hidden;
+  background-color: #3b82f6; /* Blue background similar to the example */
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  width: 400px;
 }
 
 .auth-card {
-  display: flex;
-  width: 850px;
-  height: 500px;
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.6s ease-in-out;
+  width: 100%;
 }
 
-.sign-in-mode .auth-card {
-  transform: translateX(0);
-}
-
-.sign-up-mode .auth-card {
-  transform: translateX(-100%);
-}
-
-.left-side,
-.right-side {
-  width: 50%;
-  padding: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.6s ease-in-out;
-}
-
-.sign-in-mode .left-side {
-  transform: translateX(0);
-}
-
-.sign-up-mode .left-side {
-  transform: translateX(100%);
-}
-
-.sign-in-mode .right-side {
-  transform: translateX(0);
-}
-
-.sign-up-mode .right-side {
-  transform: translateX(-100%);
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-h1 {
+h2 {
+  text-align: center;
   margin-bottom: 20px;
-  font-size: 2rem;
+  font-size: 24px;
 }
 
-input {
+.forgot-password {
+  text-align: right;
   margin-bottom: 15px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 100%;
 }
 
-button {
-  padding: 10px;
-  background-color: #1677ff;
-  color: white;
-  border: none;
-  border-radius: 5px;
+.switch-mode {
+  text-align: center;
+  margin-top: 15px;
+}
+
+a {
+  color: #3b82f6;
   cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.ant-btn-primary {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  height: 40px;
+}
+
+.ant-btn-primary:hover {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+.social-login-btn {
   margin-top: 10px;
-  width: 100%;
+  background-color: #e0e0e0;
+  border: none;
+  color: #333;
 }
 
-button:hover {
-  background-color: #1677ff;
+.social-login-btn:hover {
+  background-color: #d0d0d0;
 }
 
-.toggle-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.toggle-btn {
-  margin-top: 20px;
-  background: none;
-  color: white;
-  border: 1px solid white;
-  padding: 10px 30px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.toggle-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.left-side {
-  background-color: #0763e4;
-  color: white;
-}
-
-.right-side {
-  background-color: #a2d2ff;
-  color: white;
+.ant-divider {
+  border-color: #e0e0e0;
+  margin: 20px 0;
 }
