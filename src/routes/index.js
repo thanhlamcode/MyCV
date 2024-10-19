@@ -5,10 +5,15 @@ import Profile from "../pages/Admin/Profile";
 import Features from "../pages/Admin/Feautures";
 import Contacts from "../pages/Admin/Contacts";
 import Project from "../pages/Admin/Project";
+import Auth from "../pages/Auth";
 
 export const routes = [
   {
     path: "/",
+    element: <Auth />,
+  },
+  {
+    path: "/thanhlam",
     element: <MainCV />,
   },
   {

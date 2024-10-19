@@ -1,0 +1,120 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-card {
+  display: flex;
+  width: 850px;
+  height: 500px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.6s ease-in-out;
+}
+
+.sign-in-mode .auth-card {
+  transform: translateX(0);
+}
+
+.sign-up-mode .auth-card {
+  transform: translateX(-100%);
+}
+
+.left-side,
+.right-side {
+  width: 50%;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.6s ease-in-out;
+}
+
+.sign-in-mode .left-side {
+  transform: translateX(0);
+}
+
+.sign-up-mode .left-side {
+  transform: translateX(100%);
+}
+
+.sign-in-mode .right-side {
+  transform: translateX(0);
+}
+
+.sign-up-mode .right-side {
+  transform: translateX(-100%);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+button {
+  padding: 10px;
+  background-color: #1677ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #1677ff;
+}
+
+.toggle-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle-btn {
+  margin-top: 20px;
+  background: none;
+  color: white;
+  border: 1px solid white;
+  padding: 10px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.left-side {
+  background-color: #0763e4;
+  color: white;
+}
+
+.right-side {
+  background-color: #a2d2ff;
+  color: white;
+}
