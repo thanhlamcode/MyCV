@@ -50,6 +50,7 @@ function Auth() {
                 icon={<FacebookOutlined />}
                 block
                 className="social-login-btn"
+                style={{ background: "#4267B2", color: "white" }}
               >
                 Login with Facebook
               </Button>
@@ -104,7 +105,7 @@ function Auth() {
                 icon={<FacebookOutlined />}
                 block
                 className="social-login-btn"
-                style={{ background: "#4267B2" }}
+                style={{ background: "#4267B2", color: "white" }}
               >
                 Signup with Facebook
               </Button>
