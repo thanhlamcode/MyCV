@@ -13,7 +13,7 @@ export const routes = [
     element: <Auth />,
   },
   {
-    path: "/thanhlam",
+    path: "/detail/thanhlam",
     element: <MainCV />,
   },
   {
