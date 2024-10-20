@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
-import { Image, Upload } from "antd";
+import { Upload, Image } from "antd";
 import "./style.scss";
+
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -9,10 +10,12 @@ const getBase64 = (file) =>
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
-const UploadAdmin = () => {
+
+const UploadAdmin = ({ onFileChange }) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [fileList, setFileList] = useState([]);
+
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
@@ -20,7 +23,19 @@ const UploadAdmin = () => {
     setPreviewImage(file.url || file.preview);
     setPreviewOpen(true);
   };
-  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
+
+  const handleChange = ({ fileList: newFileList }) => {
+    setFileList(newFileList);
+
+    if (onFileChange) {
+      onFileChange(newFileList); // Truyền fileList ngược về component cha
+    }
+  };
+
+  const beforeUpload = (file) => {
+    return false; // Tắt upload tự động
+  };
+
   const uploadButton = (
     <button
       style={{
@@ -30,42 +45,34 @@ const UploadAdmin = () => {
       type="button"
     >
       <PlusOutlined />
-      <div
-        style={{
-          marginTop: 8,
-        }}
-      >
-        Upload
-      </div>
+      <div style={{ marginTop: 8 }}>Upload</div>
     </button>
   );
+
   return (
-    <>
-      <div className="upload">
-        <Upload
-          // action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
-          listType="picture-card"
-          fileList={fileList}
-          onPreview={handlePreview}
-          onChange={handleChange}
-        >
-          {fileList.length >= 1 ? null : uploadButton}
-        </Upload>
-        {previewImage && (
-          <Image
-            wrapperStyle={{
-              display: "none",
-            }}
-            preview={{
-              visible: previewOpen,
-              onVisibleChange: (visible) => setPreviewOpen(visible),
-              afterOpenChange: (visible) => !visible && setPreviewImage(""),
-            }}
-            src={previewImage}
-          />
-        )}
-      </div>
-    </>
+    <div className="upload">
+      <Upload
+        listType="picture-card"
+        fileList={fileList}
+        onPreview={handlePreview}
+        onChange={handleChange}
+        beforeUpload={beforeUpload}
+      >
+        {fileList.length >= 1 ? null : uploadButton}
+      </Upload>
+      {previewImage && (
+        <Image
+          wrapperStyle={{ display: "none" }}
+          preview={{
+            visible: previewOpen,
+            onVisibleChange: (visible) => setPreviewOpen(visible),
+            afterOpenChange: (visible) => !visible && setPreviewImage(""),
+          }}
+          src={previewImage}
+        />
+      )}
+    </div>
   );
 };
+
 export default UploadAdmin;
