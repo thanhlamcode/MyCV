@@ -114,15 +114,6 @@ const Achievement = () => {
         Add New Achievement
       </Button>
 
-      <Item
-        name="time"
-        label="Time"
-        rules={[{ required: true, message: "Please enter the time!" }]}
-        style={{ width: "25%" }}
-      >
-        <Input />
-      </Item>
-
       <Table dataSource={dataSource} columns={columns} pagination={false} />
 
       {/* Modal thêm/sửa dữ liệu */}

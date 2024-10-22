@@ -123,15 +123,6 @@ const CertificateResume = () => {
         Add New Certificate
       </Button>
 
-      <Item
-        name="university"
-        label="Time"
-        rules={[{ required: true, message: "Please enter the university!" }]}
-        style={{ width: "25%" }}
-      >
-        <Input />
-      </Item>
-
       <Table dataSource={dataSource} columns={columns} pagination={false} />
 
       {/* Modal thêm/sửa dữ liệu */}
