@@ -2,25 +2,59 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Divider } from "antd";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
+import { login } from "../../service/auth";
+import { message } from "antd";
 import "./Auth.css";
+import { useNavigate } from "react-router-dom";
 
 function Auth() {
   const [isSignIn, setIsSignIn] = useState(true);
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const navigate = useNavigate();
 
   const toggleAuthMode = () => {
     setIsSignIn(!isSignIn);
   };
 
+  const success = () => {
+    messageApi.open({
+      type: "success",
+      content: "Đăng nhập thành công!",
+    });
+  };
+
+  const error = () => {
+    messageApi.open({
+      type: "error",
+      content: "Đăng nhập thất bại!",
+    });
+  };
+
+  const handleSubmitLogin = async (e) => {
+    console.log(e);
+    const respone = await login(e);
+    if (respone.code === 200) {
+      success();
+      setTimeout(() => {
+        navigate("/admin/profile");
+      }, 1000);
+    } else {
+      error();
+    }
+  };
+
   return (
     <div className="auth-wrapper">
+      {contextHolder}
       <div className="auth-container">
         <div className="auth-card">
           {isSignIn ? (
             <>
               <h2>Login</h2>
-              <Form layout="vertical">
+              <Form layout="vertical" onFinish={handleSubmitLogin}>
                 <Form.Item
-                  name="email"
+                  name="emailAddress"
                   rules={[
                     { required: true, message: "Please input your email!" },
                   ]}
@@ -42,7 +76,8 @@ function Auth() {
                   Login
                 </Button>
                 <div className="switch-mode">
-                  Don’t have an account? <a onClick={toggleAuthMode}>Signup</a>
+                  Don't have an account?{" "}
+                  <a onClick={() => toggleAuthMode()}>Signup</a>
                 </div>
               </Form>
               <Divider>Or</Divider>
