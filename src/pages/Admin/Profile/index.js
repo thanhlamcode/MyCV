@@ -1,14 +1,23 @@
-import { Button, Col, Form, Input, Row } from "antd";
+import { Button, Col, Form, Input, message, Row } from "antd";
 import UploadAdmin from "../../../components/Admin/Upload";
 import { DownloadOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TextArea from "antd/es/input/TextArea";
 import BoxTitle from "../../../components/Admin/BoxTitle";
+import { useLocation } from "react-router-dom";
 
 function Profile() {
+  const location = useLocation(); // Lấy state từ navigate
+
   const [form] = Form.useForm();
   const [componentDisabled, setComponentDisabled] = useState(true);
   const [fileList, setFileList] = useState([]); // Lưu danh sách file
+
+  useEffect(() => {
+    if (location.state?.message) {
+      message.success(location.state.message); // Hiển thị thông báo thành công
+    }
+  }, [location.state]);
 
   // Hàm xử lý khi form được submit
   const handleFinish = async (values) => {
