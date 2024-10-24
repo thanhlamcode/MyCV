@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
-import { login } from "../../service/auth";
+import { login, register } from "../../service/auth";
 import { message } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import LoginForm from "../../components/Auth/Login";
@@ -28,22 +28,38 @@ function Auth() {
     setIsSignIn(!isSignIn);
   };
 
-  const error = () => {
+  const error = (type, content) => {
     messageApi.open({
-      type: "error",
-      content: "Đăng nhập thất bại!",
+      type: type,
+      content: content,
     });
   };
 
   const handleSubmitLogin = async (e) => {
-    console.log(e);
     const respone = await login(e);
     if (respone.code === 200) {
       navigate("/admin/profile", {
         state: { message: "Đăng nhập thành công!" },
       });
     } else {
-      error();
+      error("error", "Đăng nhập thất bại!");
+    }
+  };
+
+  const handleSubmitRegister = async (e) => {
+    console.log(e);
+    if (e.password !== e.confirmPassword) {
+      return error("error", "Mật khẩu xác nhận không khớp");
+    } else {
+      const { confirmPassword, ...dataToSend } = e;
+      const respone = await register(dataToSend);
+      if (respone.code === 200) {
+        navigate("/admin/profile", {
+          state: { message: "Đăng ký thành công!" },
+        });
+      } else {
+        error("error", "Email đã tồn tại!");
+      }
     }
   };
 
@@ -58,7 +74,10 @@ function Auth() {
               toggleAuthMode={toggleAuthMode}
             />
           ) : (
-            <RegisterForm toggleAuthMode={toggleAuthMode} />
+            <RegisterForm
+              toggleAuthMode={toggleAuthMode}
+              handleSubmitRegister={handleSubmitRegister}
+            />
           )}
         </div>
       </div>

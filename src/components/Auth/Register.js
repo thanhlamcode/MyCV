@@ -2,13 +2,13 @@
 import { Button, Divider, Form, Input } from "antd";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
 
-const RegisterForm = ({ toggleAuthMode }) => {
+const RegisterForm = ({ toggleAuthMode, handleSubmitRegister }) => {
   return (
     <>
       <h2>Signup</h2>
-      <Form layout="vertical">
+      <Form layout="vertical" onFinish={handleSubmitRegister}>
         <Form.Item
-          name="email"
+          name="emailAddress"
           rules={[{ required: true, message: "Please input your email!" }]}
         >
           <Input placeholder="Email" />
@@ -20,7 +20,7 @@ const RegisterForm = ({ toggleAuthMode }) => {
           <Input.Password placeholder="Create password" />
         </Form.Item>
         <Form.Item
-          name="confirm-password"
+          name="confirmPassword"
           rules={[
             {
               required: true,
