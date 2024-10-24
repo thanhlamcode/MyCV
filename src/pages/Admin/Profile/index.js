@@ -5,14 +5,22 @@ import { useEffect, useState } from "react";
 import TextArea from "antd/es/input/TextArea";
 import BoxTitle from "../../../components/Admin/BoxTitle";
 import { useLocation } from "react-router-dom";
-import { editInformation } from "../../../service/profileAdmin";
+import { editInformation, getInfomation } from "../../../service/profileAdmin";
 
 function Profile() {
   const location = useLocation(); // Lấy state từ navigate
+  const [messageApi, contextHolder] = message.useMessage();
 
   const [form] = Form.useForm();
   const [componentDisabled, setComponentDisabled] = useState(true);
   const [fileList, setFileList] = useState([]); // Lưu danh sách file
+
+  const notify = (type, content) => {
+    messageApi.open({
+      type: type,
+      content: content,
+    });
+  };
 
   useEffect(() => {
     if (location.state?.message) {
@@ -26,7 +34,41 @@ function Profile() {
 
     const response = await editInformation(e);
     console.log(response);
+    setComponentDisabled(true);
+    notify("success", "Cập nhật thành công");
   };
+
+  // Fetch data từ API và điền dữ liệu vào form
+  useEffect(() => {
+    const fetchInformation = async () => {
+      try {
+        const response = await getInfomation();
+        console.log(response); // Kiểm tra dữ liệu
+
+        // Điền dữ liệu vào form
+        form.setFieldsValue({
+          fullName: response.fullName,
+          phoneNumber: response.phoneNumber,
+          facebookAddress: response.facebookAddress,
+          zaloAddress: response.zaloAddress,
+          linkedinAddress: response.linkedinAddress,
+          emailAddress: response.emailAddress,
+          slug: response.slug || "", // Nếu không có thì đặt giá trị mặc định
+          expertise: response.expertise?.join(", ") || "", // Chuyển array thành chuỗi
+          description: response.description,
+        });
+
+        // Nếu có file avatar, cập nhật vào fileList
+        if (response.avatar) {
+          setFileList([{ url: response.avatar }]);
+        }
+      } catch (error) {
+        console.error("Error fetching information:", error);
+      }
+    };
+
+    fetchInformation();
+  }, [form]); // Thêm form vào dependency array
 
   // Nhận file từ UploadAdmin và cập nhật danh sách file
   const handleFileChange = (newFileList) => {
@@ -35,6 +77,7 @@ function Profile() {
 
   return (
     <>
+      {contextHolder}
       <div className="profile">
         <BoxTitle
           componentDisabled={componentDisabled}
