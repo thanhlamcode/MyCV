@@ -33,9 +33,9 @@ export const postProtected = async (path, data) => {
 };
 
 // PATCH request với Bearer Token
-export const patchProtected = async (path, id, data) => {
+export const patchProtected = async (path, data) => {
   const token = getToken();
-  const response = await fetch(`${API_DOMAIN}${path}/${id}`, {
+  const response = await fetch(API_DOMAIN + path, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

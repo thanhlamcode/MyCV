@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import TextArea from "antd/es/input/TextArea";
 import BoxTitle from "../../../components/Admin/BoxTitle";
 import { useLocation } from "react-router-dom";
+import { editInformation } from "../../../service/profileAdmin";
 
 function Profile() {
   const location = useLocation(); // Lấy state từ navigate
@@ -20,41 +21,11 @@ function Profile() {
   }, [location.state]);
 
   // Hàm xử lý khi form được submit
-  const handleFinish = async (values) => {
-    console.log("Form values:", values);
+  const handleFinish = async (e) => {
+    console.log(e);
 
-    // Tạo FormData để gửi dữ liệu form và ảnh
-    const formData = new FormData();
-
-    // Thêm dữ liệu form vào FormData
-    formData.append("name", values.name);
-    formData.append("phone", values.phone);
-    formData.append("facebook", values.facebook);
-    formData.append("zalo", values.zalo);
-    formData.append("linkedin", values.linkedin);
-    formData.append("email", values.email);
-    formData.append("description", values.description);
-
-    // Thêm ảnh vào FormData nếu có
-    if (fileList.length > 0 && fileList[0].originFileObj) {
-      formData.append("avatar", fileList[0].originFileObj);
-    }
-
-    // Gửi dữ liệu lên server
-    try {
-      const response = await fetch(
-        "http://localhost:4000/admin/information/edit/67131a1a7b04925eee28c1b6",
-        {
-          method: "PATCH",
-          body: formData, // Gửi FormData chứa dữ liệu form và file
-        }
-      );
-
-      const result = await response.json();
-      console.log("Response from server:", result);
-    } catch (error) {
-      console.error("Error submitting form:", error);
-    }
+    const response = await editInformation(e);
+    console.log(response);
   };
 
   // Nhận file từ UploadAdmin và cập nhật danh sách file
@@ -84,33 +55,46 @@ function Profile() {
         >
           <Row gutter={[30, 30]}>
             <Col span={12}>
-              <Form.Item label="Họ và tên:" name="name">
+              <Form.Item label="Họ và tên:" name="fullName">
                 <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label="Số điện thoại:" name="phone">
+              <Form.Item label="Số điện thoại:" name="phoneNumber">
                 <Input />
               </Form.Item>
             </Col>
             <Col span={24}>
-              <Form.Item label="Địa chỉ facebook:" name="facebook">
+              <Form.Item label="Địa chỉ facebook:" name="facebookAddress">
                 <Input />
               </Form.Item>
             </Col>
             <Col span={24}>
-              <Form.Item label="Địa chỉ zalo:" name="zalo">
+              <Form.Item label="Địa chỉ zalo:" name="zaloAddress">
                 <Input />
               </Form.Item>
             </Col>
             <Col span={24}>
-              <Form.Item label="Địa chỉ linkedin:" name="linkedin">
+              <Form.Item label="Địa chỉ linkedin:" name="linkedinAddress">
                 <Input />
               </Form.Item>
             </Col>
             <Col span={24}>
-              <Form.Item label="Địa chỉ email:" name="email">
+              <Form.Item label="Địa chỉ email:" name="emailAddress">
                 <Input type="email" />
+              </Form.Item>
+            </Col>
+            <Col span={24}>
+              <Form.Item label="Đường dẫn cho trang web của bạn:" name="slug">
+                <Input type="text" />
+              </Form.Item>
+            </Col>
+            <Col span={24}>
+              <Form.Item
+                label="Chuyên môn của bạn (ngăn cách nhau bởi dấu `,`)"
+                name="expertise"
+              >
+                <Input type="text" />
               </Form.Item>
             </Col>
             <Col span={24}>

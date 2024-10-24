@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Layout, theme } from "antd";
-import "./style.scss";
 import { Outlet } from "react-router-dom";
 import SiderAdmin from "../../components/Admin/Sider";
 import HeaderAdmin from "../../components/Admin/Header";
 import FooterAdmin from "../../components/Admin/Footer";
+import "./style.scss";
 const { Content } = Layout;
 
 const LayoutAdmin = () => {
