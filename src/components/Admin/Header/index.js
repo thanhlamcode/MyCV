@@ -1,6 +1,7 @@
 import { Button } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Header } from "antd/es/layout/layout";
+import { Link } from "react-router-dom";
 
 function HeaderAdmin(props) {
   const { collapsed, setCollapsed, colorBgContainer } = props;
@@ -23,6 +24,11 @@ function HeaderAdmin(props) {
             height: 64,
           }}
         />
+        <Link to="/detail/thanhlam">
+          <Button style={{ position: "absolute", top: "20px", right: "10px" }}>
+            Xem trang của bạn
+          </Button>
+        </Link>
       </Header>
     </>
   );
