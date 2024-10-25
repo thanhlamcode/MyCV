@@ -1,4 +1,4 @@
-import { getProtected } from "../until/requestPrivate";
+import { getProtected, patchProtected } from "../until/requestPrivate";
 
 export const getInfomation = async () => {
   try {
@@ -29,25 +29,13 @@ export const editInformation = async (data) => {
       }
     }
 
-    const response = await fetch(
-      `http://localhost:4000/admin/information/edit/${user.information}`,
-      {
-        method: "PATCH",
-        headers: {
-          // Do not set Content-Type, as FormData automatically sets the correct headers.
-          Authorization: `Bearer ${user.token}`, // Include the token in the request header
-        },
-        body: formData, // Send the formData object
-      }
+    // Use patchProtected to handle the API request
+    const response = await patchProtected(
+      `/admin/information/edit/${user.information}`,
+      formData // Pass FormData object
     );
 
-    // Check if the response is OK
-    if (!response.ok) {
-      throw new Error("Failed to update information");
-    }
-
-    const result = await response.json();
-    return result;
+    return response;
   } catch (error) {
     console.error("Lỗi khi cập nhật thông tin:", error);
     throw error;

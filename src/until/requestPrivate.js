@@ -18,31 +18,53 @@ export const getProtected = async (path) => {
   return results;
 };
 
-// POST request với Bearer Token
+// POST request with Bearer Token
 export const postProtected = async (path, data) => {
   const token = getToken();
+  let headers = {
+    Authorization: `Bearer ${token}`, // Include Bearer token
+  };
+
+  let body;
+  // Check if the data is FormData (for file uploads)
+  if (data instanceof FormData) {
+    body = data; // FormData automatically handles the Content-Type
+  } else {
+    headers["Content-Type"] = "application/json"; // Set JSON Content-Type
+    body = JSON.stringify(data); // Convert data to JSON
+  }
+
   const response = await fetch(API_DOMAIN + path, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // Thêm Bearer token vào header
-    },
-    body: JSON.stringify(data),
+    headers,
+    body,
   });
+
   return response.json();
 };
 
-// PATCH request với Bearer Token
+// PATCH request with Bearer Token
 export const patchProtected = async (path, data) => {
   const token = getToken();
+  let headers = {
+    Authorization: `Bearer ${token}`, // Include Bearer token
+  };
+
+  let body;
+  // Check if the data is FormData (for file uploads)
+  if (data instanceof FormData) {
+    body = data; // FormData automatically handles the Content-Type
+  } else {
+    headers["Content-Type"] = "application/json"; // Set JSON Content-Type
+    body = JSON.stringify(data); // Convert data to JSON
+  }
+
   const response = await fetch(API_DOMAIN + path, {
     method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`, // Thêm Bearer token vào header
-    },
-    body: JSON.stringify(data),
+    headers,
+    body,
   });
+
   return response.json();
 };
 

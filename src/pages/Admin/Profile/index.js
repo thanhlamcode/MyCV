@@ -133,7 +133,7 @@ function Profile() {
           linkedinAddress: response.linkedinAddress,
           emailAddress: response.emailAddress,
           slug: response.slug || "", // Nếu không có thì đặt giá trị mặc định
-          expertise: response.expertise?.join(", ") || "", // Chuyển array thành chuỗi
+          expertise: response.expertise, // Chuyển array thành chuỗi
           description: response.description,
           avatar: response.avatar,
         });
