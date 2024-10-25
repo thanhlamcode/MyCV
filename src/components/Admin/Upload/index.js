@@ -1,5 +1,5 @@
 import { Image, Upload } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 
 // Helper function to convert file to Base64
@@ -12,10 +12,18 @@ const getBase64 = (file) =>
   });
 
 // UploadAdmin Component
-const UploadAdmin = ({ onFileChange }) => {
+const UploadAdmin = ({ onFileChange, avatar }) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
-  const [fileList, setFileList] = useState([]);
+  const [fileList, setFileList] = useState(
+    avatar ? [{ url: avatar, name: "Avatar", status: "done" }] : []
+  );
+
+  useEffect(() => {
+    if (avatar) {
+      setFileList([{ url: avatar, name: "Avatar", status: "done" }]);
+    }
+  }, [avatar]);
 
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
@@ -27,14 +35,13 @@ const UploadAdmin = ({ onFileChange }) => {
 
   const handleChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
-
     if (onFileChange) {
-      onFileChange(newFileList); // Truyền fileList ngược về component cha
+      onFileChange(newFileList); // Send fileList back to the parent component
     }
   };
 
   const beforeUpload = (file) => {
-    return false; // Tắt upload tự động
+    return false; // Disable automatic upload
   };
 
   const uploadButton = (

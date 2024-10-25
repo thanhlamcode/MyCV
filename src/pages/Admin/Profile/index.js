@@ -1,92 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { PlusOutlined, DownloadOutlined } from "@ant-design/icons";
-import { Upload, Image, Button, Col, Form, Input, message, Row } from "antd";
+import { DownloadOutlined } from "@ant-design/icons";
+import { Button, Col, Form, Input, message, Row } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import BoxTitle from "../../../components/Admin/BoxTitle";
 import { useLocation } from "react-router-dom";
 import { editInformation, getInfomation } from "../../../service/profileAdmin";
+import UploadAdmin from "../../../components/Admin/Upload";
 import "./style.scss";
-
-// Helper function to convert file to Base64
-const getBase64 = (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
-  });
-
-// UploadAdmin Component
-const UploadAdmin = ({ onFileChange, avatar }) => {
-  const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
-  const [fileList, setFileList] = useState(
-    avatar ? [{ url: avatar, name: "Avatar", status: "done" }] : []
-  );
-
-  useEffect(() => {
-    if (avatar) {
-      setFileList([{ url: avatar, name: "Avatar", status: "done" }]);
-    }
-  }, [avatar]);
-
-  const handlePreview = async (file) => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj);
-    }
-    setPreviewImage(file.url || file.preview);
-    setPreviewOpen(true);
-  };
-
-  const handleChange = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
-    if (onFileChange) {
-      onFileChange(newFileList); // Send fileList back to the parent component
-    }
-  };
-
-  const beforeUpload = (file) => {
-    return false; // Disable automatic upload
-  };
-
-  const uploadButton = (
-    <button
-      style={{
-        border: 0,
-        background: "none",
-      }}
-      type="button"
-    >
-      <PlusOutlined />
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </button>
-  );
-
-  return (
-    <div className="upload">
-      <Upload
-        listType="picture-card"
-        fileList={fileList}
-        onPreview={handlePreview}
-        onChange={handleChange}
-        beforeUpload={beforeUpload}
-      >
-        {fileList.length >= 1 ? null : uploadButton}
-      </Upload>
-      {previewImage && (
-        <Image
-          wrapperStyle={{ display: "none" }}
-          preview={{
-            visible: previewOpen,
-            onVisibleChange: (visible) => setPreviewOpen(visible),
-            afterOpenChange: (visible) => !visible && setPreviewImage(""),
-          }}
-          src={previewImage}
-        />
-      )}
-    </div>
-  );
-};
 
 // Profile Component
 function Profile() {
@@ -114,15 +34,27 @@ function Profile() {
   const handleFinish = async (values) => {
     console.log("Submitted values:", values);
 
-    const formValues = {
-      ...values,
-      avatar: fileList, // Add file list to form values
-    };
+    // Initialize formValues without avatar
+    const formValues = { ...values };
 
-    const response = await editInformation(formValues);
-    console.log(response);
-    setComponentDisabled(true);
-    notify("success", "Cập nhật thành công");
+    // Only add avatar to formValues if fileList has an image
+    if (
+      fileList &&
+      fileList.length > 0 &&
+      (fileList[0].url || fileList[0].originFileObj)
+    ) {
+      formValues.avatar = fileList;
+    }
+
+    try {
+      const response = await editInformation(formValues);
+      console.log(response);
+      setComponentDisabled(true);
+      notify("success", "Cập nhật thành công");
+    } catch (error) {
+      console.error("Error updating information:", error);
+      notify("error", "Có lỗi xảy ra trong quá trình cập nhật");
+    }
   };
 
   // Fetch data from API and populate the form
