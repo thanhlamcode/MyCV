@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { Image, Upload } from "antd";
+import { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
-import { Upload, Image } from "antd";
-import "./style.scss";
 
+// Helper function to convert file to Base64
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -11,6 +11,7 @@ const getBase64 = (file) =>
     reader.onerror = (error) => reject(error);
   });
 
+// UploadAdmin Component
 const UploadAdmin = ({ onFileChange }) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");

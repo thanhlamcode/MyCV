@@ -17,10 +17,18 @@ const getBase64 = (file) =>
   });
 
 // UploadAdmin Component
-const UploadAdmin = ({ onFileChange }) => {
+const UploadAdmin = ({ onFileChange, avatar }) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
-  const [fileList, setFileList] = useState([]);
+  const [fileList, setFileList] = useState(
+    avatar ? [{ url: avatar, name: "Avatar", status: "done" }] : []
+  );
+
+  useEffect(() => {
+    if (avatar) {
+      setFileList([{ url: avatar, name: "Avatar", status: "done" }]);
+    }
+  }, [avatar]);
 
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
@@ -32,14 +40,13 @@ const UploadAdmin = ({ onFileChange }) => {
 
   const handleChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
-
     if (onFileChange) {
-      onFileChange(newFileList); // Truyền fileList ngược về component cha
+      onFileChange(newFileList); // Send fileList back to the parent component
     }
   };
 
   const beforeUpload = (file) => {
-    return false; // Tắt upload tự động
+    return false; // Disable automatic upload
   };
 
   const uploadButton = (
@@ -83,11 +90,12 @@ const UploadAdmin = ({ onFileChange }) => {
 
 // Profile Component
 function Profile() {
-  const location = useLocation(); // Lấy state từ navigate
+  const location = useLocation(); // Get state from navigate
   const [messageApi, contextHolder] = message.useMessage();
   const [form] = Form.useForm();
   const [componentDisabled, setComponentDisabled] = useState(true);
-  const [fileList, setFileList] = useState([]); // Lưu danh sách file
+  const [fileList, setFileList] = useState([]); // Save file list
+  const [avatar, setAvatar] = useState("");
 
   const notify = (type, content) => {
     messageApi.open({
@@ -98,17 +106,17 @@ function Profile() {
 
   useEffect(() => {
     if (location.state?.message) {
-      message.success(location.state.message); // Hiển thị thông báo thành công
+      message.success(location.state.message); // Display success message
     }
   }, [location.state]);
 
-  // Hàm xử lý khi form được submit
+  // Handle form submission
   const handleFinish = async (values) => {
     console.log("Submitted values:", values);
 
     const formValues = {
       ...values,
-      avatar: fileList, // Add the file list to form values
+      avatar: fileList, // Add file list to form values
     };
 
     const response = await editInformation(formValues);
@@ -117,14 +125,14 @@ function Profile() {
     notify("success", "Cập nhật thành công");
   };
 
-  // Fetch data từ API và điền dữ liệu vào form
+  // Fetch data from API and populate the form
   useEffect(() => {
     const fetchInformation = async () => {
       try {
         const response = await getInfomation();
-        console.log(response); // Kiểm tra dữ liệu
+        console.log(response); // Check data
 
-        // Điền dữ liệu vào form
+        // Populate form fields
         form.setFieldsValue({
           fullName: response.fullName,
           phoneNumber: response.phoneNumber,
@@ -132,15 +140,17 @@ function Profile() {
           zaloAddress: response.zaloAddress,
           linkedinAddress: response.linkedinAddress,
           emailAddress: response.emailAddress,
-          slug: response.slug || "", // Nếu không có thì đặt giá trị mặc định
-          expertise: response.expertise, // Chuyển array thành chuỗi
+          slug: response.slug || "", // Default value if empty
+          expertise: response.expertise, // Convert array to string
           description: response.description,
-          avatar: response.avatar,
         });
 
-        // Nếu có file avatar, cập nhật vào fileList
+        // If avatar file exists, update fileList and avatar state
         if (response.avatar) {
-          setFileList([{ url: response.avatar }]);
+          setFileList([
+            { url: response.avatar, name: "Avatar", status: "done" },
+          ]);
+          setAvatar(response.avatar);
         }
       } catch (error) {
         console.error("Error fetching information:", error);
@@ -148,16 +158,15 @@ function Profile() {
     };
 
     fetchInformation();
-  }, [form]); // Thêm form vào dependency array
+  }, [form]);
 
-  // Nhận file từ UploadAdmin và cập nhật danh sách file
+  // Handle file change from UploadAdmin and update fileList
   const handleFileChange = (newFileList) => {
     setFileList(newFileList);
   };
 
   const getFile = (e) => {
     console.log("Upload event:", e);
-
     if (Array.isArray(e)) {
       return e;
     }
@@ -240,7 +249,7 @@ function Profile() {
                 getValueFromEvent={getFile}
                 name="avatar"
               >
-                <UploadAdmin onFileChange={handleFileChange} />
+                <UploadAdmin onFileChange={handleFileChange} avatar={avatar} />
               </Form.Item>
             </Col>
             <Col
