@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { getFeatures } from "../../../service/features.admin";
 
 const FormFeatures = (props) => {
-  const { componentDisabled } = props;
+  const { componentDisabled, setComponentDisabled } = props;
 
   // eslint-disable-next-line no-unused-vars
   const [feature, setFeature] = useState([]);
@@ -13,6 +13,7 @@ const FormFeatures = (props) => {
 
   // Hàm xử lý khi bấm nút "Lưu"
   const handleFinish = (e) => {
+    setComponentDisabled(true);
     console.log(e);
   };
 

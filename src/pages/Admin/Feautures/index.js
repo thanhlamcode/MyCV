@@ -13,7 +13,10 @@ function Features() {
           title="What I Do"
           setComponentDisabled={setComponentDisabled}
         />
-        <FormFeatures componentDisabled={componentDisabled} />
+        <FormFeatures
+          componentDisabled={componentDisabled}
+          setComponentDisabled={setComponentDisabled}
+        />
       </div>
     </>
   );
