@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { DownloadOutlined } from "@ant-design/icons";
-import { Button, Col, Form, Input, message, Row } from "antd";
-import TextArea from "antd/es/input/TextArea";
+import { Form, message } from "antd";
 import BoxTitle from "../../../components/Admin/BoxTitle";
 import { useLocation } from "react-router-dom";
 import { editInformation, getInfomation } from "../../../service/profileAdmin";
-import UploadAdmin from "../../../components/Admin/Upload";
+import FormProfile from "../../../components/Admin/Form/formProfile";
 import "./style.scss";
 
 // Profile Component
@@ -114,92 +112,15 @@ function Profile() {
           title="Set up your information"
           setComponentDisabled={setComponentDisabled}
         />
-        <Form
-          layout="vertical"
+
+        <FormProfile
           form={form}
-          onFinish={handleFinish}
-          disabled={componentDisabled}
-          initialValues={{
-            layout: "vertical",
-          }}
-          style={{
-            maxWidth: "100%",
-          }}
-        >
-          <Row gutter={[30, 30]}>
-            <Col span={12}>
-              <Form.Item label="Họ và tên:" name="fullName">
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item label="Số điện thoại:" name="phoneNumber">
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item label="Địa chỉ facebook:" name="facebookAddress">
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item label="Địa chỉ zalo:" name="zaloAddress">
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item label="Địa chỉ linkedin:" name="linkedinAddress">
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item label="Địa chỉ email:" name="emailAddress">
-                <Input type="email" />
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item label="Đường dẫn cho trang web của bạn:" name="slug">
-                <Input type="text" />
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item
-                label="Chuyên môn của bạn (ngăn cách nhau bởi dấu `,`)"
-                name="expertise"
-              >
-                <Input type="text" />
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item label="Mô tả:" name="description">
-                <TextArea />
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item
-                label="Avatar:"
-                getValueFromEvent={getFile}
-                name="avatar"
-              >
-                <UploadAdmin onFileChange={handleFileChange} avatar={avatar} />
-              </Form.Item>
-            </Col>
-            <Col
-              span={24}
-              style={{ display: "flex", justifyContent: "center" }}
-            >
-              <Form.Item>
-                <Button
-                  type="primary"
-                  icon={<DownloadOutlined />}
-                  htmlType="submit"
-                >
-                  Save
-                </Button>
-              </Form.Item>
-            </Col>
-          </Row>
-        </Form>
+          handleFinish={handleFinish}
+          componentDisabled={componentDisabled}
+          getFile={getFile}
+          handleFileChange={handleFileChange}
+          avatar={avatar}
+        />
       </div>
     </>
   );

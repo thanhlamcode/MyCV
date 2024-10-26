@@ -1,6 +1,6 @@
 import { useState } from "react";
 import BoxTitle from "../../../components/Admin/BoxTitle";
-import FormProject from "../../../components/Admin/FormProject";
+import FormProject from "../../../components/Admin/Form/formProject";
 
 function Project() {
   const [componentDisabled, setComponentDisabled] = useState(true);

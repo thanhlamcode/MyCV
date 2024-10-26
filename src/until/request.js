@@ -1,5 +1,5 @@
 const API_DOMAIN = "http://localhost:4000";
-// const API_DOMAIN = "https://database-tuyendung.onrender.com";
+// const API_DOMAIN = "https://backend-mycv.vercel.app";
 
 export const get = async (path) => {
   const response = await fetch(API_DOMAIN + path);
