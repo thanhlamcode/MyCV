@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, message } from "antd";
 import BoxTitle from "../../../components/Admin/BoxTitle";
 import { useLocation } from "react-router-dom";
-import { editInformation, getInfomation } from "../../../service/profileAdmin";
+import { editInformation, getInfomation } from "../../../service/profile.admin";
 import FormProfile from "../../../components/Admin/Form/formProfile";
 import "./style.scss";
 
