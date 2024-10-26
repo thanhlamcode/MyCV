@@ -1,7 +1,7 @@
 import BoxTitle from "../../../components/Admin/BoxTitle";
 import { useState } from "react";
-import ItemInput from "../../../components/Admin/ItemInput";
 import "./style.scss";
+import FormFeatures from "../../../components/Admin/Form/formFeatures";
 
 function Features() {
   const [componentDisabled, setComponentDisabled] = useState(true);
@@ -13,7 +13,7 @@ function Features() {
           title="What I Do"
           setComponentDisabled={setComponentDisabled}
         />
-        <ItemInput componentDisabled={componentDisabled} />
+        <FormFeatures componentDisabled={componentDisabled} />
       </div>
     </>
   );

@@ -1,9 +1,8 @@
-import React from "react";
 import { Button, Card, Col, Form, Input, Row } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import "./style.scss";
 
-const ItemInput = (props) => {
+const FormFeatures = (props) => {
   const { componentDisabled } = props;
 
   const [form] = Form.useForm();
@@ -64,7 +63,11 @@ const ItemInput = (props) => {
           </Col>
 
           <Col span={24} style={{ display: "flex", justifyContent: "center" }}>
-            <Button type="primary" icon={<DownloadOutlined />}>
+            <Button
+              type="primary"
+              icon={<DownloadOutlined />}
+              htmlType="submit"
+            >
               Save
             </Button>
           </Col>
@@ -73,4 +76,4 @@ const ItemInput = (props) => {
     </div>
   );
 };
-export default ItemInput;
+export default FormFeatures;
