@@ -2,7 +2,7 @@ import { Button, Card, Col, Form, Input, Row } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import "./style.scss";
 import { useEffect, useState } from "react";
-import { getFeatures } from "../../../service/features.admin";
+import { editFeatures, getFeatures } from "../../../service/features.admin";
 
 const FormFeatures = (props) => {
   const { componentDisabled, setComponentDisabled } = props;
@@ -11,10 +11,20 @@ const FormFeatures = (props) => {
   const [feature, setFeature] = useState([]);
   const [form] = Form.useForm();
 
-  // Hàm xử lý khi bấm nút "Lưu"
-  const handleFinish = (e) => {
+  const handleFinish = async (e) => {
     setComponentDisabled(true);
-    console.log(e);
+
+    // Định dạng dữ liệu với cấu trúc { skills: [...] }
+    const data = {
+      skills: e.items.map((item) => ({
+        skillName: item.skillName,
+        description: item.description,
+      })),
+    };
+
+    // Gọi API với dữ liệu đã định dạng
+    const response = await editFeatures(data);
+    console.log(response);
   };
 
   useEffect(() => {
