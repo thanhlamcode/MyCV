@@ -49,3 +49,22 @@ export const upLoadFile = async (fileList, initialFileList, setFileList) => {
 
   return uploadedFiles;
 };
+
+export const editProject = async (projects) => {
+  const projectId = localStorage.getItem("project");
+  console.log("Sending PATCH request to update project with ID:", projectId);
+
+  // Send the PATCH request to update the project with all collected data
+  const response = await fetch(
+    `${API_DOMAIN}/admin/project/edit/${projectId}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ projects }),
+    }
+  );
+
+  return response;
+};

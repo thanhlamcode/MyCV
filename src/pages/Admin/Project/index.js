@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getProject } from "../../../service/project.admin";
 import BoxTitle from "../../../components/Admin/BoxTitle";
 import FormProject from "../../../components/Admin/Form/formProject";
-import { upLoadFile } from "../../../helpers/uploadFile";
+import { editProject, upLoadFile } from "../../../helpers/uploadFile";
 
 function Project() {
   const [componentDisabled, setComponentDisabled] = useState(true);
@@ -78,23 +78,7 @@ function Project() {
         image: uploadedFiles[index], // Use the uploaded image URL
       }));
 
-      const projectId = "671728fe982e1b8fd2babb74"; // Static project ID for demonstration
-      console.log(
-        "Sending PATCH request to update project with ID:",
-        projectId
-      );
-
-      // Send the PATCH request to update the project with all collected data
-      const response = await fetch(
-        `http://localhost:4000/admin/project/edit/${projectId}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ projects }),
-        }
-      );
+      const response = await editProject(projects);
 
       console.log("Received response from server:", response);
 
