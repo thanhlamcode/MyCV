@@ -1,26 +1,78 @@
-// Front-end Component (FE)
 import { Button, Card, Col, Form, Input, Row, Upload } from "antd";
 import { DownloadOutlined, UploadOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getProject } from "../../../service/project.admin";
 
 function Project(props) {
   const { componentDisabled } = props;
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([[], [], [], [], [], []]);
+  const [initialFileList, setInitialFileList] = useState([
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+  ]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getProject();
+        console.log("Fetched data:", data);
+
+        // Populate form fields with fetched data
+        form.setFieldsValue({
+          items: data.projects.map((project) => ({
+            name: project.projectName,
+            description: project.description,
+            link: project.linkProject,
+          })),
+        });
+
+        // Update fileList and initialFileList with URL images from the fetched data
+        const fetchedFileList = data.projects.map((project, index) =>
+          project.image
+            ? [
+                {
+                  uid: `project-image-${index}`,
+                  name: `Project Image ${index + 1}`,
+                  status: "done",
+                  url: project.image,
+                },
+              ]
+            : []
+        );
+
+        setFileList(fetchedFileList);
+        setInitialFileList(fetchedFileList);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [form]);
 
   const handleFinish = async (values) => {
     try {
       console.log("Form values:", values);
 
-      // Upload all files to Cloudinary or another service before submitting the form
+      // Upload only the files that have changed or are new
       const uploadedFiles = await Promise.all(
         fileList.map(async (files, index) => {
-          if (files.length > 0) {
+          if (
+            files.length > 0 &&
+            (!initialFileList[index] ||
+              files[0]?.originFileObj !== undefined || // Check if there's a new file to be uploaded
+              files[0]?.url !== initialFileList[index][0]?.url)
+          ) {
             const formData = new FormData();
-            formData.append("file", files[0].originFileObj); // Append the file to the formData object
-            formData.append("upload_preset", "your_upload_preset"); // Cloudinary-specific field for upload preset
+            formData.append("file", files[0].originFileObj);
+            formData.append("upload_preset", "your_upload_preset");
 
-            // Send the file to Cloudinary using fetch
+            // Send the file to Cloudinary or another service using fetch
             const response = await fetch(
               "http://localhost:4000/admin/project/upload",
               {
@@ -37,9 +89,22 @@ function Project(props) {
 
             const data = await response.json();
             console.log(`File uploaded for index ${index}:`, data);
+
+            // Update fileList to include the new URL after successful upload
+            const updatedFileList = [...fileList];
+            updatedFileList[index] = [
+              {
+                ...files[0],
+                url: data.secure_url,
+              },
+            ];
+            setFileList(updatedFileList);
+
             return data.secure_url; // Return the URL of the uploaded file
           }
-          return null; // Return null if no file was provided for this index
+
+          // Return the original URL if no new file was uploaded
+          return files.length > 0 ? files[0].url : null;
         })
       );
 
@@ -75,29 +140,29 @@ function Project(props) {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Response data:", data); // Log the response data if the request was successful
+        console.log("Response data:", data);
       } else {
         const errorText = await response.text();
-        console.error("Upload failed:", response.statusText, errorText); // Log any error messages from the server
+        console.error("Upload failed:", response.statusText, errorText);
       }
     } catch (error) {
-      console.error("Error in handleFinish:", error); // Log any errors that occur during the process
+      console.error("Error in handleFinish:", error);
     }
   };
 
   const handleFileChange = (index, info) => {
-    console.log(`Handling file change for index ${index}:`, info); // Log file change event details
+    console.log(`Handling file change for index ${index}:`, info);
     const updatedFileList = [...fileList];
-    updatedFileList[index] = info.fileList; // Update the file list state for the specified index
-    setFileList(updatedFileList); // Update the state with the new file list
-    console.log("Updated fileList:", updatedFileList); // Log the updated file list
+    updatedFileList[index] = info.fileList;
+    setFileList(updatedFileList);
+    console.log("Updated fileList:", updatedFileList);
   };
 
   return (
     <div className="input-item">
       <Form
         disabled={componentDisabled}
-        onFinish={handleFinish} // Handle form submission
+        onFinish={handleFinish}
         labelCol={{
           span: 2,
         }}
@@ -111,7 +176,7 @@ function Project(props) {
         }}
         autoComplete="off"
         initialValues={{
-          items: [{}], // Initial form values with an empty item
+          items: [{}],
         }}
       >
         <Row gutter={[30, 30]}>
@@ -148,12 +213,29 @@ function Project(props) {
 
                 {/* File Upload Field */}
                 <Form.Item label="Hình ảnh" style={{ width: "100%" }}>
+                  {/* Display uploaded image */}
+                  {fileList[index] && fileList[index][0]?.url && (
+                    <img
+                      src={fileList[index][0].url}
+                      alt={`Project Image ${index + 1}`}
+                      style={{
+                        width: "100%",
+                        maxHeight: "200px",
+                        marginBottom: "10px",
+                        borderRadius: "8px",
+                        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                        objectFit: "cover",
+                        border: "1px solid #ddd",
+                      }}
+                    />
+                  )}
+
                   <Upload
                     name="image"
                     listType="picture"
                     maxCount={1}
-                    beforeUpload={() => false} // Prevent automatic upload so that upload happens on form submit
-                    onChange={(info) => handleFileChange(index, info)} // Handle file selection
+                    beforeUpload={() => false}
+                    onChange={(info) => handleFileChange(index, info)}
                   >
                     <Button icon={<UploadOutlined />}>Chọn ảnh</Button>
                   </Upload>
