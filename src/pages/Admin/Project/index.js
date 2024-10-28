@@ -96,6 +96,7 @@ function Project(props) {
               {
                 ...files[0],
                 url: data.secure_url,
+                status: "done",
               },
             ];
             setFileList(updatedFileList);
@@ -152,48 +153,16 @@ function Project(props) {
 
   const handleFileChange = (index, info) => {
     console.log(`Handling file change for index ${index}:`, info);
+
     const updatedFileList = [...fileList];
-    updatedFileList[index] = info.fileList;
+    updatedFileList[index] = info.fileList.map((file) => ({
+      ...file,
+      url: file.url || URL.createObjectURL(file.originFileObj), // Update the URL to reflect the newly selected file
+    }));
+
     setFileList(updatedFileList);
     console.log("Updated fileList:", updatedFileList);
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getProject(); // Fetch data using the getProject function
-        console.log("Fetched data:", data);
-
-        // Populate form fields with the fetched data
-        form.setFieldsValue({
-          items: data.projects.map((project) => ({
-            name: project.projectName,
-            description: project.description,
-            link: project.linkProject,
-          })),
-        });
-
-        // If images are already uploaded, set them in the fileList state
-        const initialFileList = data.projects.map((project, index) => {
-          return project.image
-            ? [
-                {
-                  uid: index, // Unique ID for the file
-                  name: `Project Image ${index + 1}`,
-                  status: "done",
-                  url: project.image, // The URL of the uploaded image
-                },
-              ]
-            : [];
-        });
-        setFileList(initialFileList); // Update the fileList with existing images
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData(); // Call fetchData when the component mounts
-  }, []);
 
   return (
     <div className="input-item">
