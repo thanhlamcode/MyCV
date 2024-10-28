@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getProject } from "../../../service/project.admin";
 import BoxTitle from "../../../components/Admin/BoxTitle";
 import FormProject from "../../../components/Admin/Form/formProject";
+import { upLoadFile } from "../../../helpers/uploadFile";
 
 function Project() {
   const [componentDisabled, setComponentDisabled] = useState(true);
@@ -62,53 +63,11 @@ function Project() {
       console.log("Form values:", values);
 
       // Upload only the files that have changed or are new
-      const uploadedFiles = await Promise.all(
-        fileList.map(async (files, index) => {
-          if (
-            files.length > 0 &&
-            (!initialFileList[index] ||
-              files[0]?.originFileObj !== undefined || // Check if there's a new file to be uploaded
-              files[0]?.url !== initialFileList[index][0]?.url)
-          ) {
-            const formData = new FormData();
-            formData.append("file", files[0].originFileObj);
-            formData.append("upload_preset", "your_upload_preset");
 
-            // Send the file to Cloudinary or another service using fetch
-            const response = await fetch(
-              "http://localhost:4000/admin/project/upload",
-              {
-                method: "POST",
-                body: formData,
-              }
-            );
-
-            if (!response.ok) {
-              throw new Error(
-                `Upload failed for index ${index}: ${response.statusText}`
-              );
-            }
-
-            const data = await response.json();
-            console.log(`File uploaded for index ${index}:`, data);
-
-            // Update fileList to include the new URL after successful upload
-            const updatedFileList = [...fileList];
-            updatedFileList[index] = [
-              {
-                ...files[0],
-                url: data.secure_url,
-                status: "done",
-              },
-            ];
-            setFileList(updatedFileList);
-
-            return data.secure_url; // Return the URL of the uploaded file
-          }
-
-          // Return the original URL if no new file was uploaded
-          return files.length > 0 ? files[0].url : null;
-        })
+      const uploadedFiles = await upLoadFile(
+        fileList,
+        initialFileList,
+        setFileList
       );
 
       // Construct the projects array with all required information, including uploaded image URLs
@@ -118,8 +77,6 @@ function Project() {
         linkProject: item.link,
         image: uploadedFiles[index], // Use the uploaded image URL
       }));
-
-      console.log("Constructed projects array:", projects);
 
       const projectId = "671728fe982e1b8fd2babb74"; // Static project ID for demonstration
       console.log(

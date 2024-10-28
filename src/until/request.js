@@ -1,5 +1,4 @@
-const API_DOMAIN = "http://localhost:4000";
-// const API_DOMAIN = "https://backend-mycv.vercel.app";
+import { API_DOMAIN } from "../config/domain";
 
 export const get = async (path) => {
   const response = await fetch(API_DOMAIN + path);
