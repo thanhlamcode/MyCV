@@ -1,7 +1,8 @@
 // Front-end Component (FE)
 import { Button, Card, Col, Form, Input, Row, Upload } from "antd";
 import { DownloadOutlined, UploadOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getProject } from "../../../service/project.admin";
 
 function Project(props) {
   const { componentDisabled } = props;
@@ -92,6 +93,43 @@ function Project(props) {
     setFileList(updatedFileList); // Update the state with the new file list
     console.log("Updated fileList:", updatedFileList); // Log the updated file list
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getProject(); // Fetch data using the getProject function
+        console.log("Fetched data:", data);
+
+        // Populate form fields with the fetched data
+        form.setFieldsValue({
+          items: data.projects.map((project) => ({
+            name: project.projectName,
+            description: project.description,
+            link: project.linkProject,
+          })),
+        });
+
+        // If images are already uploaded, set them in the fileList state
+        const initialFileList = data.projects.map((project, index) => {
+          return project.image
+            ? [
+                {
+                  uid: index, // Unique ID for the file
+                  name: `Project Image ${index + 1}`,
+                  status: "done",
+                  url: project.image, // The URL of the uploaded image
+                },
+              ]
+            : [];
+        });
+        setFileList(initialFileList); // Update the fileList with existing images
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData(); // Call fetchData when the component mounts
+  }, []);
 
   return (
     <div className="input-item">
