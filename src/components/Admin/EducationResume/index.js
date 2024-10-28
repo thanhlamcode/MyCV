@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   Button,
@@ -10,26 +10,25 @@ import {
   Space,
 } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { getEducation } from "../../../service/resume.admin";
 
 const { Item } = Form;
 
 const EducationResume = () => {
   // Dữ liệu mẫu ban đầu
-  const [dataSource, setDataSource] = useState([
-    {
-      key: "1",
-      university: "University of Economy (2022-2023)",
-      gpa: 3.5,
-      description:
-        "The training provided by universities in order to prepare people to work in various sectors of the economy or areas of culture.",
-    },
-    {
-      key: "2",
-      university: "University of Economy (2021-2022)",
-      gpa: 3.7,
-      description: "The training provided by universities...",
-    },
-  ]);
+  const [dataSource, setDataSource] = useState([]);
+
+  const fetchEducation = async () => {
+    const response = await getEducation();
+    if (response) {
+      setDataSource(response);
+      console.log(response);
+    }
+  };
+
+  useEffect(() => {
+    fetchEducation();
+  }, []);
 
   // Các trạng thái để kiểm soát modal thêm/sửa
   const [isEditing, setIsEditing] = useState(false);
@@ -82,8 +81,8 @@ const EducationResume = () => {
     },
     {
       title: "GPA",
-      dataIndex: "gpa",
-      key: "gpa",
+      dataIndex: "GPA",
+      key: "GPA",
     },
     {
       title: "Description",
@@ -138,20 +137,27 @@ const EducationResume = () => {
           layout="vertical"
         >
           <Item
+            name="title"
+            label="Title"
+            rules={[{ required: true, message: "Please enter the title!" }]}
+          >
+            <Input />
+          </Item>
+          <Item
             name="university"
             label="University"
             rules={[
               { required: true, message: "Please enter the university!" },
             ]}
           >
-            <Input />
+            <Input min={0} max={4} step={0.1} />
           </Item>
           <Item
-            name="gpa"
+            name="GPA"
             label="GPA"
             rules={[{ required: true, message: "Please enter the GPA!" }]}
           >
-            <InputNumber min={0} max={4} step={0.1} />
+            <InputNumber rows={4} />
           </Item>
           <Item
             name="description"
@@ -160,7 +166,7 @@ const EducationResume = () => {
               { required: true, message: "Please enter the description!" },
             ]}
           >
-            <Input.TextArea rows={4} />
+            <Input.TextArea />
           </Item>
           <Item>
             <Button type="primary" htmlType="submit">
