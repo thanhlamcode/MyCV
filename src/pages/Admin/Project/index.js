@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import { Form } from "antd";
 import { useEffect, useState } from "react";
 import { getProject } from "../../../service/project.admin";
 import BoxTitle from "../../../components/Admin/BoxTitle";
 import FormProject from "../../../components/Admin/Form/formProject";
-import { editProject, upLoadFile } from "../../../helpers/uploadFile";
+import { editProject, upLoadFile } from "../../../helpers/project.helper";
 
 function Project() {
   const [componentDisabled, setComponentDisabled] = useState(true);
@@ -20,74 +21,60 @@ function Project() {
   ]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getProject();
-        console.log("Fetched data:", data);
-
-        // Populate form fields with fetched data
-        form.setFieldsValue({
-          items: data.projects.map((project) => ({
-            name: project.projectName,
-            description: project.description,
-            link: project.linkProject,
-          })),
-        });
-
-        // Update fileList and initialFileList with URL images from the fetched data
-        const fetchedFileList = data.projects.map((project, index) =>
-          project.image
-            ? [
-                {
-                  uid: `project-image-${index}`,
-                  name: `Project Image ${index + 1}`,
-                  status: "done",
-                  url: project.image,
-                },
-              ]
-            : []
-        );
-
-        setFileList(fetchedFileList);
-        setInitialFileList(fetchedFileList);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
+    fetchProjectData();
   }, [form]);
+
+  const fetchProjectData = async () => {
+    try {
+      const data = await getProject();
+      form.setFieldsValue({
+        items: data.projects.map((project) => ({
+          name: project.projectName,
+          description: project.description,
+          link: project.linkProject,
+        })),
+      });
+
+      const fetchedFileList = data.projects.map((project, index) =>
+        project.image
+          ? [
+              {
+                uid: `project-image-${index}`,
+                name: `Project Image ${index + 1}`,
+                status: "done",
+                url: project.image,
+              },
+            ]
+          : []
+      );
+
+      setFileList(fetchedFileList);
+      setInitialFileList(fetchedFileList);
+    } catch (error) {
+      console.error("Error fetching project data:", error);
+    }
+  };
 
   const handleFinish = async (values) => {
     try {
-      console.log("Form values:", values);
-
-      // Upload only the files that have changed or are new
-
       const uploadedFiles = await upLoadFile(
         fileList,
         initialFileList,
         setFileList
       );
-
-      // Construct the projects array with all required information, including uploaded image URLs
       const projects = values.items.map((item, index) => ({
         projectName: item.name,
         description: item.description,
         linkProject: item.link,
-        image: uploadedFiles[index], // Use the uploaded image URL
+        image: uploadedFiles[index],
       }));
 
       const response = await editProject(projects);
-
-      console.log("Received response from server:", response);
-
       if (response.ok) {
         const data = await response.json();
-        console.log("Response data:", data);
+        console.log("Project update response:", data);
       } else {
-        const errorText = await response.text();
-        console.error("Upload failed:", response.statusText, errorText);
+        console.error("Project update failed:", response.statusText);
       }
       setComponentDisabled(true);
     } catch (error) {
@@ -95,17 +82,17 @@ function Project() {
     }
   };
 
-  const handleFileChange = (index, info) => {
-    console.log(`Handling file change for index ${index}:`, info);
-
+  const updateFileList = (index, info) => {
     const updatedFileList = [...fileList];
     updatedFileList[index] = info.fileList.map((file) => ({
       ...file,
-      url: file.url || URL.createObjectURL(file.originFileObj), // Update the URL to reflect the newly selected file
+      url: file.url || URL.createObjectURL(file.originFileObj),
     }));
-
     setFileList(updatedFileList);
-    console.log("Updated fileList:", updatedFileList);
+  };
+
+  const handleFileChange = (index, info) => {
+    updateFileList(index, info);
   };
 
   return (
