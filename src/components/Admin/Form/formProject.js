@@ -1,78 +1,108 @@
-import { Button, Card, Col, Form, Input, Row } from "antd";
-import { DownloadOutlined } from "@ant-design/icons";
-import UploadAdmin from "../Upload";
+/* eslint-disable jsx-a11y/img-redundant-alt */
+import { Button, Card, Col, Form, Input, Row, Upload } from "antd";
+import { DownloadOutlined, UploadOutlined } from "@ant-design/icons";
 
-function FormProject(props) {
-  const { componentDisabled } = props;
-  const [form] = Form.useForm();
-  const handleFinish = (e) => {
-    console.log(e);
-  };
-
+const FormProject = ({
+  componentDisabled,
+  handleFinish,
+  form,
+  fileList,
+  handleFileChange,
+}) => {
   return (
-    <div className="input-item">
-      <Form
-        disabled={componentDisabled}
-        onFinish={handleFinish}
-        labelCol={{
-          span: 2,
-        }}
-        wrapperCol={{
-          span: 22,
-        }}
-        form={form}
-        name="dynamic_form_complex"
-        style={{
-          maxWidth: "100%",
-        }}
-        autoComplete="off"
-        initialValues={{
-          items: [{}],
-        }}
-      >
-        <Row gutter={[30, 30]}>
-          <Col span={24}>
-            {/* Tạo danh sách cố định với 6 trường */}
-            {[...Array(6)].map((_, index) => (
-              <Card
+    <Form
+      disabled={componentDisabled}
+      onFinish={handleFinish}
+      labelCol={{
+        span: 2,
+      }}
+      wrapperCol={{
+        span: 22,
+      }}
+      form={form}
+      name="dynamic_form_complex"
+      style={{
+        maxWidth: "100%",
+      }}
+      autoComplete="off"
+      initialValues={{
+        items: [{}],
+      }}
+    >
+      <Row gutter={[30, 30]}>
+        <Col span={24}>
+          {[...Array(6)].map((_, index) => (
+            <Card
+              style={{ width: "100%" }}
+              size="small"
+              title={`Skill ${index + 1}`}
+              key={index}
+            >
+              {/* Project Name Field */}
+              <Form.Item label="Tên" name={["items", index, "name"]}>
+                <Input />
+              </Form.Item>
+
+              {/* Project Description Field */}
+              <Form.Item
+                label="Mô tả"
+                name={["items", index, "description"]}
                 style={{ width: "100%" }}
-                size="small"
-                title={`Skill ${index + 1}`}
-                key={index}
               >
-                {/* Trường "Name" cho mỗi mục */}
-                <Form.Item label="Tên" name={["items", index, "name"]}>
-                  <Input />
-                </Form.Item>
+                <Input placeholder="Nhập mô tả" style={{ width: "100%" }} />
+              </Form.Item>
 
-                {/* Trường "Mô tả" cho mỗi mục */}
-                <Form.Item label="Mô tả" style={{ width: "100%" }}>
-                  <Input
-                    placeholder="Nhập mô tả"
-                    style={{ width: "100%" }} // Đảm bảo Input chiếm toàn bộ chiều rộng
-                  />
-                </Form.Item>
-                <Form.Item label="Link:" style={{ width: "100%" }}>
-                  <Input
-                    style={{ width: "100%" }} // Đảm bảo Input chiếm toàn bộ chiều rộng
-                  />
-                </Form.Item>
-                <Form.Item label="Hình ảnh" style={{ width: "100%" }}>
-                  <UploadAdmin />
-                </Form.Item>
-              </Card>
-            ))}
-          </Col>
+              {/* Project Link Field */}
+              <Form.Item
+                label="Link:"
+                name={["items", index, "link"]}
+                style={{ width: "100%" }}
+              >
+                <Input style={{ width: "100%" }} />
+              </Form.Item>
 
-          <Col span={24} style={{ display: "flex", justifyContent: "center" }}>
-            <Button type="primary" icon={<DownloadOutlined />}>
-              Save
-            </Button>
-          </Col>
-        </Row>
-      </Form>
-    </div>
+              {/* File Upload Field */}
+              <Form.Item label="Hình ảnh" style={{ width: "100%" }}>
+                {/* Display uploaded image */}
+                {fileList[index] && fileList[index][0]?.url && (
+                  <img
+                    src={fileList[index][0].url}
+                    alt={`Project Image ${index + 1}`}
+                    style={{
+                      width: "100%",
+                      maxHeight: "200px",
+                      marginBottom: "10px",
+                      borderRadius: "8px",
+                      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                      objectFit: "cover",
+                      border: "1px solid #ddd",
+                    }}
+                  />
+                )}
+
+                <Upload
+                  name="image"
+                  listType="picture"
+                  maxCount={1}
+                  beforeUpload={() => false}
+                  onChange={(info) => handleFileChange(index, info)}
+                >
+                  <Button icon={<UploadOutlined />}>Chọn ảnh</Button>
+                </Upload>
+              </Form.Item>
+            </Card>
+          ))}
+        </Col>
+
+        {/* Save Button to Submit the Form */}
+        <Col span={24} style={{ display: "flex", justifyContent: "center" }}>
+          <Button type="primary" icon={<DownloadOutlined />} htmlType="submit">
+            Save
+          </Button>
+        </Col>
+      </Row>
+    </Form>
   );
-}
+};
 
 export default FormProject;
