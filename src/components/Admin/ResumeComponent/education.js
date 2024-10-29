@@ -8,9 +8,15 @@ import {
   InputNumber,
   Popconfirm,
   Space,
+  message,
 } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { addNewEducation, getEducation } from "../../../service/resume.admin";
+import {
+  addNewEducation,
+  deleteEducation,
+  editEducation,
+  getEducation,
+} from "../../../service/resume.admin";
 import { useDispatch, useSelector } from "react-redux";
 import { loadPage } from "../../../actions/reloadAction";
 
@@ -45,22 +51,32 @@ const EducationResume = () => {
 
   // Hàm lưu dữ liệu sau khi thêm/sửa
   const handleSave = async (values) => {
-    console.log(values);
-
-    const response = await addNewEducation(values);
-    console.log(response);
+    if (editingRecord) {
+      // Chế độ chỉnh sửa
+      await editEducation(values, editingRecord._id);
+      message.success("Chỉnh sửa thành công!");
+    } else {
+      // Thêm mới
+      await addNewEducation(values);
+      message.success("Thêm mới thành công!");
+    }
     dispatch(loadPage());
-
     setIsEditing(false);
   };
 
   // Hàm xóa dữ liệu
-  const handleDelete = (key) => {
-    setDataSource((prevData) => prevData.filter((item) => item.key !== key));
+  const handleDelete = async (id) => {
+    const response = await deleteEducation(id);
+    if (response) {
+      message.success("Xóa bản ghi thành công!");
+      dispatch(loadPage());
+    } else {
+      message.error("Xóa bản ghi thất bại!");
+    }
   };
 
   // Hàm chỉnh sửa
-  const handleEdit = (record) => {
+  const handleEdit = async (record) => {
     setEditingRecord(record);
     setIsEditing(true);
   };
@@ -101,7 +117,7 @@ const EducationResume = () => {
             </Button>
             <Popconfirm
               title="Are you sure to delete this record?"
-              onConfirm={() => handleDelete(record.key)}
+              onConfirm={() => handleDelete(record._id)}
             >
               <Button type="link" danger icon={<DeleteOutlined />}>
                 Delete

@@ -70,7 +70,7 @@ const FormProject = ({
                     alt={`Project Image ${index + 1}`}
                     style={{
                       width: "100%",
-                      maxHeight: "200px",
+                      height: "500px",
                       marginBottom: "10px",
                       borderRadius: "8px",
                       boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",

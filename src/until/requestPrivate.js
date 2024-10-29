@@ -71,7 +71,7 @@ export const patchProtected = async (path, data) => {
 // DELETE request với Bearer Token
 export const deleteProtected = async (path, id) => {
   const token = getToken();
-  const response = await fetch(`${API_DOMAIN}${path}/${id}`, {
+  const response = await fetch(`${API_DOMAIN}${path}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`, // Thêm Bearer token vào header
