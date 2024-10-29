@@ -15,9 +15,12 @@ import { getEducation } from "../../../service/resume.admin";
 const { Item } = Form;
 
 const EducationResume = () => {
-  // Dữ liệu mẫu ban đầu
   const [dataSource, setDataSource] = useState([]);
+  // Các trạng thái để kiểm soát modal thêm/sửa
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingRecord, setEditingRecord] = useState(null);
 
+  // Fetch dữ liệu
   const fetchEducation = async () => {
     const response = await getEducation();
     if (response) {
@@ -29,10 +32,6 @@ const EducationResume = () => {
   useEffect(() => {
     fetchEducation();
   }, []);
-
-  // Các trạng thái để kiểm soát modal thêm/sửa
-  const [isEditing, setIsEditing] = useState(false);
-  const [editingRecord, setEditingRecord] = useState(null);
 
   // Hàm thêm dữ liệu mới
   const handleAdd = () => {

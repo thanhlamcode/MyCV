@@ -1,6 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable jsx-a11y/img-redundant-alt */
-import { Form } from "antd";
+import { Form, message } from "antd";
 import { useEffect, useState } from "react";
 import { getProject } from "../../../service/project.admin";
 import BoxTitle from "../../../components/Admin/BoxTitle";
@@ -19,9 +17,12 @@ function Project() {
     [],
     [],
   ]);
+  // eslint-disable-next-line no-unused-vars
+  const [loading, setLoading] = useState(false); // State để quản lý loading
 
   useEffect(() => {
     fetchProjectData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [form]);
 
   const fetchProjectData = async () => {
@@ -57,6 +58,12 @@ function Project() {
 
   const handleFinish = async (values) => {
     try {
+      setLoading(true); // Bắt đầu loading
+      message.loading({
+        content: "Đang tiến hành upload ảnh...",
+        key: "upload",
+      }); // Hiển thị thông báo loading
+
       const uploadedFiles = await upLoadFile(
         fileList,
         initialFileList,
@@ -73,12 +80,29 @@ function Project() {
       if (response.ok) {
         const data = await response.json();
         console.log("Project update response:", data);
+        message.success({
+          content: "Cập nhật thành công!",
+          key: "upload",
+          duration: 2,
+        });
       } else {
         console.error("Project update failed:", response.statusText);
+        message.error({
+          content: "Tải lên thất bại.",
+          key: "upload",
+          duration: 2,
+        });
       }
-      setComponentDisabled(true);
     } catch (error) {
       console.error("Error in handleFinish:", error);
+      message.error({
+        content: "Đã xảy ra lỗi trong quá trình tải lên.",
+        key: "upload",
+        duration: 2,
+      });
+    } finally {
+      setLoading(false); // Kết thúc loading
+      setComponentDisabled(true);
     }
   };
 
