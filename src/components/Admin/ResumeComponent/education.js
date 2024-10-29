@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Table,
   Button,
@@ -25,9 +25,9 @@ const { Item } = Form;
 const EducationResume = () => {
   const isLoading = useSelector((state) => state.reloadReducer);
   const dispatch = useDispatch();
+  const formRef = useRef(null);
 
   const [dataSource, setDataSource] = useState([]);
-  // Các trạng thái để kiểm soát modal thêm/sửa
   const [isEditing, setIsEditing] = useState(false);
   const [editingRecord, setEditingRecord] = useState(null);
 
@@ -43,22 +43,26 @@ const EducationResume = () => {
     fetchEducation();
   }, [isLoading]);
 
-  // Hàm thêm dữ liệu mới
+  // Hàm mở modal thêm dữ liệu mới
   const handleAdd = () => {
     setEditingRecord(null);
     setIsEditing(true);
+    if (formRef.current) {
+      formRef.current.resetFields(); // Đảm bảo form trống khi tạo mới
+    }
   };
 
   // Hàm lưu dữ liệu sau khi thêm/sửa
   const handleSave = async (values) => {
     if (editingRecord) {
-      // Chế độ chỉnh sửa
       await editEducation(values, editingRecord._id);
       message.success("Chỉnh sửa thành công!");
     } else {
-      // Thêm mới
       await addNewEducation(values);
       message.success("Thêm mới thành công!");
+    }
+    if (formRef.current) {
+      formRef.current.resetFields();
     }
     dispatch(loadPage());
     setIsEditing(false);
@@ -75,11 +79,22 @@ const EducationResume = () => {
     }
   };
 
-  // Hàm chỉnh sửa
-  const handleEdit = async (record) => {
+  // Hàm mở modal chỉnh sửa
+  const handleEdit = (record) => {
     setEditingRecord(record);
     setIsEditing(true);
   };
+
+  // Đặt giá trị form khi `editingRecord` thay đổi
+  useEffect(() => {
+    if (formRef.current) {
+      if (editingRecord) {
+        formRef.current.setFieldsValue(editingRecord); // Điền dữ liệu khi chỉnh sửa
+      } else {
+        formRef.current.resetFields(); // Đảm bảo form trống khi tạo mới
+      }
+    }
+  }, [editingRecord]);
 
   const columns = [
     {
@@ -106,25 +121,23 @@ const EducationResume = () => {
       title: "Actions",
       key: "actions",
       render: (text, record) => (
-        <>
-          <Space direction="vertical">
-            <Button
-              type="link"
-              onClick={() => handleEdit(record)}
-              icon={<EditOutlined />}
-            >
-              Edit
+        <Space direction="vertical">
+          <Button
+            type="link"
+            onClick={() => handleEdit(record)}
+            icon={<EditOutlined />}
+          >
+            Edit
+          </Button>
+          <Popconfirm
+            title="Are you sure to delete this record?"
+            onConfirm={() => handleDelete(record._id)}
+          >
+            <Button type="link" danger icon={<DeleteOutlined />}>
+              Delete
             </Button>
-            <Popconfirm
-              title="Are you sure to delete this record?"
-              onConfirm={() => handleDelete(record._id)}
-            >
-              <Button type="link" danger icon={<DeleteOutlined />}>
-                Delete
-              </Button>
-            </Popconfirm>
-          </Space>
-        </>
+          </Popconfirm>
+        </Space>
       ),
     },
   ];
@@ -137,7 +150,6 @@ const EducationResume = () => {
 
       <Table dataSource={dataSource} columns={columns} pagination={false} />
 
-      {/* Modal thêm/sửa dữ liệu */}
       <Modal
         title={editingRecord ? "Edit Record" : "Add New Record"}
         visible={isEditing}
@@ -145,7 +157,7 @@ const EducationResume = () => {
         footer={null}
       >
         <Form
-          initialValues={editingRecord || { gpa: 4.0 }}
+          ref={formRef} // Gán ref vào Form
           onFinish={handleSave}
           layout="vertical"
         >
@@ -163,14 +175,14 @@ const EducationResume = () => {
               { required: true, message: "Please enter the university!" },
             ]}
           >
-            <Input min={0} max={4} step={0.1} />
+            <Input />
           </Item>
           <Item
             name="GPA"
             label="GPA"
             rules={[{ required: true, message: "Please enter the GPA!" }]}
           >
-            <InputNumber rows={4} />
+            <InputNumber min={0} max={4} step={0.1} />
           </Item>
           <Item
             name="description"
