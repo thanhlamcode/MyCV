@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Achievement from "../../../components/Admin/Achievement";
+import Achievement from "../../../components/Admin/ResumeComponent/achievement";
+import Certificate from "../../../components/Admin/ResumeComponent/certificate";
+import Education from "../../../components/Admin/ResumeComponent/education";
 import BoxTitle from "../../../components/Admin/BoxTitle";
-import CertificateResume from "../../../components/Admin/Certificate";
-import EducationResume from "../../../components/Admin/ResumeComponent/education";
 
 function ResumeAdmin() {
   const [componentDisabled, setComponentDisabled] = useState(true);
@@ -13,9 +13,9 @@ function ResumeAdmin() {
         title="Set up your resume"
         setComponentDisabled={setComponentDisabled}
       />
-      <EducationResume />
+      <Education />
       <Achievement />
-      <CertificateResume />
+      <Certificate />
     </>
   );
 }
