@@ -10,11 +10,16 @@ import {
   Space,
 } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { getEducation } from "../../../service/resume.admin";
+import { addNewEducation, getEducation } from "../../../service/resume.admin";
+import { useDispatch, useSelector } from "react-redux";
+import { loadPage } from "../../../actions/reloadAction";
 
 const { Item } = Form;
 
 const EducationResume = () => {
+  const isLoading = useSelector((state) => state.reloadReducer);
+  const dispatch = useDispatch();
+
   const [dataSource, setDataSource] = useState([]);
   // Các trạng thái để kiểm soát modal thêm/sửa
   const [isEditing, setIsEditing] = useState(false);
@@ -25,13 +30,12 @@ const EducationResume = () => {
     const response = await getEducation();
     if (response) {
       setDataSource(response);
-      console.log(response);
     }
   };
 
   useEffect(() => {
     fetchEducation();
-  }, []);
+  }, [isLoading]);
 
   // Hàm thêm dữ liệu mới
   const handleAdd = () => {
@@ -40,19 +44,13 @@ const EducationResume = () => {
   };
 
   // Hàm lưu dữ liệu sau khi thêm/sửa
-  const handleSave = (values) => {
-    if (editingRecord) {
-      // Cập nhật dữ liệu đã có
-      setDataSource((prevData) =>
-        prevData.map((item) =>
-          item.key === editingRecord.key ? { ...item, ...values } : item
-        )
-      );
-    } else {
-      // Thêm dữ liệu mới
-      const newKey = (dataSource.length + 1).toString();
-      setDataSource((prevData) => [...prevData, { ...values, key: newKey }]);
-    }
+  const handleSave = async (values) => {
+    console.log(values);
+
+    const response = await addNewEducation(values);
+    console.log(response);
+    dispatch(loadPage());
+
     setIsEditing(false);
   };
 
