@@ -9,7 +9,20 @@ import { CiLinkedin } from "react-icons/ci";
 import "animate.css";
 import "./style.scss";
 
-function Introduce() {
+function convertToArray(expertiseString) {
+  if (!expertiseString) return []; // Trả về mảng rỗng nếu expertiseString là undefined hoặc null
+  return expertiseString.split(",").map((item) => item.trim() + ".");
+}
+
+function openLink(url) {
+  window.open(url, "_blank"); // Mở URL trong tab mới
+}
+
+function Introduce(props) {
+  const { information } = props;
+
+  const expertiseArray = convertToArray(information.expertise || "");
+
   return (
     <>
       <section
@@ -28,15 +41,11 @@ function Introduce() {
               className="wow animate__animated animate__fadeInRight"
               data-wow-delay="0.4s"
             >
-              Hi, I'm <span>Thanh Lam</span>
+              Hi, I'm <span>{information.fullName}</span>
               <br />
               <Typewriter
                 options={{
-                  strings: [
-                    "a Developer.",
-                    "a Professional Coder.",
-                    "a UI/UX Designer.",
-                  ],
+                  strings: expertiseArray,
                   autoStart: true,
                   loop: true,
                 }}
@@ -46,8 +55,7 @@ function Introduce() {
               className="wow animate__animated animate__fadeInUp"
               data-wow-delay="0.6s"
             >
-              I use animation as a third dimension by which to simplify
-              experiences and guiding through each interaction.
+              {information.description}
             </p>
 
             <Row className="wrap-icon">
@@ -59,9 +67,17 @@ function Introduce() {
                   find with me
                 </h3>
                 <div className="icon">
-                  <FaFacebook />
-                  <SiZalo />
-                  <CiLinkedin />
+                  <div className="icon">
+                    <span onClick={() => openLink(information.facebookAddress)}>
+                      <FaFacebook />
+                    </span>
+                    <span onClick={() => openLink(information.zaloAddress)}>
+                      <SiZalo />
+                    </span>
+                    <span onClick={() => openLink(information.linkedinAddress)}>
+                      <CiLinkedin />
+                    </span>
+                  </div>
                 </div>
               </Col>
               <Col lg={12} md={24} sm={24} xs={24}>

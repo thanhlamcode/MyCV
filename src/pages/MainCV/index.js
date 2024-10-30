@@ -8,10 +8,13 @@ import Resume from "../../components/Client/Resume";
 import WOW from "wowjs";
 import "animate.css";
 import "./style.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { getInfomationCV } from "../../service/maincv";
 
 function MainCV() {
+  const [information, setInformation] = useState("");
+
   useEffect(() => {
     // Lấy tất cả các phần tử <section> trên trang
     const sections = document.querySelectorAll("section");
@@ -65,11 +68,21 @@ function MainCV() {
   const { slug } = useParams();
   console.log(slug);
 
+  const fetchInfo = async () => {
+    const response = await getInfomationCV(slug);
+    console.log(response);
+    setInformation(response);
+  };
+
+  useEffect(() => {
+    fetchInfo();
+  }, []);
+
   return (
     <>
       <div className="maincv">
         <Header />
-        <Introduce />
+        <Introduce information={information} />
         <Features />
         <Portfolio />
         <Resume />
