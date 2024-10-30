@@ -2,9 +2,53 @@ import { Col, Row } from "antd";
 import { CiLinkedin } from "react-icons/ci";
 import { FaFacebookF } from "react-icons/fa";
 import { SiZalo } from "react-icons/si";
+import { useState } from "react";
 import "./style.scss";
 
 function Contact() {
+  const [formData, setFormData] = useState({
+    senderName: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("/api/contacts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log("Contact saved successfully");
+        // Reset form after successful submission
+        setFormData({
+          senderName: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        console.error("Failed to save contact");
+      }
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+    }
+  };
+
   return (
     <>
       <section
@@ -70,6 +114,7 @@ function Contact() {
             <form
               className="wow animate__animated animate__slideInUp"
               data-wow-delay="0.8s"
+              onSubmit={handleSubmit}
             >
               <Row gutter={[20, 20]}>
                 <Col
@@ -80,8 +125,12 @@ function Contact() {
                   xs={24}
                   style={{ display: "flex", flexDirection: "column" }}
                 >
-                  <label htmlFor="name">Your Name</label>
-                  <input id="name"></input>
+                  <label htmlFor="senderName">Your Name</label>
+                  <input
+                    id="senderName"
+                    value={formData.senderName}
+                    onChange={handleChange}
+                  />
                 </Col>
                 <Col
                   xxl={12}
@@ -91,19 +140,13 @@ function Contact() {
                   xs={24}
                   style={{ display: "flex", flexDirection: "column" }}
                 >
-                  <label htmlFor="phone">Phone Number</label>
-                  <input id="phone"></input>
-                </Col>
-                <Col
-                  xxl={24}
-                  xl={24}
-                  md={24}
-                  sm={24}
-                  xs={24}
-                  style={{ display: "flex", flexDirection: "column" }}
-                >
                   <label htmlFor="email">Email</label>
-                  <input type="email" id="email"></input>
+                  <input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
                 </Col>
                 <Col
                   xxl={24}
@@ -114,7 +157,12 @@ function Contact() {
                   style={{ display: "flex", flexDirection: "column" }}
                 >
                   <label htmlFor="subject">Subject</label>
-                  <input id="subject" type="text"></input>
+                  <input
+                    id="subject"
+                    type="text"
+                    value={formData.subject}
+                    onChange={handleChange}
+                  />
                 </Col>
                 <Col
                   xxl={24}
@@ -125,7 +173,11 @@ function Contact() {
                   style={{ display: "flex", flexDirection: "column" }}
                 >
                   <label htmlFor="message">Your Message</label>
-                  <textarea id="message"></textarea>
+                  <textarea
+                    id="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                  />
                 </Col>
                 <Col
                   xxl={24}

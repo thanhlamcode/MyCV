@@ -2,10 +2,24 @@ import { Button, Modal } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Header } from "antd/es/layout/layout";
 import { Link, useNavigate } from "react-router-dom";
+import { getInfomation } from "../../../service/profile.admin";
+import { useEffect, useState } from "react";
 
 function HeaderAdmin(props) {
   const { collapsed, setCollapsed, colorBgContainer } = props;
+  const [slug, setSlug] = useState("");
   const history = useNavigate();
+
+  const fetchData = async () => {
+    const userInfo = await getInfomation();
+    console.log(userInfo); // Ghi log userInfo thay vì fetchData
+    setSlug(userInfo);
+    return userInfo;
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleRemoveToken = () => {
     localStorage.removeItem("token");
@@ -43,7 +57,7 @@ function HeaderAdmin(props) {
             height: 64,
           }}
         />
-        <Link to="/detail/thanhlam">
+        <Link to={`/detail/${slug.slug}`}>
           <Button style={{ position: "absolute", top: "20px", right: "110px" }}>
             Xem trang của bạn
           </Button>

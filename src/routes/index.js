@@ -14,7 +14,7 @@ export const routes = [
     element: <Auth />,
   },
   {
-    path: "/detail/thanhlam",
+    path: "/detail/:slug",
     element: <MainCV />,
   },
   {

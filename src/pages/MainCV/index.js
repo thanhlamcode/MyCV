@@ -9,6 +9,7 @@ import WOW from "wowjs";
 import "animate.css";
 import "./style.scss";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 function MainCV() {
   useEffect(() => {
@@ -60,6 +61,9 @@ function MainCV() {
     });
     wow.init();
   }, []);
+
+  const { slug } = useParams();
+  console.log(slug);
 
   return (
     <>
