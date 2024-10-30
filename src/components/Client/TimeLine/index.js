@@ -15,7 +15,7 @@ function TimeLine() {
                 className="year wow animate__animated animate__fadeInLeft"
                 data-wow-delay="0.4s"
               >
-                1998 - 2010
+                2022 - 2024
               </div>
               <h1
                 className="wow animate__animated animate__fadeInUp"
@@ -96,7 +96,7 @@ function TimeLine() {
                 className="year wow animate__animated animate__fadeInLeft"
                 data-wow-delay="0.4s"
               >
-                1998 - 2010
+                2022 - 2024
               </div>
               <h1
                 className="wow animate__animated animate__fadeInUp"

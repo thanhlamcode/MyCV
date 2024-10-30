@@ -51,12 +51,12 @@ export const upLoadFile = async (fileList, initialFileList, setFileList) => {
 };
 
 export const editProject = async (projects) => {
-  const projectId = localStorage.getItem("project");
-  console.log("Sending PATCH request to update project with ID:", projectId);
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log("Sending PATCH request to update project with ID:", user.project);
 
   // Send the PATCH request to update the project with all collected data
   const response = await fetch(
-    `${API_DOMAIN}/admin/project/edit/${projectId}`,
+    `${API_DOMAIN}/admin/project/edit/${user.project}`,
     {
       method: "PATCH",
       headers: {
