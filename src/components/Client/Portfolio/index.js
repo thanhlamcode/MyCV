@@ -8,7 +8,7 @@ import WOW from "wowjs";
 function Portfolio(props) {
   // Khai báo giá trị mặc định cho projects
   const { projects = [] } = props;
-  console.log(projects);
+  // console.log(projects);
 
   // Khởi động WOW.js lại khi features thay đổi để đảm bảo hiệu ứng hoạt động
   useEffect(() => {

@@ -2,7 +2,7 @@ import { Col, Row } from "antd";
 import "./style.scss";
 import TimeLine from "../TimeLine";
 
-function Resume() {
+function Resume({ resume, WOW }) {
   const handleClick = (timeline) => {
     const education = document.querySelector(".timeline-education");
     const certificate = document.querySelector(".timeline-certificate");
@@ -75,6 +75,7 @@ function Resume() {
           </Row>
         </div>
         <TimeLine
+          resume={resume}
           className="wow animate__animated animate__fadeIn"
           data-wow-delay="0.9s"
         />
