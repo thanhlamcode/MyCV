@@ -1,5 +1,4 @@
-const API_DOMAIN = "http://localhost:4000";
-// const API_DOMAIN = "https://database-tuyendung.onrender.com";
+import { API_DOMAIN } from "../config/domain";
 
 // Lấy token từ localStorage
 const getToken = () => {
