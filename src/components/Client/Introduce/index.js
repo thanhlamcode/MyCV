@@ -97,7 +97,7 @@ function Introduce(props) {
           </Col>
           <Col xl={8} lg={8} md={24} xs={24}>
             <img
-              src="https://rainbowit.net/themes/inbio/wp-content/uploads/2021/08/banner-01.png"
+              src={information.avatar}
               alt="ảnh cá nhân"
               className="wow animate__animated animate__pulse"
               data-wow-delay="1.2s"
