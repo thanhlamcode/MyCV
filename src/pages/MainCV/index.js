@@ -10,10 +10,18 @@ import "animate.css";
 import "./style.scss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getInfomationCV } from "../../service/maincv";
+import {
+  getFeatureCV,
+  getInfomationCV,
+  getProjectCV,
+  getResumeCV,
+} from "../../service/maincv";
 
 function MainCV() {
   const [information, setInformation] = useState("");
+  const [features, setFeatures] = useState("");
+  const [projects, setProjects] = useState("");
+  const [resume, setResume] = useState("");
 
   useEffect(() => {
     // Lấy tất cả các phần tử <section> trên trang
@@ -66,26 +74,27 @@ function MainCV() {
   }, []);
 
   const { slug } = useParams();
-  console.log(slug);
 
+  // Function to fetch data
   const fetchInfo = async () => {
-    const response = await getInfomationCV(slug);
-    console.log(response);
-    setInformation(response);
+    setInformation(await getInfomationCV(slug));
+    setFeatures(await getFeatureCV(slug));
+    setProjects(await getProjectCV(slug));
+    setResume(await getResumeCV(slug));
   };
 
   useEffect(() => {
     fetchInfo();
-  }, []);
+  }, [slug]);
 
   return (
     <>
       <div className="maincv">
         <Header />
         <Introduce information={information} />
-        <Features />
-        <Portfolio />
-        <Resume />
+        <Features features={features.skills} />
+        <Portfolio projects={projects} />
+        <Resume resume={resume} />
         <Contact />
         <Footer />
       </div>

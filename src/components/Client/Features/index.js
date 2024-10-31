@@ -8,7 +8,9 @@ import { FiArrowRight } from "react-icons/fi";
 import { FiFilm } from "react-icons/fi";
 import "./style.scss";
 
-function Features() {
+function Features(props) {
+  const { features } = props;
+  console.log(features);
   return (
     <>
       <section
