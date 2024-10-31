@@ -1,4 +1,4 @@
-import { get } from "../until/request";
+import { get, post } from "../until/request";
 
 export const getInfomationCV = async (slug) => {
   const response = await get(`/maincv/information/${slug}`);
@@ -17,5 +17,15 @@ export const getProjectCV = async (slug) => {
 
 export const getResumeCV = async (slug) => {
   const response = await get(`/maincv/resume/${slug}`);
+  return response;
+};
+
+export const getContactId = async (slug) => {
+  const response = await get(`/maincv/contact/${slug}`);
+  return response;
+};
+
+export const addNewContact = async (contactId, data) => {
+  const response = await post(`/contact/${contactId}`, data);
   return response;
 };

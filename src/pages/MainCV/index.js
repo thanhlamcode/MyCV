@@ -11,6 +11,7 @@ import "./style.scss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
+  getContactId,
   getFeatureCV,
   getInfomationCV,
   getProjectCV,
@@ -22,6 +23,7 @@ function MainCV() {
   const [features, setFeatures] = useState("");
   const [projects, setProjects] = useState("");
   const [resume, setResume] = useState("");
+  const [contactId, setContactId] = useState("");
 
   useEffect(() => {
     // Lấy tất cả các phần tử <section> trên trang
@@ -81,6 +83,7 @@ function MainCV() {
     setFeatures(await getFeatureCV(slug));
     setProjects(await getProjectCV(slug));
     setResume(await getResumeCV(slug));
+    setContactId(await getContactId(slug));
   };
 
   useEffect(() => {
@@ -96,7 +99,7 @@ function MainCV() {
         <Features features={features.skills} />
         <Portfolio projects={projects.projects} />
         <Resume resume={resume} />
-        <Contact information={information} />
+        <Contact information={information} contactId={contactId} />
         <Footer />
       </div>
     </>

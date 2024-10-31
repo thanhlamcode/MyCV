@@ -3,13 +3,15 @@ import { CiLinkedin } from "react-icons/ci";
 import { FaFacebookF } from "react-icons/fa";
 import { SiZalo } from "react-icons/si";
 import { useState } from "react";
+import { message } from "antd";
+import { addNewContact } from "../../../service/maincv";
 import "./style.scss";
 
 function openLink(url) {
   window.open(url, "_blank"); // Mở URL trong tab mới
 }
 
-function Contact({ information }) {
+function Contact({ information, contactId }) {
   const [formData, setFormData] = useState({
     senderName: "",
     email: "",
@@ -26,27 +28,14 @@ function Contact({ information }) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
     try {
-      const response = await fetch("/api/contacts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        console.log("Contact saved successfully");
-        // Reset form after successful submission
-        setFormData({
-          senderName: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
+      e.preventDefault();
+      const response = await addNewContact(contactId, formData);
+      if (response) {
+        message.success("Gửi thành công!");
+        setFormData({ senderName: "", email: "", subject: "", message: "" }); // Xóa dữ liệu trong form
       } else {
-        console.error("Failed to save contact");
+        message.error("Gửi thất bại!");
       }
     } catch (error) {
       console.error("Error submitting contact form:", error);
