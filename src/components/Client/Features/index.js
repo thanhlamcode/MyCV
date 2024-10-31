@@ -6,66 +6,82 @@ import { FaFacebookMessenger } from "react-icons/fa";
 import { FiActivity } from "react-icons/fi";
 import { FiArrowRight } from "react-icons/fi";
 import { FiFilm } from "react-icons/fi";
+import WOW from "wowjs";
+import { useEffect } from "react";
 import "./style.scss";
 
 function Features(props) {
-  const { features } = props;
-  console.log(features);
+  const { features = [] } = props;
+
+  // Khởi động WOW.js lại khi features thay đổi để đảm bảo hiệu ứng hoạt động
+  useEffect(() => {
+    const wow = new WOW.WOW({
+      live: false,
+    });
+    wow.init();
+    wow.sync();
+  }, [features]);
+
+  // Cập nhật các features và thêm delay cùng icon tùy theo chỉ mục
+  const updatedFeatures = features.map((feature, index) => ({
+    ...feature,
+    delay: `${0.6 + index * 0.2}s`, // Tăng dần delay cho từng feature
+    icon:
+      index === 0 ? (
+        <FaBookOpen />
+      ) : index === 1 ? (
+        <FaBookmark />
+      ) : index === 2 ? (
+        <IoPhonePortrait />
+      ) : index === 3 ? (
+        <FaFacebookMessenger />
+      ) : index === 4 ? (
+        <FiActivity />
+      ) : (
+        <FiFilm />
+      ),
+  }));
+
   return (
-    <>
-      <section
-        className="features wow animate__animated animate__fadeIn"
-        id="features"
+    <section
+      className="features wow animate__animated animate__fadeIn"
+      id="features"
+      data-wow-delay="0.5s"
+    >
+      <h3
+        className="wow animate__animated animate__fadeInDown"
         data-wow-delay="0.3s"
       >
-        <h3
-          className="wow animate__animated animate__fadeInDown"
-          data-wow-delay="0.5s"
-        >
-          FEATURES
-        </h3>
-        <h1
-          className="wow animate__animated animate__fadeInUp"
-          data-wow-delay="0.6s"
-        >
-          What I Do
-        </h1>
-        <Row gutter={[30, 30]}>
-          {[
-            { icon: <FaBookOpen />, title: "Business Strategy", delay: "0.7s" },
-            { icon: <FaBookmark />, title: "Branding", delay: "0.8s" },
-            {
-              icon: <IoPhonePortrait />,
-              title: "Mobile App Design",
-              delay: "0.9s",
-            },
-            {
-              icon: <FaFacebookMessenger />,
-              title: "Social Media Marketing",
-              delay: "1.0s",
-            },
-            { icon: <FiActivity />, title: "Market Analysis", delay: "1.1s" },
-            { icon: <FiFilm />, title: "Video Production", delay: "1.2s" },
-          ].map((feature, index) => (
-            <Col key={index} xl={8} md={12} sm={24} xs={24}>
-              <div
-                className="box wow animate__animated animate__zoomIn"
-                data-wow-delay={feature.delay}
-                style={{ aspectRatio: "4/3" }}
+        FEATURES
+      </h3>
+      <h1
+        className="wow animate__animated animate__fadeInUp"
+        data-wow-delay="0.4s"
+      >
+        What I Do
+      </h1>
+      <Row gutter={[30, 30]}>
+        {updatedFeatures.map((feature, index) => (
+          <Col key={index} xl={8} md={12} sm={24} xs={24}>
+            <div
+              className="box wow animate__animated animate__zoomIn"
+              data-wow-delay={feature.delay}
+              style={{ aspectRatio: "4/3" }}
+            >
+              {feature.icon}
+              <h2
+                className="wow animate__animated animate__fadeIn"
+                data-wow-delay={`${0.8 + index * 0.2}s`}
               >
-                {feature.icon}
-                <h2>{feature.title}</h2>
-                <p>
-                  I throw myself down among the tall grass by the stream as I
-                  lie close to the earth.
-                </p>
-                <FiArrowRight className="arrow" />
-              </div>
-            </Col>
-          ))}
-        </Row>
-      </section>
-    </>
+                {feature.skillName}
+              </h2>
+              <p>{feature.description}</p>
+              <FiArrowRight className="arrow" />
+            </div>
+          </Col>
+        ))}
+      </Row>
+    </section>
   );
 }
 
