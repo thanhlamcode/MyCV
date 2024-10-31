@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Button, Modal, Radio, Space, Table } from "antd";
+import { Button, message, Modal, Popconfirm, Radio, Space, Table } from "antd";
 import { useEffect, useState } from "react";
 import BoxTitle from "../../../components/Admin/BoxTitle";
-import { EyeOutlined } from "@ant-design/icons";
-import { getContact } from "../../../service/contact";
+import { EyeOutlined, DeleteOutlined } from "@ant-design/icons";
+import { deleteContact, getContact } from "../../../service/contact";
 
 const Contacts = () => {
   const [componentDisabled, setComponentDisabled] = useState(true);
@@ -38,6 +38,21 @@ const Contacts = () => {
     setSelectedRecord(null); // Xóa bản ghi đã chọn khi đóng modal
   };
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await deleteContact(id);
+      if (response) {
+        message.success("Xóa thành công");
+        fetchData(); // Gọi lại hàm fetchData để load lại dữ liệu
+      } else {
+        message.error("Xóa thất bại");
+      }
+    } catch (error) {
+      console.error("Failed to delete contact:", error);
+      message.error("Đã có lỗi xảy ra khi xóa");
+    }
+  };
+
   const columns = [
     {
       title: "From",
@@ -70,6 +85,12 @@ const Contacts = () => {
             onClick={() => handleEdit(record)}
             icon={<EyeOutlined />}
           ></Button>
+          <Popconfirm
+            title="Are you sure to delete this record?"
+            onConfirm={() => handleDelete(record._id)}
+          >
+            <Button type="link" danger icon={<DeleteOutlined />}></Button>
+          </Popconfirm>
         </Space>
       ),
     },
