@@ -22,6 +22,16 @@
     padding: 30px;
     border-radius: 20px;
     transition: all ease-out 0.4s;
+    height: 450px;
+
+    a{
+      color: #FF014F;
+
+      &:hover{
+        text-decoration: none;
+        color: #FF014F;
+      }
+    }
 
     h2 {
       transition: all 0.4s ease;
@@ -48,15 +58,31 @@
     }
     
 
-    .wrap-image{
+    .wrap-image {
+      position: relative;
       overflow: hidden;
       border-radius: 20px;
-
-      img{
+    
+      img {
         width: 100%;
         border-radius: 20px;
         aspect-ratio: 3/2;
         transition: all ease-in 0.4s;
+        display: block;
+      }
+    
+      // Lớp phủ sử dụng ::after
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(19, 21, 24, 0.6); // Màu #131518 với độ mờ 0.6
+        transition: background-color 0.3s ease;
+        pointer-events: none; // Đảm bảo lớp phủ không cản trở tương tác với các thành phần khác
+        border-radius: 20px; // Đảm bảo lớp phủ cũng có góc bo tròn như ảnh
       }
     }
 

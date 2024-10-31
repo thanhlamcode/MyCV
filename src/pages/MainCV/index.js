@@ -93,7 +93,7 @@ function MainCV() {
         <Header />
         <Introduce information={information} />
         <Features features={features.skills} />
-        <Portfolio projects={projects} />
+        <Portfolio projects={projects.projects} />
         <Resume resume={resume} />
         <Contact />
         <Footer />
