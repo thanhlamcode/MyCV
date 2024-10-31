@@ -5,7 +5,11 @@ import { SiZalo } from "react-icons/si";
 import { useState } from "react";
 import "./style.scss";
 
-function Contact() {
+function openLink(url) {
+  window.open(url, "_blank"); // Mở URL trong tab mới
+}
+
+function Contact({ information }) {
   const [formData, setFormData] = useState({
     senderName: "",
     email: "",
@@ -82,17 +86,17 @@ function Contact() {
                   data-wow-delay="0.9s"
                 />
               </div>
-              <div className="fullName">Đoàn Thanh Lâm</div>
+              <div className="fullName">{information.fullName}</div>
               <div className="university">University of Economy</div>
               <p>
                 I am available for freelance work. Connect with me via and call
                 in to my account.
               </p>
               <div className="phone">
-                Phone: <span>+012 345 678 90</span>
+                Phone: <span>{information.phoneNumber}</span>
               </div>
               <div className="email">
-                Email: <span>admin@example.com</span>
+                Email: <span>{information.emailAddress}</span>
               </div>
               <div
                 className="find wow animate__animated animate__fadeInUp"
@@ -104,9 +108,15 @@ function Contact() {
                 className="icon wow animate__animated animate__bounceIn"
                 data-wow-delay="1.2s"
               >
-                <CiLinkedin />
-                <FaFacebookF />
-                <SiZalo />
+                <span onClick={() => openLink(information.facebookAddress)}>
+                  <FaFacebookF />
+                </span>
+                <span onClick={() => openLink(information.zaloAddress)}>
+                  <SiZalo />
+                </span>
+                <span onClick={() => openLink(information.linkedinAddress)}>
+                  <CiLinkedin />
+                </span>
               </div>
             </div>
           </Col>

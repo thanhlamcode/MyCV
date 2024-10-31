@@ -96,7 +96,7 @@ function MainCV() {
         <Features features={features.skills} />
         <Portfolio projects={projects.projects} />
         <Resume resume={resume} />
-        <Contact />
+        <Contact information={information} />
         <Footer />
       </div>
     </>

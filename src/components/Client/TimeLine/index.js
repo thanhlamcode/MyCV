@@ -36,7 +36,7 @@ function TimeLine({ resume }) {
                     className="box wow animate__animated animate__zoomIn"
                     data-wow-delay={`${0.6 + index * 0.1}s`}
                   >
-                    <div className="title">{item.degree || "Education"}</div>
+                    <div className="title">{item.title || "Education"}</div>
                     <div className="university">{item.university}</div>
                     <div className="gpa">{item.GPA}/4.0</div>
                     <p>{item.description}</p>
