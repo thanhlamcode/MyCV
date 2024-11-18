@@ -17,6 +17,7 @@ import {
   getProjectCV,
   getResumeCV,
 } from "../../service/maincv";
+import { Puff } from "react-loader-spinner";
 
 function MainCV() {
   const [data, setData] = useState({
@@ -26,10 +27,12 @@ function MainCV() {
     resume: "",
     contactId: "",
   });
+  const [loading, setLoading] = useState(true); // State để kiểm soát loading
   const { slug } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true); // Bật trạng thái loading
       const [information, features, projects, resume, contactId] =
         await Promise.all([
           getInfomationCV(slug),
@@ -39,6 +42,7 @@ function MainCV() {
           getContactId(slug),
         ]);
       setData({ information, features, projects, resume, contactId });
+      setLoading(false); // Tắt trạng thái loading khi dữ liệu đã được tải
     };
     fetchData();
   }, [slug]);
@@ -47,6 +51,27 @@ function MainCV() {
     const wow = new WOW.WOW({ live: false });
     wow.init();
   }, []);
+
+  if (loading) {
+    // Hiển thị loading khi trạng thái loading là true
+    return (
+      <div className="loading-container">
+        <Puff
+          visible={true}
+          height={80}
+          width={80}
+          color="#4fa94d"
+          ariaLabel="puff-loading"
+          wrapperStyle={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="maincv">
