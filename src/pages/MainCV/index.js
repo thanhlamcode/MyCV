@@ -18,6 +18,7 @@ import {
   getResumeCV,
 } from "../../service/maincv";
 import { Puff } from "react-loader-spinner";
+import AnimatedCursor from "react-animated-cursor";
 
 function MainCV() {
   const [data, setData] = useState({
@@ -75,6 +76,27 @@ function MainCV() {
 
   return (
     <div className="maincv">
+      <AnimatedCursor
+        innerSize={10} // Kích thước chấm nhỏ bên trong
+        outerSize={40} // Kích thước vòng ngoài
+        color="255, 255, 255" // Màu trắng cho cả vòng ngoài và chấm
+        outerAlpha={0.3} // Độ trong suốt của vòng ngoài
+        innerScale={1} // Tỷ lệ phóng to khi hover cho chấm
+        outerScale={1.5} // Tỷ lệ phóng to vòng ngoài khi hover
+        clickables={[
+          "a",
+          'input[type="text"]',
+          'input[type="email"]',
+          'input[type="number"]',
+          'input[type="submit"]',
+          'input[type="image"]',
+          "label[for]",
+          "select",
+          "textarea",
+          "button",
+          ".link",
+        ]}
+      />
       <Header />
       <Introduce information={data.information} />
       <Features features={data.features.skills} />
