@@ -78,7 +78,39 @@ function MainCV() {
   return (
     <>
       <Helmet>
-        <title>{data.information?.fullName || "Default Title"}</title>
+        <title>
+          {data.information?.fullName
+            ? `Professional CV of ${data.information.fullName} | Web Developer Portfolio`
+            : "Default Title"}
+        </title>
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="description"
+          content={
+            data.information?.description ||
+            "Explore the professional portfolio and CV of a skilled web developer."
+          }
+        />
+        <meta
+          property="og:title"
+          content={`Professional CV of ${
+            data.information?.fullName || "a Web Developer"
+          }`}
+        />
+        <meta
+          property="og:description"
+          content={
+            data.information?.description ||
+            "Discover the CV and portfolio showcasing web development skills and projects."
+          }
+        />
+        <meta property="og:url" content={`https://github.com/${slug || ""}`} />
+        <meta
+          property="og:image"
+          content={
+            data.information?.profilePicture // Thay thế bằng đường dẫn ảnh mặc định nếu không có
+          }
+        />
       </Helmet>
       <div className="maincv">
         <AnimatedCursor
