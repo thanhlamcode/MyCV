@@ -1,7 +1,4 @@
 # MyCV
-
-![MyCV Logo](https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/external-resume-job-search-flatart-icons-outline-flatarticons.png)
-
 ## Introduction
 MyCV is a modern and flexible resume-building platform. It is designed to allow users to create, manage, and share professional resumes and portfolios easily. This project is built using **React** and leverages modular components for easy scalability and maintenance.
 
