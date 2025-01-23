@@ -111,6 +111,24 @@ function MainCV() {
             data.information?.profilePicture // Thay thế bằng đường dẫn ảnh mặc định nếu không có
           }
         />
+        <link
+          rel="canonical"
+          href={`https://dtl-cv.vercel.app/${slug || ""}`}
+        />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: data.information?.fullName || "Default Name",
+            jobTitle: "Web Developer, Data Analysis",
+            url: `https://dtl-cv.vercel.app/${slug || ""}`,
+            image:
+              data.information?.profilePicture || "/default-profile-image.jpg",
+            description:
+              data.information?.description ||
+              "A skilled web developer specializing in creating professional portfolios.",
+          })}
+        </script>
       </Helmet>
       <div className="maincv">
         <AnimatedCursor
