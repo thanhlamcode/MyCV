@@ -1,70 +1,114 @@
-# Getting Started with Create React App
+# MyCV
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![MyCV Logo](https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/external-resume-job-search-flatart-icons-outline-flatarticons.png)
 
-## Available Scripts
+## Introduction
+MyCV is a modern and flexible resume-building platform. It is designed to allow users to create, manage, and share professional resumes and portfolios easily. This project is built using **React** and leverages modular components for easy scalability and maintenance.
 
-In the project directory, you can run:
+## Features
+- 📝 Dynamic resume builder
+- 🔒 User authentication (Login & Register)
+- 📊 Admin dashboard for managing features and profiles
+- 📱 Fully responsive client-side UI
+- 🔄 Real-time data updates with loading spinners
+- 🎨 Rich animations using **WOW.js** and **CSS animations**
+- 🧩 Modular and scalable code structure
 
-### `npm start`
+## Directory Structure
+```
+thanhlamcode-mycv/
+├── README.md
+├── package.json
+├── public/
+│   ├── index.html
+│   ├── manifest.json
+│   └── robots.txt
+└── src/
+    ├── App.css
+    ├── App.js
+    ├── AllRoutes/
+    ├── actions/
+    ├── components/
+    │   ├── Admin/
+    │   ├── Auth/
+    │   └── Client/
+    ├── config/
+    ├── helpers/
+    ├── image/
+    ├── layout/
+    ├── pages/
+    │   ├── Admin/
+    │   ├── Auth/
+    │   └── MainCV/
+    ├── reducer/
+    ├── routes/
+    ├── service/
+    └── until/
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
+To get started with MyCV, follow these steps:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/thanhlamcode/MyCV.git
+   ```
 
-### `npm test`
+2. Navigate to the project directory:
+   ```bash
+   cd MyCV
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-### `npm run build`
+4. Start the development server:
+   ```bash
+   npm start
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Scripts
+- **`npm start`**: Runs the app in development mode.
+- **`npm test`**: Launches the test runner.
+- **`npm run build`**: Builds the app for production.
+- **`npm run eject`**: Ejects the app configuration (use cautiously).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Components
+### Admin Components
+- 📋 **BoxTitle**: Handles title rendering for sections.
+- 🛠️ **Form**: Manages various forms like profile, features, and projects.
+- 🎓 **ResumeComponent**: Handles sections like achievements and education.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Client Components
+- 🧭 **Header**: Contains the navigation bar.
+- 👤 **Introduce**: Displays user introductions.
+- 💼 **Portfolio**: Renders user project portfolios.
+- 📜 **Resume**: Displays user resume details.
 
-### `npm run eject`
+## API Services
+- `auth.js`: Manages authentication API requests.
+- `maincv.js`: Retrieves data for the MainCV page.
+- `features.admin.js`: API for managing features on the admin dashboard.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Technologies Used
+- ⚛️ **React**: Frontend framework
+- 🎨 **SASS**: For styling
+- 🌐 **React-Router**: For routing
+- 🌟 **WOW.js**: For animations
+- ⏳ **React Loader Spinner**: For loading states
+- 🗃️ **Redux**: For state management
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contributions
+We welcome contributions to improve MyCV. Feel free to create issues or submit pull requests on [GitHub](https://github.com/thanhlamcode/MyCV).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## License
+This project is licensed under the MIT License. See the LICENSE file for more details.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+### Screenshot
+![App Screenshot](https://img.icons8.com/fluency/48/resume.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Enjoy building your resumes with **MyCV**!
