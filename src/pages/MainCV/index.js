@@ -78,6 +78,7 @@ function MainCV() {
   return (
     <>
       <Helmet>
+        <meta name="robots" content="index, follow" />
         <title>
           {data.information?.fullName
             ? `Professional CV of ${data.information.fullName} | Web Developer Portfolio`
