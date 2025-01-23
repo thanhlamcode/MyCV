@@ -1,3 +1,6 @@
-# https://www.robotstxt.org/robotstxt.html
+# Allow all bots to access all pages
 User-agent: *
-Disallow:
+Allow: /
+
+# Specify the location of the sitemap
+Sitemap: https://dtl-cv.vercel.app/sitemap.xml
