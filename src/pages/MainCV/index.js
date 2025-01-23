@@ -105,7 +105,10 @@ function MainCV() {
             "Discover the CV and portfolio showcasing web development skills and projects."
           }
         />
-        <meta property="og:url" content={`https://github.com/${slug || ""}`} />
+        <meta
+          property="og:url"
+          content={`https://dtl-cv.vercel.app/${slug || ""}`}
+        />
         <meta
           property="og:image"
           content={
