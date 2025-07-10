@@ -2,43 +2,45 @@ html {
   scroll-behavior: smooth;
 }
 
-.header{
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
   position: sticky;
+  height: 100px;
   top: 0;
   z-index: 100;
   background: #121212;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Adds a subtle shadow for depth */
   overflow: hidden;
   margin-top: 0;
-  
 
-  &__left{
-    img{
+
+  &__left {
+    img {
       width: 150px;
     }
   }
 
-  &__right{
-    ul{
+  &__right {
+    ul {
       display: flex;
       list-style-type: none;
       margin-right: 50px;
 
-      a{
+      a {
         margin-right: 10px;
         color: #ADB7C4;
         text-decoration: none;
         transition: all 0.5s ease-in;
 
-        &.focus{
+        &.focus {
           color: #FE014F;
         }
 
-        &:hover{
+        &:hover {
           color: #FE014F;
           cursor: pointer;
         }
@@ -47,22 +49,22 @@ html {
     }
   }
 
-  .bar{
+  .bar {
     display: none;
     color: #ADB7C4;
 
-    &:hover{
+    &:hover {
       cursor: pointer;
       color: #FE014F;
     }
   }
 
-  @media (max-width: 589px){
-    .bar{
+  @media (max-width: 589px) {
+    .bar {
       display: block;
     }
 
-    .sider{
+    .sider {
       display: none;
     }
   }

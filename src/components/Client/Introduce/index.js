@@ -6,6 +6,7 @@ import { IoLogoJavascript } from "react-icons/io";
 import { SiZalo } from "react-icons/si";
 import { FaFacebook } from "react-icons/fa";
 import { CiLinkedin } from "react-icons/ci";
+import logoSnoopy from './snoopy.png'
 import "animate.css";
 import "./style.scss";
 
@@ -29,6 +30,9 @@ function Introduce(props) {
         className="intro wow animate__animated animate__fadeIn"
         id="home"
       >
+        <div>
+          <img src={logoSnoopy} className="snoopy" />
+        </div>
         <Row>
           <Col xl={16} lg={16} md={24} xs={24}>
             <h3
@@ -99,7 +103,7 @@ function Introduce(props) {
             <img
               src={information.avatar}
               alt="ảnh cá nhân"
-              className="wow animate__animated animate__pulse"
+              className="wow animate__animated animate__pulse avatar"
               data-wow-delay="1.2s"
             />
           </Col>

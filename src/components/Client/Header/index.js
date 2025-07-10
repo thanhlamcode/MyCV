@@ -32,7 +32,7 @@ function Header() {
       <section className="header">
         <div className="header__left">
           <a href="#home">
-            <img src={logotrans} alt="logo" />
+            {/* <img src={logotrans} alt="logo" /> */}
           </a>
         </div>
         <div className="header__right">
