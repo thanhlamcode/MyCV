@@ -7,10 +7,15 @@ import Contacts from "../pages/Admin/Contacts";
 import Project from "../pages/Admin/Project";
 import Auth from "../pages/Auth";
 import PrivateRoute from "../pages/Private";
+import ThanhLam from "../pages/ThanhLam";
 
 export const routes = [
   {
     path: "/",
+    element: <ThanhLam />,
+  },
+  {
+    path: "/login",
     element: <Auth />,
   },
   {
