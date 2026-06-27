@@ -79,9 +79,9 @@ function Contact({ information, contactId }) {
             </div>
             <a
               className="download-cv"
-              href="https://drive.google.com/uc?export=download&id=1_placeholder"
-              download
-              onClick={(e) => { e.preventDefault(); openLink("https://doanthanhlam.vercel.app"); }}
+              href="https://res.cloudinary.com/dqlfxshkl/raw/upload/v1782552324/thanhlam-cv.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <FaDownload /> Download CV
             </a>
