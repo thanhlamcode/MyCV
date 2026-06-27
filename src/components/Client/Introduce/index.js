@@ -23,6 +23,7 @@ function Introduce(props) {
     <section className="intro" id="home">
       <Row>
         <Col xl={16} lg={16} md={24} xs={24}>
+          <div className="award-badge">🏆 Top 40 / 430+ teams — YDCC 2025 (UNDP × MUFG Bank)</div>
           <h3>BACKEND DEVELOPER · 1.5 YEARS EXPERIENCE</h3>
           <h1>
             Hi, I'm <span>{information.fullName}</span>
@@ -36,6 +37,12 @@ function Introduce(props) {
             />
           </h1>
           <p>PHP/Symfony Backend Developer with 1.5 years building a production multi-tenant POS platform. Specializing in event-driven architecture (Kafka, RabbitMQ), CDC pipelines, and REST API design with API Platform 4.</p>
+          <div className="intro-highlights">
+            <div className="intro-highlight-item">⚡ Kafka / CDC pipelines</div>
+            <div className="intro-highlight-item">🏢 Multi-tenant POS</div>
+            <div className="intro-highlight-item">✅ PHPUnit · real DB</div>
+            <div className="intro-highlight-item">🚀 Production API</div>
+          </div>
 
           <Row className="wrap-icon">
             <Col lg={12} md={24} sm={24} xs={24}>
@@ -65,7 +72,7 @@ function Introduce(props) {
         <Col xl={8} lg={8} md={24} xs={24} className="avatar-col">
           <img
             src={information.avatar}
-            alt="ảnh cá nhân"
+            alt="Đoàn Thanh Lâm — PHP / Symfony Backend Developer"
             className="avatar"
           />
         </Col>

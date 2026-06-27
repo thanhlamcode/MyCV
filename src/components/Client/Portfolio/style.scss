@@ -18,6 +18,14 @@
     margin-bottom: 40px;
   }
 
+  .container {
+    align-items: stretch;
+
+    > .ant-col {
+      display: flex;
+    }
+  }
+
   .box {
     background: linear-gradient(145deg, var(--bg-card-1), var(--bg-card-2));
     border: 1px solid var(--border);
@@ -25,6 +33,9 @@
     overflow: hidden;
     transition: border-color 0.3s ease, transform 0.3s ease;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 
     &:hover {
       border-color: var(--accent-border-hover);
@@ -67,12 +78,15 @@
 
     .wrap-content {
       padding: 16px 20px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
 
       h2 {
         font-size: 16px;
         font-weight: 600;
         color: var(--text-primary);
-        margin: 0;
+        margin: 0 0 10px;
         line-height: 1.4;
         display: flex;
         align-items: flex-start;
@@ -100,6 +114,64 @@
           color: var(--accent);
         }
       }
+
+      .project-desc {
+        font-size: 13px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin: 0 0 12px;
+        flex: 1;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .project-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .project-tag {
+        background: var(--tag-bg);
+        color: var(--text-secondary);
+        border: 1px solid var(--tag-border);
+        border-radius: 5px;
+        padding: 2px 8px;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+      }
+    }
+
+    &.box--featured {
+      border-color: rgba(255, 196, 0, 0.3);
+
+      &:hover {
+        border-color: rgba(255, 196, 0, 0.6);
+      }
+
+      .wrap-image {
+        position: relative;
+      }
+    }
+
+    .box-featured-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 2;
+      background: rgba(20, 16, 0, 0.72);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 196, 0, 0.5);
+      color: #ffc400;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
     }
   }
 }

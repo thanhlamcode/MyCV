@@ -94,55 +94,44 @@ function ThanhLam() {
         <meta name="robots" content="index, follow" />
         <title>
           {data.information?.fullName
-            ? `Professional CV of ${data.information.fullName} | Web Developer Portfolio`
-            : "Default Title"}
+            ? `${data.information.fullName} — PHP / Symfony Backend Developer`
+            : "Đoàn Thanh Lâm — PHP / Symfony Backend Developer"}
         </title>
-        <meta name="robots" content="index, follow" />
         <meta
           name="description"
           content={
             data.information?.description ||
-            "Explore the professional portfolio and CV of a skilled web developer."
+            "PHP/Symfony Backend Developer with 1.5 years building a production multi-tenant POS platform. Specialising in event-driven architecture, Kafka/CDC pipelines, and REST API design with API Platform 4."
           }
         />
         <meta
           property="og:title"
-          content={`Professional CV of ${data.information?.fullName || "a Web Developer"
-            }`}
+          content={`${data.information?.fullName || "Đoàn Thanh Lâm"} — PHP / Symfony Backend Developer`}
         />
         <meta
           property="og:description"
           content={
             data.information?.description ||
-            "Discover the CV and portfolio showcasing web development skills and projects."
+            "Backend Developer with 1.5 years on a production multi-tenant POS platform — Symfony 7, API Platform 4, Kafka/CDC, RabbitMQ. Top 40 / 430+ teams YDCC 2025."
           }
         />
-        <meta
-          property="og:url"
-          content={`https://dtl-cv.vercel.app/thanh lam`}
-        />
+        <meta property="og:url" content="https://doanthanhlam.vercel.app/" />
         <meta
           property="og:image"
-          content={
-            data.information?.profilePicture // Thay thế bằng đường dẫn ảnh mặc định nếu không có
-          }
+          content={data.information?.profilePicture || "/logo192.png"}
         />
-        <link
-          rel="canonical"
-          href={`https://dtl-cv.vercel.app/thanh lam`}
-        />
+        <link rel="canonical" href="https://doanthanhlam.vercel.app/" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Person",
-            name: data.information?.fullName || "Default Name",
-            jobTitle: "Web Developer, Data Analysis",
-            url: `https://dtl-cv.vercel.app/thanh lam`,
-            image:
-              data.information?.profilePicture || "/default-profile-image.jpg",
+            name: data.information?.fullName || "Đoàn Thanh Lâm",
+            jobTitle: "Backend Developer — PHP / Symfony",
+            url: "https://doanthanhlam.vercel.app/",
+            image: data.information?.profilePicture || "/logo192.png",
             description:
               data.information?.description ||
-              "A skilled web developer specializing in creating professional portfolios.",
+              "PHP/Symfony Backend Developer specialising in event-driven architecture, CDC pipelines, and REST API design.",
           })}
         </script>
       </Helmet>
