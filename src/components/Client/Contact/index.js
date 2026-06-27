@@ -79,7 +79,7 @@ function Contact({ information, contactId }) {
             </div>
             <a
               className="download-cv"
-              href="https://res.cloudinary.com/dqlfxshkl/raw/upload/fl_attachment/v1782552324/thanhlam-cv.pdf"
+              href="/ThanhLam.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >
