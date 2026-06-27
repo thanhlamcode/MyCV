@@ -1,32 +1,23 @@
-.snoopy {
-  position: relative;
-  left: 65px;
-  width: 150px !important;
-}
-
-.avatar {
-  position: relative;
-  top: -90px;
-}
-
 .intro {
   margin: 0 50px;
+  padding: 80px 0 60px;
   color: white;
 
-  img {
-    width: 100%;
-  }
-
   h3 {
-    font-size: 18px;
-    color: #C4CFDE;
+    font-size: 16px;
+    color: #c4cfde;
     font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0 0 8px;
   }
 
   h1 {
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 50px;
     margin-top: 0;
+    margin-bottom: 16px;
+    line-height: 1.2;
 
     span {
       color: #FF014F;
@@ -34,51 +25,60 @@
 
     .Typewriter__wrapper,
     .Typewriter__cursor {
-      color: #FFFFFF;
+      color: #ffffff;
     }
   }
 
   p {
-    color: #C4CFDE;
+    color: #c4cfde;
     font-size: 16px;
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 32px;
   }
 
   .wrap-icon {
     text-transform: uppercase;
+    margin-top: 8px;
   }
 
-  .anticon {
-    padding: 20px;
-    background: linear-gradient(145deg, #1e2024, #23272b);
-    margin-right: 20px;
-    border-radius: 10px;
-    transition: all ease-out 0.4s;
+  .avatar-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .anticon:hover {
-    cursor: pointer;
-    transform: translateY(-10px);
-    /* Adjusted to move slightly more */
-    background: linear-gradient(145deg, #2e3136, #3a3d41);
-    /* New color for the hover effect */
+  .avatar {
+    width: 100%;
+    max-width: 360px;
+    border-radius: 16px;
+    display: block;
+    margin: 0 auto;
   }
 
-  [stroke="currentColor"] {
-    padding: 20px;
-    background: linear-gradient(145deg, #1e2024, #23272b);
-    margin-right: 20px;
-    border-radius: 10px;
-    transition: all ease-out 0.4s;
+  .icon {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
 
+    span, svg {
+      font-size: 18px;
+      padding: 10px;
+      background: linear-gradient(145deg, #1e2024, #23272b);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all ease-out 0.3s;
+      color: #c4cfde;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        transform: translateY(-4px);
+        color: #FF014F;
+        background: linear-gradient(145deg, #2e3136, #3a3d41);
+      }
+    }
   }
-
-
-  [stroke="currentColor"]:hover {
-    cursor: pointer;
-    transform: translateY(-10px);
-    /* Adjusted to move slightly more */
-    background: linear-gradient(145deg, #2e3136, #3a3d41);
-    /* New color for the hover effect */
-  }
-
 }

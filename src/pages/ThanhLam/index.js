@@ -3,12 +3,11 @@ import Contact from "../../components/Client/Contact";
 import Features from "../../components/Client/Features";
 import Header from "../../components/Client/Header";
 import Introduce from "../../components/Client/Introduce";
+import WorkExperience from "../../components/Client/WorkExperience";
 import Portfolio from "../../components/Client/Portfolio";
 import Resume from "../../components/Client/Resume";
-import WOW from "wowjs";
-import "animate.css";
 import "./style.scss";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import {
   getContactId,
   getFeatureCV,
@@ -47,10 +46,6 @@ function ThanhLam() {
     fetchData();
   }, []); // Dependency array rỗng, chỉ chạy 1 lần khi mount
 
-  useEffect(() => {
-    const wow = new WOW.WOW({ live: false });
-    wow.init();
-  }, []);
 
   if (loading) {
     // Hiển thị loading khi trạng thái loading là true
@@ -155,6 +150,7 @@ function ThanhLam() {
         />
         <Header />
         <Introduce information={data.information} />
+        <WorkExperience />
         <Features features={data.features.skills} />
         <Portfolio projects={data.projects.projects} />
         <Resume resume={data.resume} />
