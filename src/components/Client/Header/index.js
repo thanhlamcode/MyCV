@@ -65,6 +65,7 @@ function Header() {
             <li><a href="#resume">Resume</a></li>
             <li><a href="#contacts">Contact</a></li>
           </ul>
+          <a href="#contacts" className="header__cta sider">Hire Me</a>
           <ul className="bar" onClick={handleToggle}>
             <FaBars />
           </ul>
