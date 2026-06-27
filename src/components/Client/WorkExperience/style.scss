@@ -1,10 +1,10 @@
 .work-experience {
   padding: 80px 50px;
-  color: #fff;
+  color: var(--text-primary);
 
   .we-subtitle {
     font-size: 16px;
-    color: #c4cfde;
+    color: var(--text-secondary);
     font-weight: 400;
     text-align: center;
     text-transform: uppercase;
@@ -15,7 +15,7 @@
   .we-title {
     font-size: 42px;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--text-primary);
     text-align: center;
     margin-bottom: 60px;
 
@@ -47,14 +47,14 @@
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background: #c4cfde;
-    border: 2px solid #c4cfde;
+    background: var(--we-dot);
+    border: 2px solid var(--we-dot);
     flex-shrink: 0;
 
     &.we-dot--live {
-      background: #FF014F;
-      border-color: #FF014F;
-      box-shadow: 0 0 0 4px rgba(255, 1, 79, 0.25);
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-glow);
     }
   }
 
@@ -62,17 +62,22 @@
     width: 2px;
     flex: 1;
     min-height: 40px;
-    background: linear-gradient(to bottom, #c4cfde33, transparent);
+    background: linear-gradient(to bottom, var(--we-line), transparent);
     margin: 8px 0;
   }
 
   .we-card {
     flex: 1;
-    background: linear-gradient(145deg, #1e2024, #23272b);
+    background: linear-gradient(145deg, var(--bg-card-1), var(--bg-card-2));
     border-radius: 12px;
     padding: 28px 32px;
     margin-bottom: 32px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      border-color: var(--accent-border);
+    }
 
     @media (max-width: 576px) {
       padding: 20px;
@@ -90,20 +95,20 @@
   .we-role {
     font-size: 20px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--text-primary);
     margin: 0 0 4px;
   }
 
   .we-company {
     font-size: 15px;
-    color: #FF014F;
+    color: var(--accent);
     font-weight: 500;
   }
 
   .we-badge {
-    background: rgba(255, 1, 79, 0.15);
-    color: #FF014F;
-    border: 1px solid rgba(255, 1, 79, 0.4);
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
     border-radius: 20px;
     padding: 3px 12px;
     font-size: 12px;
@@ -114,7 +119,7 @@
 
   .we-meta {
     font-size: 13px;
-    color: #8a93a5;
+    color: var(--text-muted);
     margin: 8px 0 16px;
   }
 
@@ -125,7 +130,7 @@
 
     li {
       font-size: 14px;
-      color: #c4cfde;
+      color: var(--text-secondary);
       line-height: 1.7;
       padding-left: 16px;
       position: relative;
@@ -133,7 +138,7 @@
 
       &::before {
         content: "▸";
-        color: #FF014F;
+        color: var(--accent);
         position: absolute;
         left: 0;
         top: 1px;
@@ -149,9 +154,9 @@
   }
 
   .we-tag {
-    background: rgba(255, 255, 255, 0.06);
-    color: #c4cfde;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--tag-bg);
+    color: var(--text-secondary);
+    border: 1px solid var(--tag-border);
     border-radius: 6px;
     padding: 4px 10px;
     font-size: 12px;

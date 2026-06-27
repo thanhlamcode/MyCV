@@ -3,7 +3,7 @@
   text-align: center;
 
   h3 {
-    color: #c4cfde;
+    color: var(--text-secondary);
     font-weight: 400;
     font-size: 16px;
     text-transform: uppercase;
@@ -12,22 +12,22 @@
   }
 
   h1 {
-    color: #ffffff;
+    color: var(--text-primary);
     font-size: 50px;
     margin-top: 0;
     margin-bottom: 40px;
   }
 
   .box {
-    background: linear-gradient(145deg, #1e2024, #23272b);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: linear-gradient(145deg, var(--bg-card-1), var(--bg-card-2));
+    border: 1px solid var(--border);
     border-radius: 16px;
     overflow: hidden;
     transition: border-color 0.3s ease, transform 0.3s ease;
     text-align: left;
 
     &:hover {
-      border-color: rgba(255, 1, 79, 0.25);
+      border-color: var(--accent-border-hover);
       transform: translateY(-4px);
     }
 
@@ -36,11 +36,11 @@
     }
 
     a {
-      color: #ffffff;
+      color: var(--text-primary);
       text-decoration: none;
 
       &:hover {
-        color: #FF014F;
+        color: var(--accent);
       }
     }
 
@@ -60,7 +60,7 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(to bottom, transparent 40%, rgba(18, 18, 18, 0.55) 100%);
+        background: linear-gradient(to bottom, transparent 40%, var(--overlay-bottom) 100%);
         pointer-events: none;
       }
     }
@@ -71,7 +71,7 @@
       h2 {
         font-size: 16px;
         font-weight: 600;
-        color: #ffffff;
+        color: var(--text-primary);
         margin: 0;
         line-height: 1.4;
         display: flex;
@@ -81,7 +81,7 @@
         transition: color 0.3s ease;
 
         &:hover {
-          color: #FF014F;
+          color: var(--accent);
           cursor: pointer;
         }
 
@@ -97,7 +97,7 @@
         &:hover span svg {
           opacity: 1;
           transform: rotate(45deg);
-          color: #FF014F;
+          color: var(--accent);
         }
       }
     }

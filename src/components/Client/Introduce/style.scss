@@ -1,11 +1,11 @@
 .intro {
   margin: 0 50px;
   padding: 80px 0 60px;
-  color: white;
+  color: var(--text-primary);
 
   h3 {
     font-size: 16px;
-    color: #c4cfde;
+    color: var(--text-secondary);
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 3px;
@@ -13,24 +13,24 @@
   }
 
   h1 {
-    color: #ffffff;
+    color: var(--text-primary);
     font-size: 50px;
     margin-top: 0;
     margin-bottom: 16px;
     line-height: 1.2;
 
     span {
-      color: #FF014F;
+      color: var(--accent);
     }
 
     .Typewriter__wrapper,
     .Typewriter__cursor {
-      color: #ffffff;
+      color: var(--text-primary);
     }
   }
 
   p {
-    color: #c4cfde;
+    color: var(--text-secondary);
     font-size: 16px;
     line-height: 1.7;
     max-width: 560px;
@@ -65,19 +65,19 @@
     span, svg {
       font-size: 18px;
       padding: 10px;
-      background: linear-gradient(145deg, #1e2024, #23272b);
+      background: linear-gradient(145deg, var(--bg-icon-1), var(--bg-icon-2));
       border-radius: 8px;
       cursor: pointer;
       transition: all ease-out 0.3s;
-      color: #c4cfde;
+      color: var(--text-secondary);
       display: flex;
       align-items: center;
       justify-content: center;
 
       &:hover {
         transform: translateY(-4px);
-        color: #FF014F;
-        background: linear-gradient(145deg, #2e3136, #3a3d41);
+        color: var(--accent);
+        background: linear-gradient(145deg, var(--bg-deep-1), var(--bg-deep-2));
       }
     }
   }

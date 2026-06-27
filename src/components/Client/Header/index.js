@@ -1,12 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaMoon, FaSun, FaDesktop } from "react-icons/fa";
 import "./style.scss";
 import Sider from "../Sider";
 import { useState, useEffect } from "react";
+import { useTheme } from "../../../context/ThemeContext";
 
 function Header() {
   const [isVisible, setIsVisible] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   const handleToggle = () => setIsVisible(!isVisible);
 
@@ -32,6 +34,29 @@ function Header() {
           </a>
         </div>
         <div className="header__right">
+          <div className="theme-toggle">
+            <button
+              className={theme === "dark" ? "active" : ""}
+              onClick={() => setTheme("dark")}
+              title="Dark"
+            >
+              <FaMoon />
+            </button>
+            <button
+              className={theme === "light" ? "active" : ""}
+              onClick={() => setTheme("light")}
+              title="Light"
+            >
+              <FaSun />
+            </button>
+            <button
+              className={theme === "system" ? "active" : ""}
+              onClick={() => setTheme("system")}
+              title="System"
+            >
+              <FaDesktop />
+            </button>
+          </div>
           <ul className="sider">
             <li><a href="#home">Home</a></li>
             <li><a href="#experience">Experience</a></li>

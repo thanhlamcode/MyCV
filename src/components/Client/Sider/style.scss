@@ -1,104 +1,99 @@
 .sider-bar {
-  width: 100vw; /* Chiều rộng bằng 100% của viewport */
-  height: 100%; /* Chiều cao bằng 100% của viewport */
-  position: fixed; /* Cố định vị trí trên màn hình */
-  top: 0; /* Canh trên */
-  left: 0; /* Canh trái */
-  z-index: 1000; /* Đảm bảo nằm trên các phần tử khác */
-  background-color: rgba(0, 0, 0, 0.8);
+  width: 100vw;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.7);
   transition: all ease 0.4s;
 
-  .bar{
+  .bar {
     width: 50%;
     height: 100%;
-    background-color: #121212;
+    background-color: var(--bg-page);
     padding: 30px;
-    color: #C4CFDE;
+    color: var(--text-secondary);
 
     hr {
       border: none;
-      height: 2px; /* Adjust the thickness here */
-      background-color: #333; /* Adjust the color as needed */
-      margin: 20px 0; /* Adjust the spacing above and below */
-      width: 100%; /* Make it span across the container */
-      opacity: 0.3; /* Adjust the transparency if desired */
-  }
-  
+      height: 2px;
+      background-color: var(--border-subtle);
+      margin: 20px 0;
+      width: 100%;
+    }
 
-    p, h3{
-      color: #878E99;
+    p, h3 {
+      color: var(--text-muted);
       font-size: 16px;
     }
 
-    ul{
+    ul {
       list-style-type: none;
       padding: 0;
 
-      li{
+      li {
         margin-bottom: 10px;
 
-        &:hover{
+        &:hover {
           cursor: pointer;
         }
       }
 
-      a{
+      a {
         text-decoration: none;
-        color: #C4CFDE;
+        color: var(--text-secondary);
         font-size: 14px;
       }
-
     }
 
-    .close{
+    .close {
       position: absolute;
       right: 45%;
       scale: 1;
       top: 48px;
       cursor: pointer;
       padding: 10px;
-      color: #FF014F;
-      background: linear-gradient(145deg, #1e2024, #23272b);
+      color: var(--accent);
+      background: linear-gradient(145deg, var(--bg-card-1), var(--bg-card-2));
       width: 10px;
       height: 10px;
       display: inline-flex;
       justify-content: center;
       align-items: center;
       border-radius: 25px;
-      text-transform: math-auto;
     }
 
-    .anticon{
+    .anticon {
       padding: 15px;
-      background: linear-gradient(145deg, #1e2024, #23272b);
+      background: linear-gradient(145deg, var(--bg-card-1), var(--bg-card-2));
       margin-right: 20px;
       border-radius: 10px;
       transition: all ease-out 0.4s;
     }
-  
+
     .anticon:hover {
       cursor: pointer;
-      transform: translateY(-10px); /* Adjusted to move slightly more */
-      background: linear-gradient(145deg, #2e3136, #3a3d41); /* New color for the hover effect */
-    }
-  
-    [stroke="currentColor"]{
-      padding: 15px;
-      background: linear-gradient(145deg, #1e2024, #23272b);
-      margin-right: 20px;
-      border-radius: 10px;
-      transition: all ease-out 0.4s ;
-      color: white;
-    }
-    
-  
-    [stroke="currentColor"]:hover {
-      cursor: pointer;
-      transform: translateY(-10px); /* Adjusted to move slightly more */
-      background: linear-gradient(145deg, #2e3136, #3a3d41); /* New color for the hover effect */
+      transform: translateY(-10px);
+      background: linear-gradient(145deg, var(--bg-deep-1), var(--bg-deep-2));
     }
 
-    .side-footer{
+    [stroke="currentColor"] {
+      padding: 15px;
+      background: linear-gradient(145deg, var(--bg-card-1), var(--bg-card-2));
+      margin-right: 20px;
+      border-radius: 10px;
+      transition: all ease-out 0.4s;
+      color: var(--text-primary);
+    }
+
+    [stroke="currentColor"]:hover {
+      cursor: pointer;
+      transform: translateY(-10px);
+      background: linear-gradient(145deg, var(--bg-deep-1), var(--bg-deep-2));
+    }
+
+    .side-footer {
       position: absolute;
       bottom: 50px;
     }

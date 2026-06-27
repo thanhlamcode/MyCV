@@ -1,12 +1,12 @@
-.resume{
+.resume {
   margin: 80px 50px;
 
-  .text-center{
+  .text-center {
     text-align: center;
   }
 
-  h2{
-    color: #c4cfde;
+  h2 {
+    color: var(--text-secondary);
     font-weight: 400;
     font-size: 16px;
     text-transform: uppercase;
@@ -14,39 +14,39 @@
     margin: 0 0 8px;
   }
 
-  h1{
-    color: #ffffff;
+  h1 {
+    color: var(--text-primary);
     margin-top: 0;
     font-size: 50px;
   }
 
-  .bar{
-    color: #C4CFDE;
+  .bar {
+    color: var(--text-secondary);
 
-    .box{
+    .box {
       text-align: center;
       font-size: 20px;
-      color: #C4CFDE;
-      background: linear-gradient(to right bottom, #212428, #16181c);
-      box-shadow: 10px 10px 19px #1c1e22, 5px 5px 5px #262a2e;
+      color: var(--text-secondary);
+      background: linear-gradient(to right bottom, var(--bg-deep-1), var(--bg-deep-2));
+      box-shadow: var(--shadow-feature);
       padding: 35px;
       border-radius: 20px;
       transition: all ease-out 0.4s;
 
-      &.focus{
-        color: #FF014F;
+      &.focus {
+        color: var(--accent);
       }
 
-      &:hover{
-        color: #FF014F;
+      &:hover {
+        color: var(--accent);
         cursor: pointer;
-        background: linear-gradient(to left top, #212428, #16181c);
+        background: linear-gradient(to left top, var(--bg-deep-1), var(--bg-deep-2));
+        box-shadow: var(--shadow-hover);
       }
     }
   }
 
-  .box.active{
-    color: #FF014F;
+  .box.active {
+    color: var(--accent);
   }
-
 }

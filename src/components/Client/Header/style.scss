@@ -11,35 +11,40 @@ html {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(18, 18, 18, 0.85);
+  background: var(--header-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  transition: box-shadow 0.3s ease;
+  border-bottom: 1px solid var(--header-border);
+  transition: box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
 
   &--scrolled {
-    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
-    border-bottom-color: rgba(255, 255, 255, 0.07);
+    box-shadow: var(--header-shadow);
+    border-bottom-color: var(--header-border-scrolled);
   }
 
   &__logo {
     font-size: 20px;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--text-primary);
     text-decoration: none;
     letter-spacing: 1px;
+    transition: color 0.25s ease;
 
     .logo-bracket {
-      color: #FF014F;
+      color: var(--accent);
       font-weight: 400;
     }
 
     &:hover {
-      color: #FF014F;
+      color: var(--accent);
     }
   }
 
   &__right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
     ul {
       display: flex;
       list-style-type: none;
@@ -48,7 +53,7 @@ html {
       gap: 8px;
 
       li a {
-        color: #adb7c4;
+        color: var(--text-muted);
         text-decoration: none;
         font-size: 13px;
         font-weight: 500;
@@ -58,8 +63,8 @@ html {
         transition: color 0.25s ease, background 0.25s ease;
 
         &:hover {
-          color: #ffffff;
-          background: rgba(255, 255, 255, 0.06);
+          color: var(--text-primary);
+          background: var(--border);
         }
       }
     }
@@ -67,12 +72,12 @@ html {
 
   .bar {
     display: none;
-    color: #adb7c4;
+    color: var(--text-muted);
     font-size: 20px;
     cursor: pointer;
 
     &:hover {
-      color: #FF014F;
+      color: var(--accent);
     }
   }
 
@@ -87,5 +92,44 @@ html {
     .sider {
       display: none;
     }
+  }
+}
+
+/* ── Theme toggle ───────────────────────────────────── */
+.theme-toggle {
+  display: flex;
+  gap: 2px;
+  background: var(--border);
+  border-radius: 8px;
+  padding: 3px;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 12px;
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease;
+
+    &:hover {
+      color: var(--text-primary);
+      background: var(--border-subtle);
+    }
+
+    &.active {
+      background: var(--bg-card-1);
+      color: var(--accent);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 }
