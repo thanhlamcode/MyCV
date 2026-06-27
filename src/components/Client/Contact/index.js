@@ -1,6 +1,6 @@
 import { Col, Row } from "antd";
 import { CiLinkedin } from "react-icons/ci";
-import { FaFacebookF } from "react-icons/fa";
+import { FaFacebookF, FaGithub, FaDownload } from "react-icons/fa";
 import { SiZalo } from "react-icons/si";
 import { useState } from "react";
 import { message } from "antd";
@@ -46,6 +46,7 @@ function Contact({ information, contactId }) {
       <Row gutter={[30, 30]}>
         <Col xxl={10} lg={10} md={24} sm={24} xs={24}>
           <div className="wrap-left">
+            <div className="avail-badge">● Available for work</div>
             <div className="fullName">{information.fullName}</div>
             <div className="job-title">PHP / Symfony Backend Developer</div>
             <p>Open to new opportunities. Connect with me or drop a message below.</p>
@@ -57,12 +58,33 @@ function Contact({ information, contactId }) {
               <span className="label">Email</span>
               <span className="value">{information.emailAddress}</span>
             </div>
+            <div className="contact-row">
+              <span className="label">Location</span>
+              <span className="value">Ho Chi Minh City, Vietnam</span>
+            </div>
+            <div className="contact-row">
+              <span className="label">GitHub</span>
+              <span className="value link" onClick={() => openLink("https://github.com/thanhlamcode")}>github.com/thanhlamcode</span>
+            </div>
+            <div className="contact-row">
+              <span className="label">Portfolio</span>
+              <span className="value link" onClick={() => openLink("https://doanthanhlam.vercel.app")}>doanthanhlam.vercel.app</span>
+            </div>
             <div className="find-label">FIND WITH ME</div>
             <div className="icon">
               <span onClick={() => openLink(information.facebookAddress)}><FaFacebookF /></span>
               <span onClick={() => openLink(information.zaloAddress)}><SiZalo /></span>
               <span onClick={() => openLink(information.linkedinAddress)}><CiLinkedin /></span>
+              <span onClick={() => openLink("https://github.com/thanhlamcode")}><FaGithub /></span>
             </div>
+            <a
+              className="download-cv"
+              href="https://drive.google.com/uc?export=download&id=1_placeholder"
+              download
+              onClick={(e) => { e.preventDefault(); openLink("https://doanthanhlam.vercel.app"); }}
+            >
+              <FaDownload /> Download CV
+            </a>
           </div>
         </Col>
         <Col xxl={14} lg={14} md={24} sm={24} xs={24}>
