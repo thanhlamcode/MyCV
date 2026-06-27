@@ -12,7 +12,7 @@
   font-family: inherit;
 }
 
-/* ── Shared entrance animations ────────────────── */
+/* ── Hero animations (above fold, load immediately) ── */
 
 @keyframes fadeSlideUp {
   from { opacity: 0; transform: translateY(24px); }
@@ -24,51 +24,46 @@
   to   { opacity: 1; }
 }
 
-/* Section headings */
-.we-subtitle, .features h3, .portfolio h3, .resume h2, .contact h3,
-.we-title,    .features h1, .portfolio h1, .resume h1, .contact h1 {
-  animation: fadeSlideUp 0.55s ease both;
-}
-
-.we-title, .features h1, .portfolio h1, .resume h1, .contact h1 {
-  animation-delay: 0.1s;
-}
-
-/* Work Experience cards */
-.we-item:nth-child(1) .we-card { animation: fadeSlideUp 0.5s 0.15s ease both; }
-.we-item:nth-child(2) .we-card { animation: fadeSlideUp 0.5s 0.30s ease both; }
-
-/* Features cards */
-.features .box { animation: fadeSlideUp 0.45s ease both; }
-.features .ant-col:nth-child(1) .box { animation-delay: 0.10s; }
-.features .ant-col:nth-child(2) .box { animation-delay: 0.18s; }
-.features .ant-col:nth-child(3) .box { animation-delay: 0.26s; }
-.features .ant-col:nth-child(4) .box { animation-delay: 0.34s; }
-.features .ant-col:nth-child(5) .box { animation-delay: 0.42s; }
-.features .ant-col:nth-child(6) .box { animation-delay: 0.50s; }
-
-/* Portfolio cards */
-.portfolio .box { animation: fadeSlideUp 0.45s ease both; }
-.portfolio .ant-col:nth-child(1) .box { animation-delay: 0.10s; }
-.portfolio .ant-col:nth-child(2) .box { animation-delay: 0.18s; }
-.portfolio .ant-col:nth-child(3) .box { animation-delay: 0.26s; }
-.portfolio .ant-col:nth-child(4) .box { animation-delay: 0.34s; }
-.portfolio .ant-col:nth-child(5) .box { animation-delay: 0.42s; }
-.portfolio .ant-col:nth-child(6) .box { animation-delay: 0.50s; }
-
-/* Timeline cards */
-.tl-list .tl-card { animation: fadeSlideUp 0.4s ease both; }
-.tl-list .tl-card:nth-child(1) { animation-delay: 0.10s; }
-.tl-list .tl-card:nth-child(2) { animation-delay: 0.22s; }
-.tl-list .tl-card:nth-child(3) { animation-delay: 0.34s; }
-
-/* Contact card */
-.contact .wrap-left { animation: fadeSlideUp 0.5s 0.1s ease both; }
-.contact form       { animation: fadeSlideUp 0.5s 0.2s ease both; }
-
-/* Hero */
-.intro h3  { animation: fadeSlideUp 0.5s 0.05s ease both; }
-.intro h1  { animation: fadeSlideUp 0.5s 0.15s ease both; }
-.intro p   { animation: fadeSlideUp 0.5s 0.25s ease both; }
+.intro h3         { animation: fadeSlideUp 0.5s 0.05s ease both; }
+.intro h1         { animation: fadeSlideUp 0.5s 0.15s ease both; }
+.intro p          { animation: fadeSlideUp 0.5s 0.25s ease both; }
 .intro .wrap-icon { animation: fadeSlideUp 0.5s 0.35s ease both; }
-.intro .avatar    { animation: fadeIn 0.7s 0.2s ease both; }
+.intro .avatar    { animation: fadeIn    0.7s 0.20s ease both; }
+
+/* ── Scroll-reveal system (IntersectionObserver adds .in-view) ── */
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+
+  &.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger delays */
+.we-item:nth-child(1) .we-card { transition-delay: 0.05s; }
+.we-item:nth-child(2) .we-card { transition-delay: 0.20s; }
+
+.features .ant-col:nth-child(1) .box { transition-delay: 0.04s; }
+.features .ant-col:nth-child(2) .box { transition-delay: 0.11s; }
+.features .ant-col:nth-child(3) .box { transition-delay: 0.18s; }
+.features .ant-col:nth-child(4) .box { transition-delay: 0.25s; }
+.features .ant-col:nth-child(5) .box { transition-delay: 0.32s; }
+.features .ant-col:nth-child(6) .box { transition-delay: 0.39s; }
+
+.portfolio .ant-col:nth-child(1) .box { transition-delay: 0.04s; }
+.portfolio .ant-col:nth-child(2) .box { transition-delay: 0.11s; }
+.portfolio .ant-col:nth-child(3) .box { transition-delay: 0.18s; }
+.portfolio .ant-col:nth-child(4) .box { transition-delay: 0.25s; }
+.portfolio .ant-col:nth-child(5) .box { transition-delay: 0.32s; }
+.portfolio .ant-col:nth-child(6) .box { transition-delay: 0.39s; }
+
+.tl-list .tl-card:nth-child(1) { transition-delay: 0.04s; }
+.tl-list .tl-card:nth-child(2) { transition-delay: 0.16s; }
+.tl-list .tl-card:nth-child(3) { transition-delay: 0.28s; }
+
+.contact .wrap-left { transition-delay: 0.04s; }
+.contact form       { transition-delay: 0.18s; }

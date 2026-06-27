@@ -31,7 +31,7 @@ function ThanhLam() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true); // Bật trạng thái loading
+      setLoading(true);
       const [information, features, projects, resume, contactId] =
         await Promise.all([
           getInfomationCV("thanhlam"),
@@ -41,10 +41,30 @@ function ThanhLam() {
           getContactId("thanhlam"),
         ]);
       setData({ information, features, projects, resume, contactId });
-      setLoading(false); // Tắt trạng thái loading khi dữ liệu đã được tải
+      setLoading(false);
     };
     fetchData();
-  }, []); // Dependency array rỗng, chỉ chạy 1 lần khi mount
+  }, []);
+
+  useEffect(() => {
+    if (loading) return;
+    const targets = document.querySelectorAll(
+      '.we-card, .features .box, .portfolio .box, .tl-card,' +
+      '.contact .wrap-left, .contact form,' +
+      '.we-subtitle, .we-title,' +
+      '.features h3, .features h1,' +
+      '.portfolio h3, .portfolio h1,' +
+      '.tl-heading, .contact h3, .contact h1'
+    );
+    const obs = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); obs.unobserve(e.target); }
+      }),
+      { threshold: 0.12 }
+    );
+    targets.forEach(el => { el.classList.add('scroll-reveal'); obs.observe(el); });
+    return () => obs.disconnect();
+  }, [loading]);
 
 
   if (loading) {
