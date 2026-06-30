@@ -1,7 +1,7 @@
 import React from "react";
 import Typewriter from "typewriter-effect";
 import { Col, Row } from "antd";
-import { FaFacebook } from "react-icons/fa";
+import { FaFacebook, FaCodeBranch, FaBuilding, FaVial, FaCloud } from "react-icons/fa";
 import { CiLinkedin } from "react-icons/ci";
 import { SiZalo, SiPhp, SiSymfony, SiPostgresql } from "react-icons/si";
 import "./style.scss";
@@ -38,10 +38,10 @@ function Introduce(props) {
           </h1>
           <p>PHP/Symfony Backend Developer with 1.5 years building a production multi-tenant POS platform. Specializing in event-driven architecture (Kafka, RabbitMQ), CDC pipelines, and REST API design with API Platform 4.</p>
           <div className="intro-highlights">
-            <div className="intro-highlight-item">🔄 Kafka / CDC pipelines</div>
-            <div className="intro-highlight-item">🏗️ Multi-tenant POS</div>
-            <div className="intro-highlight-item">🧪 PHPUnit · real DB</div>
-            <div className="intro-highlight-item">⚙️ Production API</div>
+            <div className="intro-highlight-item"><FaCodeBranch /> Kafka / CDC pipelines</div>
+            <div className="intro-highlight-item"><FaBuilding /> Multi-tenant POS</div>
+            <div className="intro-highlight-item"><FaVial /> PHPUnit · real DB</div>
+            <div className="intro-highlight-item"><FaCloud /> Production API</div>
           </div>
 
           <Row className="wrap-icon">
