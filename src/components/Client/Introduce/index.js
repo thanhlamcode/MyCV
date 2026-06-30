@@ -38,10 +38,10 @@ function Introduce(props) {
           </h1>
           <p>PHP/Symfony Backend Developer with 1.5 years building a production multi-tenant POS platform. Specializing in event-driven architecture (Kafka, RabbitMQ), CDC pipelines, and REST API design with API Platform 4.</p>
           <div className="intro-highlights">
-            <div className="intro-highlight-item">⚡ Kafka / CDC pipelines</div>
-            <div className="intro-highlight-item">🏢 Multi-tenant POS</div>
-            <div className="intro-highlight-item">✅ PHPUnit · real DB</div>
-            <div className="intro-highlight-item">🚀 Production API</div>
+            <div className="intro-highlight-item">🔄 Kafka / CDC pipelines</div>
+            <div className="intro-highlight-item">🏗️ Multi-tenant POS</div>
+            <div className="intro-highlight-item">🧪 PHPUnit · real DB</div>
+            <div className="intro-highlight-item">⚙️ Production API</div>
           </div>
 
           <Row className="wrap-icon">
